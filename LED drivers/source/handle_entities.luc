@@ -1,0 +1,46 @@
+module handle_entities (
+    input clk,  // clock
+    input rst,  // reset
+    input player_location[16],
+    input enemy_location[16][16],
+    output entities[32][2]
+  ) {
+  
+  .clk(clk){
+    .rst(rst){
+      
+      dff led_ctr[5];
+      dff enemy_ctr[4];
+    }
+  }
+  
+  always {
+    entities = 32x{{2h00}};
+    
+    if (led_ctr.q < enemy_location[enemy_ctr.q][14:0] && led_ctr.q < player_location[14:0]){
+      entities[led_ctr.q] = 0;
+      led_ctr.d = led_ctr.q + 1;
+    }
+    if (led_ctr.q == enemy_location[enemy_ctr.q][14:0] || led_ctr.q == player_location[14:0]){
+      if (enemy_location[enemy_ctr.q] == player_location){
+        if (enemy_location[enemy_ctr.q][15] ==1){
+          entities[led_ctr.q] = 1;
+        }
+        else{
+          entities[led_ctr.q] = 0;
+        }
+        led_ctr.d = led_ctr.q + 1;
+        enemy_ctr.d = enemy_ctr.q +1;
+      }
+      else if (enemy_location[enemy_ctr.q][14:0] < player_location[14:0]){
+        if (enemy_location[enemy_ctr.q][15] ==1){
+          entities[led_ctr.q] = 3;
+        }
+        else{
+          entities[led_ctr.q] = 0;
+        }
+      }
+      else{
+        entities[led_ctr.q] = 2;
+      }
+  }

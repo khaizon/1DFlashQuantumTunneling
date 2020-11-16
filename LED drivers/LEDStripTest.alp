@@ -2,9 +2,10 @@
 <project name="LEDStripTest" board="Alchitry Au" language="Lucid" version="3">
   <files>
     <src top="true">au_top.luc</src>
-    <src>ws2812b_writer.luc</src>
+    <src>handle_entities.luc</src>
+    <src>led_driver.luc</src>
     <component>reset_conditioner.luc</component>
-    <constraint>custom.acf</constraint>
     <constraint lib="true">au.xdc</constraint>
+    <constraint>custom.acf</constraint>
   </files>
 </project>
