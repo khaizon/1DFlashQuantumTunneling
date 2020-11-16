@@ -1,0 +1,64 @@
+// 16-bit arithmetic logic unit
+module alu_16_bit (
+    input a[16],
+    input b[16],
+    input alufn[6],
+    output z,
+    output v,
+    output n,
+    output out[16]
+  ) {
+  
+  alu_arithmetic arithmeticUnit;
+  alu_boolean booleanUnit;
+  alu_compare compareUnit;
+  alu_shifter shifterUnit;
+  
+  // instantiating intermediate z, v, n to enable reading into compareUnit
+  sig int_z;
+  sig int_v;
+  sig int_n;
+  
+  always {
+    
+    // z,v,n are only modified if arithmetic unit is used, default 0
+    int_z = 0;
+    int_v = 0;
+    int_n = 0;
+    
+    arithmeticUnit.alufn = alufn[3:0];
+    arithmeticUnit.a = a;
+    arithmeticUnit.b = b;
+    
+    int_z = arithmeticUnit.z;
+    int_v = arithmeticUnit.v;
+    int_n = arithmeticUnit.n;
+    
+    // writing to outputs z, v, n
+    z = int_z;
+    v = int_v;
+    n = int_n;
+    
+    compareUnit.alufn = alufn[3:0];
+    compareUnit.z = int_z;
+    compareUnit.v = int_v;
+    compareUnit.n = int_n;
+    
+    booleanUnit.alufn = alufn[3:0];
+    booleanUnit.a = a;
+    booleanUnit.b = b;
+    
+    shifterUnit.alufn = alufn[1:0];
+    shifterUnit.a = a;
+    shifterUnit.b = b[3:0];
+    
+    case (alufn[5:4]) {
+      b00: out = arithmeticUnit.out;
+      b01: out = booleanUnit.out;
+      b10: out = shifterUnit.out;
+      b11: out = compareUnit.out;
+      default:  out = 16b0;
+      
+      }
+  }
+}
