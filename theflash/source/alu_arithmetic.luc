@@ -1,0 +1,38 @@
+module alu_arithmetic (
+    input a[16],
+    input b[16],
+    input alufn[4],
+    output z,
+    output v,
+    output n,
+    output out[16]
+  ) {
+  sig s[16];
+  
+  always {
+    case (alufn){
+    
+      // Addition Operation
+      b0000: s = a + b; // ADD
+      // Subtraction Operation
+      b0001: s = a - b; // SUB
+      // Additional Function: Multiply
+      b0010: s = (a * b); // MUL 
+      // Additional Function: Modulo
+      // we check if the divisor(b) is 0, if not 0 then we do floor division. else we output a
+      b0111:
+        if (b !=0)
+          s = a-((a/b)*b);
+        else s = a;
+        
+      default: s = 0;
+      
+    }
+    
+    z = s == 0;
+    v = ( a[15] & (b[15] ^ alufn[0]) & ~s[15] ) | ( ~a[15] & ~(b[15] ^ alufn[0]) & s[15] );
+    n = s[15];
+    
+    out = s;
+  }
+}

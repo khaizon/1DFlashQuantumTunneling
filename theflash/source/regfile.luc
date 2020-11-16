@@ -1,40 +1,30 @@
 module regfile (
-    input clk,
-    input [15:0] read_address_1,
-    input [15:0] read_address_2,
-    input [15:0] read_address_3,
-    output reg [15:0] read_data_1,
-    output reg [15:0] read_data_2,
-    output reg [15:0] read_data_3,
-    output reg [15:0] player_position,
-    output reg [15:0] enemy_position,
-    input [15:0] write_address,
-    input [15:0] write_data,
+    input clk,  // clock
+    input read_address_1[5],
+    input read_address_2[5],
+    output read_data_1[16],
+    output read_data_2[16],
+    input write_address[5],
+    input write_data[16],
     input write_enable
-  );
+  ) {
   
+  dff registers[32][32](.clk(clk));
   
-  
-  reg [1023:0] M_registers_d, M_registers_q = 1'h0;
-  
-  always @* begin
-    M_registers_d = M_registers_q;
+  always {
     
-    read_data_1 = M_registers_q[(read_address_1)*32+31-:32];
-    read_data_2 = M_registers_q[(read_address_2)*32+31-:32];
-    if (write_address != 5'h1f && write_enable) begin
-      M_registers_d[(write_address)*32+31-:32] = write_data;
-    end
-    if (read_address_1 == 5'h1f) begin
-      read_data_1 = 16'h0000;
-    end
-    if (read_address_2 == 5'h1f) begin
-      read_data_2 = 16'h0000;
-    end
-  end
-  
-  always @(posedge clk) begin
-    M_registers_q <= M_registers_d;
-  end
-  
-endmodule
+    //always read 
+    read_data_1 = registers.q[read_address_1];
+    read_data_2 = registers.q[read_address_2];
+    
+    // check if write_en and its not R31 
+    if (write_address != b11111 && write_enable){
+        registers.d[write_address] = write_data;
+    }
+    
+    // check if its not R31 
+    if (read_address_1 == b11111) read_data_1 = h0000;
+    if (read_address_2 == b11111) read_data_2 = h0000;
+    
+  }
+}
