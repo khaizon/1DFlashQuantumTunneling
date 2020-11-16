@@ -48,12 +48,12 @@ module led_driver #(
           2: color_bits.d = BLUE;
           3: color_bits.d = RED;
             if (color_bits.q[bit_ctr.q])
-              led = ctr.q < 82;
+              led = ctr.q < 80;
             else
               led = ctr.q < 40;
             
             ctr.d = ctr.q + 1;
-            if (ctr.q == 122){ //check if you can send next bit
+            if (ctr.q == 125){ //check if you can send next bit
               ctr.d = 0;
               
               bit_ctr.d = bit_ctr.q + 1;
