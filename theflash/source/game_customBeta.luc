@@ -4,17 +4,20 @@ module game_customBeta (
     
     input up_button,
     input down_button,
+    input middle_button,
     
     // output debug_out[16],
     output lives[16],
-    output out
+    output playerposition[16], // temp for testing
+    output slow_counter_time[16],
+    output state_nummber
   ) {
   
   //temp variables for ALU inputs A and B
   sig alu_a[16];
   sig alu_b[16];
   
-  alu game_alu;
+  alu_16_bit game_alu;
   
   .clk(clk){
     edge_detector fast_timer_detector (#RISE(1), #FALL(0));
@@ -39,15 +42,16 @@ module game_customBeta (
     slow_timer_detector.in = slow_timer.value; // random counter increase signal 
     
     //pass timer and counter signals to CU unit 
-    game_controlunit.fast_timer = fast_timer_detector.out;
-    game_controlunit.slow_timer = slow_timer_detector.out;
+    game_controlunit.fast_counter = fast_timer_detector.out;
+    game_controlunit.slow_counter = slow_timer_detector.out;
     
     //pass button press signal to Control Unit
-    game_controlunit.up_button = up_button;
-    game_controlunit.down_button = down_button;
+    game_controlunit.forward_pressed = up_button;
+    game_controlunit.backward_pressed = down_button;
+    game_controlunit.reset_pressed = middle_button;
     
     //Setup REGFILE unit 
-    memory.we = game_controlunit.we_regfile;
+    memory.we = game_controlunit.control_sig_write_enable;
     memory.write_address = game_controlunit.control_sig_rc;
    
     memory.read_address_a = game_controlunit.control_sig_ra;
@@ -55,6 +59,16 @@ module game_customBeta (
     
     //bootstrap reg_b output to CU for convenient branching conditions
     game_controlunit.rb_data = memory.out_b;
+    
+    // show lives left
+    lives = memory.lives_left_output;
+    
+    // show count up timer 
+    slow_counter_time = memory.slow_counter_output;
+    
+    playerposition = memory.playerposition;
+    
+    state_nummber = game_controlunit.state_number;
     
     //asel mux
     case(game_controlunit.control_sig_asel){
@@ -80,11 +94,11 @@ module game_customBeta (
     //ALU
     game_alu.a = alu_a;
     game_alu.b = alu_b;
-    game_alu.alufn_signal = game_controlunit.control_sig_alufn;
+    game_alu.alufn = game_controlunit.control_sig_alufn;
    
     
     //wdsel mux
-    case (game_controlunit.wd_sel){
+    case (game_controlunit.control_sig_wdsel){
       b01 : memory.data = h1A;
       b10 : memory.data = h11B;
       b11 : memory.data = h8000;

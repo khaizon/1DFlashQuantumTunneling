@@ -4,6 +4,7 @@ module au_top (
     output led [8],         // 8 user controllable LEDs
     output io_led [3][8],   // LEDs on IO Shield
     input io_button [5],    // 5 buttons on IO Shield
+    // io_button[0] is up, io_button[1] is center, io_button[2] is down, io_button[3] is left, and io_button[4] is right.
     input usb_rx,           // USB->Serial input
     output usb_tx,          // USB->Serial output
     output io_seg [8],      // 7-segment LEDs on IO Shield
@@ -22,18 +23,21 @@ module au_top (
     // detect up and down button pressers of player
     edge_detector edge_dt_btn_up (#RISE(1), #FALL(0));
     edge_detector edge_dt_btn_down(#RISE(1), #FALL(0));
+    edge_detector edge_dt_btn_mid(#RISE(1), #FALL(0));
 
     // button conditioner for up and down button
     button_conditioner btn_cond_up;
     button_conditioner btn_cond_down;
+    button_conditioner btn_cond_mid;
     
     .rst(rst){
-      counter timer(#SIZE(1), #DIV(25));
+      // counter timer(#SIZE(1), #DIV(25));
       game_customBeta gameMachine;
+      multi_seven_seg test_display;
      }
     
   }
-  
+  converter converter;
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
@@ -44,24 +48,34 @@ module au_top (
 
     usb_tx = usb_rx;        // echo the serial data
     
-    io_led = 3x{{8h00}};    // turn LEDs off
+    // io_led = 3x{{8h00}};    // turn LEDs off
+    io_led = 3x{{8h00}};
+    io_led[0] = c{0, gameMachine.state_nummber};
     
-    btn_cond_up.in=io_button[4]; //to reduce the bouncing effects of your button 
-    btn_cond_down.in=io_button[3]; // must change to external button io
+    btn_cond_up.in=io_button[0]; //to reduce the bouncing effects of your button 
+    btn_cond_down.in=io_button[2]; // must change to external button io
+    btn_cond_mid.in=io_button[1];
     edge_dt_btn_up.in=btn_cond_up.out; //get the edge of button press
     edge_dt_btn_down.in=btn_cond_down.out;
+    edge_dt_btn_mid.in=btn_cond_mid.out;
     
     // detect up and down button presses
     // serves as input into our game's beta CPU 
     gameMachine.up_button = edge_dt_btn_up.out;
     gameMachine.down_button = edge_dt_btn_down.out;
+    gameMachine.middle_button = edge_dt_btn_mid.out;
     
     // set LED strip to display output of gameMachine
     // io_led[0] = gameMachine.p1_out;    
     // io_led[1] = gameMachine.p2_out;
-    
-    
+    io_seg = ~test_display.seg;
+    converter.pp = gameMachine.playerposition;
+    test_display.values = converter.out;
+    io_sel = ~test_display.sel;
+  
     // update 2 digits of 7 segment to show count-up timer
+    
+    
     
     
   }

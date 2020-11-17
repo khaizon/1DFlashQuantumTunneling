@@ -1,8 +1,8 @@
-Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date         : Mon Nov 16 16:14:15 2020
-| Host         : DESKTOP-QP819M2 running 64-bit major release  (build 9200)
+| Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
+| Date         : Tue Nov 17 15:57:55 2020
+| Host         : DESKTOP-LEHPGBB running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file au_top_0_control_sets_placed.rpt
 | Design       : au_top_0
 | Device       : xc7a35t
@@ -23,33 +23,21 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     5 |
-|    Minimum number of control sets                        |     5 |
-|    Addition due to synthesis replication                 |     0 |
-|    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    24 |
+| Number of unique control sets                            |    15 |
+| Unused register locations in slices containing registers |    32 |
 +----------------------------------------------------------+-------+
-* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
-** Run report_qor_suggestions for automated merging and remapping suggestions
 
 
 2. Histogram
 ------------
 
-+--------------------+-------+
-|       Fanout       | Count |
-+--------------------+-------+
-| Total control sets |     5 |
-| >= 0 to < 4        |     0 |
-| >= 4 to < 6        |     1 |
-| >= 6 to < 8        |     0 |
-| >= 8 to < 10       |     0 |
-| >= 10 to < 12      |     1 |
-| >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     0 |
-| >= 16              |     3 |
-+--------------------+-------+
-* Control sets can be remapped at either synth_design or opt_design
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      4 |            1 |
+|      9 |            1 |
+|    16+ |           13 |
++--------+--------------+
 
 
 3. Flip-Flop Distribution
@@ -58,26 +46,36 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              10 |            8 |
+| No           | No                    | No                     |               9 |            5 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              30 |            9 |
+| No           | Yes                   | No                     |              22 |            8 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              40 |           10 |
+| Yes          | Yes                   | No                     |             241 |          105 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------+-----------------------------------+------------------------------------+------------------+----------------+--------------+
-|  Clock Signal  |           Enable Signal           |          Set/Reset Signal          | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------+-----------------------------------+------------------------------------+------------------+----------------+--------------+
-|  clk_IBUF_BUFG |                                   | reset_cond/M_reset_cond_in         |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG |                                   |                                    |                8 |             10 |         1.25 |
-|  clk_IBUF_BUFG | btn_cond_p1/sel                   | btn_cond_p1/sync/M_pipe_q_reg[1]_0 |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG | btn_cond_p2/M_ctr_q[0]_i_2__1_n_0 | btn_cond_p2/sync/M_pipe_q_reg[1]_0 |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG |                                   | reset_cond/Q[0]                    |                7 |             26 |         3.71 |
-+----------------+-----------------------------------+------------------------------------+------------------+----------------+--------------+
++----------------+------------------------------------------------------------------+--------------------------------------+------------------+----------------+
+|  Clock Signal  |                           Enable Signal                          |           Set/Reset Signal           | Slice Load Count | Bel Load Count |
++----------------+------------------------------------------------------------------+--------------------------------------+------------------+----------------+
+|  clk_IBUF_BUFG |                                                                  | reset_cond/M_reset_cond_in           |                3 |              4 |
+|  clk_IBUF_BUFG |                                                                  |                                      |                5 |              9 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/E[0]                                | reset_cond/Q[0]                      |                9 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/FSM_onehot_M_game_fsm_q_reg[8]_1[0] | reset_cond/Q[0]                      |                7 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/FSM_onehot_M_game_fsm_q_reg[8]_0[0] | reset_cond/Q[0]                      |                9 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_13[0]              | reset_cond/Q[0]                      |               12 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_14[0]              | reset_cond/Q[0]                      |                9 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_15[0]              | reset_cond/Q[0]                      |                9 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_12[0]              | reset_cond/Q[0]                      |                9 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_11[0]              | reset_cond/Q[0]                      |                9 |             16 |
+|  clk_IBUF_BUFG |                                                                  | reset_cond/Q[0]                      |                5 |             18 |
+|  clk_IBUF_BUFG | btn_cond_down/M_ctr_q[0]_i_2__0_n_0                              | btn_cond_down/sync/M_pipe_q_reg[1]_0 |                5 |             20 |
+|  clk_IBUF_BUFG | btn_cond_mid/M_ctr_q[0]_i_2__1_n_0                               | btn_cond_mid/sync/M_pipe_q_reg[1]_0  |                5 |             20 |
+|  clk_IBUF_BUFG | btn_cond_up/sel                                                  | btn_cond_up/sync/clear               |                5 |             20 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/FSM_onehot_M_game_fsm_q[52]_i_1_n_0 | reset_cond/Q[0]                      |               17 |             53 |
++----------------+------------------------------------------------------------------+--------------------------------------+------------------+----------------+
 
 

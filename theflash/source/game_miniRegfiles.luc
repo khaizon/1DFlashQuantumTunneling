@@ -30,36 +30,37 @@ module game_miniRegfiles (
     output e14position[16],
     output e15position[16],
     output e16position[16],
-    output playerscore[16]
-    
+    output playerscore[16],
+    output lives_left_output[16],
+    output slow_counter_output[16]
 
   ) 
 
 {
   .clk(clk){
     .rst(rst){
-      dff player_position[16];
-      dff e1_position[16];
-      dff e2_position[16];
-      dff e3_position[16];
-      dff e4_position[16];
-      dff e5_position[16];
-      dff e6_position[16];
-      dff e7_position[16];
-      dff e8_position[16];
-      dff e9_position[16];
-      dff e10_position[16];
-      dff e11_position[16];
-      dff e12_position[16];
-      dff e13_position[16];
-      dff e14_position[16];
-      dff e15_position[16];
-      dff e16_position[16];
-      dff player_score[16];
-      dff difficulty_level[16];
+      dff player_position[16] (#INIT (h8000));
+      dff e1_position[16](#INIT (h8800));
+      dff e2_position[16](#INIT (h8800));
+      dff e3_position[16](#INIT (h8800));
+      dff e4_position[16](#INIT (h8800));
+      dff e5_position[16](#INIT (h8800));
+      dff e6_position[16](#INIT (h8800));
+      dff e7_position[16](#INIT (h8800));
+      dff e8_position[16](#INIT (h8800));
+      dff e9_position[16](#INIT (h8800));
+      dff e10_position[16](#INIT (h8800));
+      dff e11_position[16](#INIT (h8800));
+      dff e12_position[16](#INIT (h8800));
+      dff e13_position[16](#INIT (h8800));
+      dff e14_position[16](#INIT (h8800));
+      dff e15_position[16](#INIT (h8800));
+      dff e16_position[16](#INIT (h8800));
+      dff player_score[16](#INIT (h8800));
+      dff difficulty_level[16](#INIT (h0001));
       dff fast_counter[16];
       dff slow_counter[16];
-      dff lives_left[16];
+      dff lives_left[16](#INIT (h0003));
       dff player_won[16];
       dff temp_reg1[16];
       dff temp_reg2[16];
@@ -77,6 +78,9 @@ module game_miniRegfiles (
   }
 
   always {
+  
+    lives_left_output = lives_left.q;
+    slow_counter_output = slow_counter.q;
   
     //write port
     if (we){

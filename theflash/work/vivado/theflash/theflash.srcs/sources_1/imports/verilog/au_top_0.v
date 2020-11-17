@@ -21,65 +21,92 @@ module au_top_0 (
   
   reg rst;
   
-  localparam IDLE_game_fsm = 3'd0;
-  localparam FWD_game_fsm = 3'd1;
-  localparam CHECKPP_game_fsm = 3'd2;
-  localparam BPP_game_fsm = 3'd3;
-  localparam BWD_game_fsm = 3'd4;
-  
-  reg [2:0] M_game_fsm_d, M_game_fsm_q = IDLE_game_fsm;
-  wire [1-1:0] M_timerClock_out;
-  reg [1-1:0] M_timerClock_in;
-  edge_detector_1 timerClock (
-    .clk(clk),
-    .in(M_timerClock_in),
-    .out(M_timerClock_out)
-  );
   wire [1-1:0] M_reset_cond_out;
   reg [1-1:0] M_reset_cond_in;
-  reset_conditioner_2 reset_cond (
+  reset_conditioner_1 reset_cond (
     .clk(clk),
     .in(M_reset_cond_in),
     .out(M_reset_cond_out)
   );
-  wire [1-1:0] M_edge_dt_btn_p1_out;
-  reg [1-1:0] M_edge_dt_btn_p1_in;
-  edge_detector_1 edge_dt_btn_p1 (
+  wire [1-1:0] M_edge_dt_btn_up_out;
+  reg [1-1:0] M_edge_dt_btn_up_in;
+  edge_detector_2 edge_dt_btn_up (
     .clk(clk),
-    .in(M_edge_dt_btn_p1_in),
-    .out(M_edge_dt_btn_p1_out)
+    .in(M_edge_dt_btn_up_in),
+    .out(M_edge_dt_btn_up_out)
   );
-  wire [1-1:0] M_edge_dt_btn_p2_out;
-  reg [1-1:0] M_edge_dt_btn_p2_in;
-  edge_detector_1 edge_dt_btn_p2 (
+  wire [1-1:0] M_edge_dt_btn_down_out;
+  reg [1-1:0] M_edge_dt_btn_down_in;
+  edge_detector_2 edge_dt_btn_down (
     .clk(clk),
-    .in(M_edge_dt_btn_p2_in),
-    .out(M_edge_dt_btn_p2_out)
+    .in(M_edge_dt_btn_down_in),
+    .out(M_edge_dt_btn_down_out)
   );
-  wire [1-1:0] M_btn_cond_p1_out;
-  reg [1-1:0] M_btn_cond_p1_in;
-  button_conditioner_3 btn_cond_p1 (
+  wire [1-1:0] M_edge_dt_btn_mid_out;
+  reg [1-1:0] M_edge_dt_btn_mid_in;
+  edge_detector_2 edge_dt_btn_mid (
     .clk(clk),
-    .in(M_btn_cond_p1_in),
-    .out(M_btn_cond_p1_out)
+    .in(M_edge_dt_btn_mid_in),
+    .out(M_edge_dt_btn_mid_out)
   );
-  wire [1-1:0] M_btn_cond_p2_out;
-  reg [1-1:0] M_btn_cond_p2_in;
-  button_conditioner_3 btn_cond_p2 (
+  wire [1-1:0] M_btn_cond_up_out;
+  reg [1-1:0] M_btn_cond_up_in;
+  button_conditioner_3 btn_cond_up (
     .clk(clk),
-    .in(M_btn_cond_p2_in),
-    .out(M_btn_cond_p2_out)
+    .in(M_btn_cond_up_in),
+    .out(M_btn_cond_up_out)
   );
-  wire [1-1:0] M_timer_value;
-  counter_4 timer (
+  wire [1-1:0] M_btn_cond_down_out;
+  reg [1-1:0] M_btn_cond_down_in;
+  button_conditioner_3 btn_cond_down (
+    .clk(clk),
+    .in(M_btn_cond_down_in),
+    .out(M_btn_cond_down_out)
+  );
+  wire [1-1:0] M_btn_cond_mid_out;
+  reg [1-1:0] M_btn_cond_mid_in;
+  button_conditioner_3 btn_cond_mid (
+    .clk(clk),
+    .in(M_btn_cond_mid_in),
+    .out(M_btn_cond_mid_out)
+  );
+  wire [16-1:0] M_gameMachine_lives;
+  wire [16-1:0] M_gameMachine_playerposition;
+  wire [16-1:0] M_gameMachine_slow_counter_time;
+  wire [1-1:0] M_gameMachine_state_nummber;
+  reg [1-1:0] M_gameMachine_up_button;
+  reg [1-1:0] M_gameMachine_down_button;
+  reg [1-1:0] M_gameMachine_middle_button;
+  game_customBeta_4 gameMachine (
     .clk(clk),
     .rst(rst),
-    .value(M_timer_value)
+    .up_button(M_gameMachine_up_button),
+    .down_button(M_gameMachine_down_button),
+    .middle_button(M_gameMachine_middle_button),
+    .lives(M_gameMachine_lives),
+    .playerposition(M_gameMachine_playerposition),
+    .slow_counter_time(M_gameMachine_slow_counter_time),
+    .state_nummber(M_gameMachine_state_nummber)
+  );
+  wire [7-1:0] M_test_display_seg;
+  wire [4-1:0] M_test_display_sel;
+  reg [16-1:0] M_test_display_values;
+  multi_seven_seg_5 test_display (
+    .clk(clk),
+    .rst(rst),
+    .values(M_test_display_values),
+    .seg(M_test_display_seg),
+    .sel(M_test_display_sel)
+  );
+  
+  wire [16-1:0] M_converter_out;
+  reg [16-1:0] M_converter_pp;
+  converter_6 converter (
+    .pp(M_converter_pp),
+    .out(M_converter_out)
   );
   
   always @* begin
-    M_game_fsm_d = M_game_fsm_q;
-    
     M_reset_cond_in = ~rst_n;
     rst = M_reset_cond_out;
     led = 8'h00;
@@ -87,51 +114,19 @@ module au_top_0 (
     io_sel = 4'hf;
     usb_tx = usb_rx;
     io_led = 24'h000000;
-    M_btn_cond_p1_in = io_button[4+0-:1];
-    M_btn_cond_p2_in = io_button[3+0-:1];
-    M_edge_dt_btn_p1_in = M_btn_cond_p1_out;
-    M_edge_dt_btn_p2_in = M_btn_cond_p2_out;
-    M_timerClock_in = M_timer_value;
-    
-    case (M_game_fsm_q)
-      IDLE_game_fsm: begin
-        if (M_edge_dt_btn_p1_out) begin
-          M_game_fsm_d = FWD_game_fsm;
-        end else begin
-          if (M_edge_dt_btn_p2_out) begin
-            M_game_fsm_d = CHECKPP_game_fsm;
-          end
-        end
-      end
-      FWD_game_fsm: begin
-        io_led[0+7-:8] = 5'h05;
-        if (M_timerClock_out == 1'h1) begin
-          M_game_fsm_d = IDLE_game_fsm;
-        end
-      end
-      CHECKPP_game_fsm: begin
-        io_led[0+7-:8] = 5'h01;
-        if (M_timerClock_out == 1'h1) begin
-          M_game_fsm_d = BPP_game_fsm;
-        end
-      end
-      BPP_game_fsm: begin
-        io_led[0+7-:8] = 5'h00;
-        if (M_timerClock_out == 1'h1) begin
-          M_game_fsm_d = BWD_game_fsm;
-        end
-      end
-      BWD_game_fsm: begin
-        io_led[0+7-:8] = 5'h09;
-        if (M_timerClock_out == 1'h1) begin
-          M_game_fsm_d = IDLE_game_fsm;
-        end
-      end
-    endcase
+    io_led[0+7-:8] = {1'h0, M_gameMachine_state_nummber};
+    M_btn_cond_up_in = io_button[0+0-:1];
+    M_btn_cond_down_in = io_button[2+0-:1];
+    M_btn_cond_mid_in = io_button[1+0-:1];
+    M_edge_dt_btn_up_in = M_btn_cond_up_out;
+    M_edge_dt_btn_down_in = M_btn_cond_down_out;
+    M_edge_dt_btn_mid_in = M_btn_cond_mid_out;
+    M_gameMachine_up_button = M_edge_dt_btn_up_out;
+    M_gameMachine_down_button = M_edge_dt_btn_down_out;
+    M_gameMachine_middle_button = M_edge_dt_btn_mid_out;
+    io_seg = ~M_test_display_seg;
+    M_converter_pp = M_gameMachine_playerposition;
+    M_test_display_values = M_converter_out;
+    io_sel = ~M_test_display_sel;
   end
-  
-  always @(posedge clk) begin
-    M_game_fsm_q <= M_game_fsm_d;
-  end
-  
 endmodule
