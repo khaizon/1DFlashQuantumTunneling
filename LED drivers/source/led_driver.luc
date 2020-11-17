@@ -1,0 +1,82 @@
+module led_driver #(
+    PIXEL_COUNT = 32 : PIXEL_COUNT > 0  		// The number of LEDs in the chain.
+  )(
+    input clk,  // clock
+    input rst,  // reset
+    input update, // feed '1' to enable this strip
+    //input color[24],   			// GBR, 8 bits each, color to render for all LED
+    input entities[32][2],
+    output pixel[$clog2(PIXEL_COUNT)],  // Index of the LED, with the color in color[24]
+    output led		//Goes to the first LED in the chain
+    
+  ) {
+  
+  .clk(clk) {
+    .rst(rst) {
+      fsm state = {SEND_PIXEL, RESET};
+      dff pixel_ctr[$clog2(PIXEL_COUNT)];
+      dff bit_ctr[5];
+      dff ctr[6];
+      dff rst_ctr [$clog2(5000)]; //reset requires 50us of zeroes
+      dff color_bits[24];
+    }
+  }
+  
+  //sig bits[24];
+  const RED = 255;
+  const BLUE = 65280;
+  const PURPLE = 65535;
+  const OFF = 0;
+  
+  always {
+    led = 0;
+    
+    // bits = c{color.q[0], color.q[1],color.q[2], color.q[3], color.q[4], color.q[5], color.q[6], color.q[7],
+    //   color.q[16], color.q[17], color.q[18], color.q[19], color.q[20], color.q[21], color.q[22], color.q[23],
+    //   color.q[8], color.q[9], color.q[10], color.q[11], color.q[12], color.q[13], color.q[14], color.q[15]};
+    
+    
+    
+    
+    // .q is to read and .d is to write
+    pixel = pixel_ctr.q;
+    case (state.q) {
+      state.SEND_PIXEL:
+        case(entities[pixel_ctr.q]){
+          0: color_bits.d = OFF;
+          1: color_bits.d = PURPLE;
+          2: color_bits.d = BLUE;
+          3: color_bits.d = RED;
+            if (color_bits.q[bit_ctr.q])
+              led = ctr.q < 80;
+            else
+              led = ctr.q < 40;
+            
+            ctr.d = ctr.q + 1;
+            if (ctr.q == 125){ //check if you can send next bit
+              ctr.d = 0;
+              
+              bit_ctr.d = bit_ctr.q + 1;
+              if (bit_ctr.q == 23) { //check if you have sent all 24 bits
+                bit_ctr.d = 0;
+                pixel_ctr.d = pixel_ctr.q + 1;
+                
+                if (pixel_ctr.q == PIXEL_COUNT-1) { //check if you have sent data to all LEDs
+                  pixel_ctr.d = 0;
+                  state.d = state.RESET;
+                }
+              }
+            }
+          
+          state.RESET:
+            if (&rst_ctr.q) { // if contents of rst_ctr.q is all 1
+              if (update) {
+                rst_ctr.d = 0;
+                state.d = state.SEND_PIXEL; //send again
+              }
+            } else {
+              rst_ctr.d = rst_ctr.q + 1;
+            }
+        }
+    }
+}
