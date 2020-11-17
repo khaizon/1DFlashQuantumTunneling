@@ -123,8 +123,8 @@ module au_top_0 (
     usb_tx = usb_rx;
     io_led = 24'h000000;
     io_led[0+7-:8] = {1'h0, M_gameMachine_state_number};
-    io_led[8+7-:8] = M_gameMachine_result[0+7-:8];
-    io_led[16+7-:8] = M_gameMachine_result[8+7-:8];
+    io_led[8+7-:8] = M_gameMachine_playerposition[0+7-:8];
+    io_led[16+7-:8] = M_gameMachine_playerposition[8+7-:8];
     M_btn_cond_up_in = io_button[0+0-:1];
     M_btn_cond_down_in = io_button[2+0-:1];
     M_btn_cond_mid_in = io_button[1+0-:1];

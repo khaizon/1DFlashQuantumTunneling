@@ -53,6 +53,7 @@ module au_top (
     io_led[0] = c{0, gameMachine.state_number};
     io_led[1] = gameMachine.result[7:0];
     io_led[2] = gameMachine.result[15:8];
+    // interchange w pp for debugging 
     
     btn_cond_up.in=io_button[0]; //to reduce the bouncing effects of your button 
     btn_cond_down.in=io_button[2]; // must change to external button io

@@ -130,7 +130,7 @@ module game_CU_9 (
     done = 1'h0;
     result = 1'h0;
     if (rst) begin
-      M_game_fsm_d = RESET_PP_game_fsm;
+      
     end else begin
       
       case (M_game_fsm_q)
@@ -907,8 +907,8 @@ module game_CU_9 (
         RESET_LIVES_game_fsm: begin
           state_number = 7'h44;
           control_sig_alufn = 6'h00;
-          control_sig_asel = 2'h0;
-          control_sig_bsel = 2'h0;
+          control_sig_asel = 2'h3;
+          control_sig_bsel = 2'h1;
           control_sig_write_enable = 1'h1;
           control_sig_ra = 5'h00;
           control_sig_rb = 5'h00;
@@ -919,8 +919,8 @@ module game_CU_9 (
         RESET_LVL_game_fsm: begin
           state_number = 7'h45;
           control_sig_alufn = 6'h00;
-          control_sig_asel = 2'h0;
-          control_sig_bsel = 2'h0;
+          control_sig_asel = 2'h2;
+          control_sig_bsel = 2'h1;
           control_sig_write_enable = 1'h1;
           control_sig_ra = 5'h00;
           control_sig_rb = 5'h00;
@@ -943,10 +943,10 @@ module game_CU_9 (
         CHECK_PP_game_fsm: begin
           state_number = 7'h47;
           control_sig_alufn = 6'h35;
-          control_sig_asel = 2'h1;
+          control_sig_asel = 2'h0;
           control_sig_bsel = 2'h0;
           control_sig_write_enable = 1'h1;
-          control_sig_ra = 5'h00;
+          control_sig_ra = 5'h1c;
           control_sig_rb = 5'h00;
           control_sig_rc = 5'h1f;
           control_sig_wdsel = 2'h0;
@@ -965,11 +965,11 @@ module game_CU_9 (
         PP_MINUS_game_fsm: begin
           state_number = 7'h49;
           control_sig_alufn = 6'h01;
-          control_sig_asel = 2'h2;
+          control_sig_asel = 2'h0;
           control_sig_bsel = 2'h0;
           control_sig_write_enable = 1'h1;
           control_sig_ra = 5'h00;
-          control_sig_rb = 5'h00;
+          control_sig_rb = 5'h1b;
           control_sig_rc = 5'h00;
           control_sig_wdsel = 2'h0;
           M_game_fsm_d = CHECKPP_EQ_E1_game_fsm;
@@ -1006,7 +1006,6 @@ module game_CU_9 (
           control_sig_rb = 5'h12;
           control_sig_rc = 5'h17;
           control_sig_wdsel = 2'h0;
-          M_game_fsm_d = BRANCH_NEXT_LVL_EXISTS_game_fsm;
         end
         BRANCH_NEXT_LVL_EXISTS_game_fsm: begin
           state_number = 7'h4d;
@@ -1017,6 +1016,18 @@ module game_CU_9 (
           end else begin
             M_game_fsm_d = CURRENT_LVL_PLUS_game_fsm;
           end
+        end
+        CURRENT_LVL_PLUS_game_fsm: begin
+          state_number = 7'h53;
+          control_sig_alufn = 6'h00;
+          control_sig_asel = 2'h2;
+          control_sig_bsel = 2'h0;
+          control_sig_write_enable = 2'h2;
+          control_sig_ra = 5'h00;
+          control_sig_rb = 5'h12;
+          control_sig_rc = 5'h12;
+          control_sig_wdsel = 2'h0;
+          M_game_fsm_d = NEXT_LVL_PP_game_fsm;
         end
         NEXT_LVL_PP_game_fsm: begin
           state_number = 7'h4e;

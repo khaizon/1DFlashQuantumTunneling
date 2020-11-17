@@ -90,7 +90,7 @@ module game_customBeta (
     case(game_controlunit.control_sig_bsel){
       b00 : alu_b = memory.out_b;
       b01 : alu_b = 0;
-      b10 : alu_b = h1F;
+      b10 : alu_b = h801F;
       b11 : alu_b = 2;
       default: //necessary to init
           alu_b = 0;

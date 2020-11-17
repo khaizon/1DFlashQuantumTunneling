@@ -204,7 +204,7 @@ module game_customBeta_4 (
         alu_b = 1'h0;
       end
       2'h2: begin
-        alu_b = 8'h1f;
+        alu_b = 16'h801f;
       end
       2'h3: begin
         alu_b = 2'h2;
