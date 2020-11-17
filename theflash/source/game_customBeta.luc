@@ -10,7 +10,7 @@ module game_customBeta (
     output lives[16],
     output playerposition[16], // temp for testing
     output slow_counter_time[16],
-    output state_nummber
+    output state_number
   ) {
   
   //temp variables for ALU inputs A and B
@@ -68,14 +68,14 @@ module game_customBeta (
     
     playerposition = memory.playerposition;
     
-    state_nummber = game_controlunit.state_number;
+    state_number = game_controlunit.state_number;
     
     //asel mux
     case(game_controlunit.control_sig_asel){
       b00  : alu_a = memory.out_a;
       b01  : alu_a = 0; 
-      b10  : alu_a = 1;
-      b11  : alu_a = 3;
+      b10  : alu_a = h1;
+      b11  : alu_a = h3;
       default : //init
           alu_a = 0;
     }
@@ -85,7 +85,7 @@ module game_customBeta (
       b00 : alu_b = memory.out_b;
       b01 : alu_b = 0;
       b10 : alu_b = h1F;
-      b11 : alu_b = 2;
+      b11 : alu_b = h2;
       default: //necessary to init
           alu_b = 0;
       

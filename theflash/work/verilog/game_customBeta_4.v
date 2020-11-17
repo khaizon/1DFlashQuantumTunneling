@@ -13,7 +13,7 @@ module game_customBeta_4 (
     output reg [15:0] lives,
     output reg [15:0] playerposition,
     output reg [15:0] slow_counter_time,
-    output reg state_nummber
+    output reg state_number
   );
   
   
@@ -174,7 +174,7 @@ module game_customBeta_4 (
     lives = M_memory_lives_left_output;
     slow_counter_time = M_memory_slow_counter_output;
     playerposition = M_memory_playerposition;
-    state_nummber = M_game_controlunit_state_number;
+    state_number = M_game_controlunit_state_number;
     
     case (M_game_controlunit_control_sig_asel)
       2'h0: begin
@@ -184,10 +184,10 @@ module game_customBeta_4 (
         alu_a = 1'h0;
       end
       2'h2: begin
-        alu_a = 1'h1;
+        alu_a = 4'h1;
       end
       2'h3: begin
-        alu_a = 2'h3;
+        alu_a = 4'h3;
       end
       default: begin
         alu_a = 1'h0;
@@ -205,7 +205,7 @@ module game_customBeta_4 (
         alu_b = 8'h1f;
       end
       2'h3: begin
-        alu_b = 2'h2;
+        alu_b = 4'h2;
       end
       default: begin
         alu_b = 1'h0;

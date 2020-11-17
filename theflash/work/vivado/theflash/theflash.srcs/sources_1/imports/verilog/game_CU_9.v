@@ -131,16 +131,18 @@ module game_CU_9 (
       case (M_game_fsm_q)
         IDLE_game_fsm: begin
           state_number = 7'h01;
-          if (forward_pressed) begin
-            M_game_fsm_d = PP_PLUS_game_fsm;
-          end else begin
-            if (backward_pressed) begin
-              M_game_fsm_d = CHECK_PP_game_fsm;
+          if (fast_counter) begin
+            if (forward_pressed) begin
+              M_game_fsm_d = PP_PLUS_game_fsm;
             end else begin
-              if (reset_pressed) begin
-                M_game_fsm_d = RESET_PP_game_fsm;
+              if (backward_pressed) begin
+                M_game_fsm_d = CHECK_PP_game_fsm;
               end else begin
-                M_game_fsm_d = IDLE_game_fsm;
+                if (reset_pressed) begin
+                  M_game_fsm_d = RESET_PP_game_fsm;
+                end else begin
+                  M_game_fsm_d = IDLE_game_fsm;
+                end
               end
             end
           end
@@ -923,7 +925,6 @@ module game_CU_9 (
         end
         PP_PLUS_game_fsm: begin
           state_number = 7'h46;
-          state_number = 2'h2;
           control_sig_alufn = 6'h00;
           control_sig_asel = 2'h2;
           control_sig_bsel = 2'h0;
@@ -932,7 +933,9 @@ module game_CU_9 (
           control_sig_rb = 5'h00;
           control_sig_rc = 5'h00;
           control_sig_wdsel = 2'h0;
-          M_game_fsm_d = CHECKPP_EQ_E1_game_fsm;
+          if (slow_counter) begin
+            M_game_fsm_d = CHECKPP_EQ_E1_game_fsm;
+          end
         end
         CHECK_PP_game_fsm: begin
           state_number = 7'h47;

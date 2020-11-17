@@ -50,7 +50,7 @@ module au_top (
     
     // io_led = 3x{{8h00}};    // turn LEDs off
     io_led = 3x{{8h00}};
-    io_led[0] = c{0, gameMachine.state_nummber};
+    io_led[0] = c{0, gameMachine.state_number};
     
     btn_cond_up.in=io_button[0]; //to reduce the bouncing effects of your button 
     btn_cond_down.in=io_button[2]; // must change to external button io

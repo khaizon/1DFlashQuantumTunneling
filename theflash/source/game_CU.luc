@@ -136,7 +136,7 @@ module game_CU (
         //else if(slow_counter){
         //  game_fsm.d =  game_fsm.CHECK_STOP_GAME;
         //}
-        if(slow_counter){
+        if(fast_counter){
           if(forward_pressed){
             game_fsm.d =  game_fsm.PP_PLUS;
           }
@@ -909,7 +909,6 @@ module game_CU (
 
      game_fsm.PP_PLUS:
         state_number             = b1000110;
-        state_number = b10; //2
         control_sig_alufn        = b000000; //add
         control_sig_asel         = b10;
         control_sig_bsel         = b00;
@@ -918,7 +917,8 @@ module game_CU (
         control_sig_rb           = b00000; //LIVES LEFT
         control_sig_rc           = b00000;
         control_sig_wdsel        = b00;
-        game_fsm.d = game_fsm.CHECKPP_EQ_E1;
+        if (slow_counter){
+          game_fsm.d = game_fsm.CHECKPP_EQ_E1;}
 
      game_fsm.CHECK_PP:
         state_number             = b1000111;
