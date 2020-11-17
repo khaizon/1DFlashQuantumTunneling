@@ -3,8 +3,6 @@
   <files>
     <src>game_CU.luc</src>
     <component>pipeline.luc</component>
-    <component>counter.luc</component>
-    <src>game_customBeta.luc</src>
     <src top="true">au_top.luc</src>
     <component>reset_conditioner.luc</component>
     <component>edge_detector.luc</component>

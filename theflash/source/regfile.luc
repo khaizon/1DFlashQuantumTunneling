@@ -1,8 +1,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 5f3b66e... haha
 //the regfile for all game information
-module regfile (
+module game_miniRegfiles (
     input clk,  // clock
     input rst,  // reset
     input write_address[5], // write address
@@ -79,7 +82,7 @@ module regfile (
   }
 
   always {
-    
+  
     //write port
     if (we){
       case(write_address){
@@ -196,7 +199,7 @@ module regfile (
       
     
     
-    //For debugging
+
     playerposition = player_position.q;
     e1position = e1_position.q;
     e2position = e2_position.q;
@@ -216,6 +219,7 @@ module regfile (
     e16position = e16_position.q;
     playerscore = player_score.q;
   }
+<<<<<<< HEAD
 }
 =======
 >>>>>>> parent of 69d4acb... Merge branch 'alu-and-regfile' into Develop
@@ -223,3 +227,6 @@ module regfile (
 >>>>>>> parent of 69d4acb... Merge branch 'alu-and-regfile' into Develop
 =======
 >>>>>>> parent of 69d4acb... Merge branch 'alu-and-regfile' into Develop
+=======
+}
+>>>>>>> parent of 5f3b66e... haha

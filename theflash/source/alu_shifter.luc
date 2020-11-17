@@ -1,0 +1,20 @@
+module alu_shifter (
+    input a[16],
+    input b[4], // 4-bit input since 16bit alu 
+    // max shift is 2 to power of 4
+    input alufn[2],
+    output out[16]
+  ) {
+
+  always {
+  case (alufn[1:0]){
+    
+    // Shift Operations:
+    b00: out = a << b; // SL
+    b01: out = a >> b; // SR
+    b11: out = $signed(a) >>> b; // SRA
+    default: out = a;
+       
+    }
+  }
+} 
