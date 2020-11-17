@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 //the regfile for all game information
 module regfile (
     input clk,  // clock
@@ -215,5 +216,7 @@ module regfile (
     playerscore = player_score.q;
   }
 }
+=======
+>>>>>>> parent of 69d4acb... Merge branch 'alu-and-regfile' into Develop
 =======
 >>>>>>> parent of 69d4acb... Merge branch 'alu-and-regfile' into Develop
