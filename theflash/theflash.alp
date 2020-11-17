@@ -7,6 +7,12 @@
     <component>reset_conditioner.luc</component>
     <component>edge_detector.luc</component>
     <src>regfile.luc</src>
+    <src>alu_16_bit.luc</src>
+    <src>alu_arithmetic.luc</src>
+    <src>alu_boolean.luc</src>
+    <src>alu_compare.luc</src>
+    <src>alu_shifter.luc</src>
+  
     <component>button_conditioner.luc</component>
     <constraint lib="true">alchitry.acf</constraint>
     <constraint lib="true">io.acf</constraint>
