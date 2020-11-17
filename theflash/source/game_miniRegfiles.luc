@@ -1,0 +1,221 @@
+
+//the regfile for all game information
+module game_miniRegfiles (
+    input clk,  // clock
+    input rst,  // reset
+    input write_address[5], // write address
+    input we, // write enable
+    input data[16], // data in
+    
+    
+    input read_address_a[5], //address port a 
+    input read_address_b[5], //address port b
+    output out_a[16], //read port a
+    output out_b[16], //read port b
+    
+    output playerposition[16],
+    output e1position[16],
+    output e2position[16],
+    output e3position[16],
+    output e4position[16],
+    output e5position[16],
+    output e6position[16],
+    output e7position[16],
+    output e8position[16],
+    output e9position[16],
+    output e10position[16],
+    output e11position[16],
+    output e12position[16],
+    output e13position[16],
+    output e14position[16],
+    output e15position[16],
+    output e16position[16],
+    output playerscore[16],
+    output lives_left_output[16],
+    output slow_counter_output[16]
+
+  ) 
+
+{
+  .clk(clk){
+    .rst(rst){
+      dff player_position[16] (#INIT (h8000));
+      dff e1_position[16](#INIT (h8800));
+      dff e2_position[16](#INIT (h8800));
+      dff e3_position[16](#INIT (h8800));
+      dff e4_position[16](#INIT (h8800));
+      dff e5_position[16](#INIT (h8800));
+      dff e6_position[16](#INIT (h8800));
+      dff e7_position[16](#INIT (h8800));
+      dff e8_position[16](#INIT (h8800));
+      dff e9_position[16](#INIT (h8800));
+      dff e10_position[16](#INIT (h8800));
+      dff e11_position[16](#INIT (h8800));
+      dff e12_position[16](#INIT (h8800));
+      dff e13_position[16](#INIT (h8800));
+      dff e14_position[16](#INIT (h8800));
+      dff e15_position[16](#INIT (h8800));
+      dff e16_position[16](#INIT (h8800));
+      dff player_score[16](#INIT (h8800));
+      dff difficulty_level[16](#INIT (h0001));
+      dff fast_counter[16];
+      dff slow_counter[16];
+      dff lives_left[16](#INIT (h0003));
+      dff player_won[16];
+      dff temp_reg1[16];
+      dff temp_reg2[16];
+      dff temp_reg3[16];
+      dff temp_reg4[16];
+      dff temp_reg5[16];
+      dff temp_reg6[16];
+      dff temp_reg7[16];
+      dff temp_reg8[16];
+      dff temp_reg9[16];
+      
+      
+      
+    }
+  }
+
+  always {
+  
+    lives_left_output = lives_left.q;
+    slow_counter_output = slow_counter.q;
+  
+    //write port
+    if (we){
+      case(write_address){
+        b00000 : player_position.d = data;
+        b00001 : e1_position.d = data;
+        b00010 : e2_position.d = data;
+        b00011 : e3_position.d = data;
+        b00100 : e4_position.d = data;
+        b00101 : e5_position.d = data;
+        b00110 : e6_position.d = data;
+        b00111 : e7_position.d = data;
+        b01000 : e8_position.d = data;
+        b01001 : e9_position.d = data;
+        b01010 : e10_position.d = data;
+        b01011 : e11_position.d = data;
+        b01100 : e12_position.d = data;
+        b01101 : e13_position.d = data;
+        b01110 : e14_position.d = data;
+        b01111 : e15_position.d = data;
+        b10000 : e16_position.d = data;
+        b10001 : player_score.d = data;
+        b10010 : difficulty_level.d = data;
+        b10011 : fast_counter.d = data;
+        b10100 : slow_counter.d = data;
+        b10101 : lives_left.d = data;
+        b10110 : player_won.d = data;
+        b10111 : temp_reg1.d = data;
+        b11000 : temp_reg2.d = data;
+        b11001 : temp_reg3.d = data;
+        b11010 : temp_reg4.d = data;
+        b11011 : temp_reg5.d = data;
+        b11100 : temp_reg6.d = data;
+        b11101 : temp_reg7.d = data;
+        b11110 : temp_reg8.d = data;
+        b11111 : temp_reg9.d = data;
+        
+      }
+    }
+    
+      
+    //read port a
+    case(read_address_a){
+        b00000 : out_a = player_position.q;
+        b00001 : out_a = e1_position.q;
+        b00010 : out_a = e2_position.q;
+        b00011 : out_a = e3_position.q;
+        b00100 : out_a = e4_position.q;
+        b00101 : out_a = e5_position.q;
+        b00110 : out_a = e6_position.q;
+        b00111 : out_a = e7_position.q;
+        b01000 : out_a = e8_position.q;
+        b01001 : out_a = e9_position.q;
+        b01010 : out_a = e10_position.q;
+        b01011 : out_a = e11_position.q;
+        b01100 : out_a = e12_position.q;
+        b01101 : out_a = e13_position.q;
+        b01110 : out_a = e14_position.q;
+        b01111 : out_a = e15_position.q;
+        b10000 : out_a = e16_position.q;
+        b10001 : out_a = player_score.q;
+        b10010 : out_a = difficulty_level.q;
+        b10011 : out_a = fast_counter.q;
+        b10100 : out_a = slow_counter.q;
+        b10101 : out_a = lives_left.q;
+        b10110 : out_a = player_won.q;
+        b10111 : out_a = temp_reg1.q;
+        b11000 : out_a = temp_reg2.q;
+        b11001 : out_a = temp_reg3.q;
+        b11010 : out_a = temp_reg4.q;
+        b11011 : out_a = temp_reg5.q;
+        b11100 : out_a = temp_reg6.q;
+        b11101 : out_a = temp_reg7.q;
+        b11110 : out_a = temp_reg8.q;
+        b11111 : out_a = temp_reg9.q;
+        default : out_a = 0;
+    }
+    
+    //read port b
+    case(read_address_b){
+        b00000 : out_b = player_position.q;
+        b00001 : out_b = e1_position.q;
+        b00010 : out_b = e2_position.q;
+        b00011 : out_b = e3_position.q;
+        b00100 : out_b = e4_position.q;
+        b00101 : out_b = e5_position.q;
+        b00110 : out_b = e6_position.q;
+        b00111 : out_b = e7_position.q;
+        b01000 : out_b = e8_position.q;
+        b01001 : out_b = e9_position.q;
+        b01010 : out_b = e10_position.q;
+        b01011 : out_b = e11_position.q;
+        b01100 : out_b = e12_position.q;
+        b01101 : out_b = e13_position.q;
+        b01110 : out_b = e14_position.q;
+        b01111 : out_b = e15_position.q;
+        b10000 : out_b = e16_position.q;
+        b10001 : out_b = player_score.q;
+        b10010 : out_b = difficulty_level.q;
+        b10011 : out_b = fast_counter.q;
+        b10100 : out_b = slow_counter.q;
+        b10101 : out_b = lives_left.q;
+        b10110 : out_b = player_won.q;
+        b10111 : out_b = temp_reg1.q;
+        b11000 : out_b = temp_reg2.q;
+        b11001 : out_b = temp_reg3.q;
+        b11010 : out_b = temp_reg4.q;
+        b11011 : out_b = temp_reg5.q;
+        b11100 : out_b = temp_reg6.q;
+        b11101 : out_b = temp_reg7.q;
+        b11110 : out_b = temp_reg8.q;
+        b11111 : out_b = temp_reg9.q;
+        default : out_b = 0;
+    }
+      
+    
+    
+
+    playerposition = player_position.q;
+    e1position = e1_position.q;
+    e2position = e2_position.q;
+    e3position = e3_position.q;
+    e4position = e4_position.q;
+    e5position = e5_position.q;
+    e6position = e6_position.q;
+    e7position = e7_position.q;
+    e8position = e8_position.q;
+    e9position = e9_position.q;
+    e10position = e10_position.q;
+    e11position = e11_position.q;
+    e12position = e12_position.q;
+    e13position = e13_position.q;
+    e14position = e14_position.q;
+    e15position = e15_position.q;
+    e16position = e16_position.q;
+    playerscore = player_score.q;
+  }
+

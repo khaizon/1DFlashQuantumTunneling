@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="LEDStripTest" board="Alchitry Au" language="Lucid" version="3">
+  <files>
+    <src>handle_entities.luc</src>
+    <src top="true">au_top.luc</src>
+    <src>led_driver.luc</src>
+    <component>decoder.luc</component>
+    <component>reset_conditioner.luc</component>
+    <src>seven_seg.luc</src>
+    <src>multi_seven_seg.luc</src>
+    <component>counter.luc</component>
+    <constraint lib="true">au.xdc</constraint>
+    <constraint>custom.acf</constraint>
+  </files>
+</project>

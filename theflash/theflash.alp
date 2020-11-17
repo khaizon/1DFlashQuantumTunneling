@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="theflash" board="Alchitry Au" language="Lucid" version="3">
   <files>
-    <src>alu_boolean.luc</src>
-    <component>reset_conditioner.luc</component>
-    <src top="true">au_top.luc</src>
-    <src>regfile.luc</src>
+    <src>game_customBeta.luc</src>
+    <src>game_CU.luc</src>
+    <component>pipeline.luc</component>
     <src>alu_shifter.luc</src>
+    <src>seven_seg.luc</src>
+    <component>counter.luc</component>
+    <src top="true">au_top.luc</src>
     <src>alu_compare.luc</src>
-    <src>alu_16_bit.luc</src>
+    <component>decoder.luc</component>
     <src>alu_arithmetic.luc</src>
+    <src>multi_seven_seg.luc</src>
+    <src>alu_16_bit.luc</src>
+    <src>alu_boolean.luc</src>
+    <src>converter.luc</src>
+    <component>reset_conditioner.luc</component>
+    <component>edge_detector.luc</component>
+    <component>button_conditioner.luc</component>
+    <src>game_miniRegfiles.luc</src>
     <constraint lib="true">alchitry.acf</constraint>
+    <constraint lib="true">io.acf</constraint>
     <constraint lib="true">au.xdc</constraint>
   </files>
 </project>
