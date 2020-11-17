@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 5f3b66e... haha
+
 //the regfile for all game information
 module game_miniRegfiles (
     input clk,  // clock
@@ -219,14 +214,4 @@ module game_miniRegfiles (
     e16position = e16_position.q;
     playerscore = player_score.q;
   }
-<<<<<<< HEAD
-}
-=======
->>>>>>> parent of 69d4acb... Merge branch 'alu-and-regfile' into Develop
-=======
->>>>>>> parent of 69d4acb... Merge branch 'alu-and-regfile' into Develop
-=======
->>>>>>> parent of 69d4acb... Merge branch 'alu-and-regfile' into Develop
-=======
-}
->>>>>>> parent of 5f3b66e... haha
+
