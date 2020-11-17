@@ -72,8 +72,10 @@ module au_top_0 (
   );
   wire [16-1:0] M_gameMachine_lives;
   wire [16-1:0] M_gameMachine_playerposition;
+  wire [16-1:0] M_gameMachine_level;
   wire [16-1:0] M_gameMachine_slow_counter_time;
-  wire [1-1:0] M_gameMachine_state_number;
+  wire [7-1:0] M_gameMachine_state_number;
+  wire [1-1:0] M_gameMachine_result;
   reg [1-1:0] M_gameMachine_up_button;
   reg [1-1:0] M_gameMachine_down_button;
   reg [1-1:0] M_gameMachine_middle_button;
@@ -85,8 +87,10 @@ module au_top_0 (
     .middle_button(M_gameMachine_middle_button),
     .lives(M_gameMachine_lives),
     .playerposition(M_gameMachine_playerposition),
+    .level(M_gameMachine_level),
     .slow_counter_time(M_gameMachine_slow_counter_time),
-    .state_number(M_gameMachine_state_number)
+    .state_number(M_gameMachine_state_number),
+    .result(M_gameMachine_result)
   );
   wire [7-1:0] M_test_display_seg;
   wire [4-1:0] M_test_display_sel;
@@ -101,8 +105,12 @@ module au_top_0 (
   
   wire [16-1:0] M_converter_out;
   reg [16-1:0] M_converter_pp;
+  reg [2-1:0] M_converter_lives;
+  reg [2-1:0] M_converter_level;
   converter_6 converter (
     .pp(M_converter_pp),
+    .lives(M_converter_lives),
+    .level(M_converter_level),
     .out(M_converter_out)
   );
   
@@ -115,6 +123,7 @@ module au_top_0 (
     usb_tx = usb_rx;
     io_led = 24'h000000;
     io_led[0+7-:8] = {1'h0, M_gameMachine_state_number};
+    io_led[8+7+0-:1] = M_gameMachine_result;
     M_btn_cond_up_in = io_button[0+0-:1];
     M_btn_cond_down_in = io_button[2+0-:1];
     M_btn_cond_mid_in = io_button[1+0-:1];
@@ -125,7 +134,9 @@ module au_top_0 (
     M_gameMachine_down_button = M_edge_dt_btn_down_out;
     M_gameMachine_middle_button = M_edge_dt_btn_mid_out;
     io_seg = ~M_test_display_seg;
-    M_converter_pp = 7'h10;
+    M_converter_pp = M_gameMachine_playerposition;
+    M_converter_lives = M_gameMachine_lives;
+    M_converter_level = M_gameMachine_level;
     M_test_display_values = M_converter_out;
     io_sel = ~M_test_display_sel;
   end

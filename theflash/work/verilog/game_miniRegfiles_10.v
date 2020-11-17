@@ -33,7 +33,8 @@ module game_miniRegfiles_10 (
     output reg [15:0] e16position,
     output reg [15:0] playerscore,
     output reg [15:0] lives_left_output,
-    output reg [15:0] slow_counter_output
+    output reg [15:0] slow_counter_output,
+    output reg [15:0] difficulty_level_output
   );
   
   
@@ -107,6 +108,7 @@ module game_miniRegfiles_10 (
     
     lives_left_output = M_lives_left_q;
     slow_counter_output = M_slow_counter_q;
+    difficulty_level_output = M_difficulty_level_q;
     if (we) begin
       
       case (write_address)

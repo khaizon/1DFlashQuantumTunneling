@@ -12,8 +12,10 @@ module game_customBeta_4 (
     input middle_button,
     output reg [15:0] lives,
     output reg [15:0] playerposition,
+    output reg [15:0] level,
     output reg [15:0] slow_counter_time,
-    output reg state_number
+    output reg [6:0] state_number,
+    output reg [0:0] result
   );
   
   
@@ -61,7 +63,8 @@ module game_customBeta_4 (
   wire [5-1:0] M_game_controlunit_control_sig_rb;
   wire [5-1:0] M_game_controlunit_control_sig_rc;
   wire [2-1:0] M_game_controlunit_control_sig_wdsel;
-  wire [1-1:0] M_game_controlunit_state_number;
+  wire [7-1:0] M_game_controlunit_state_number;
+  wire [1-1:0] M_game_controlunit_result;
   reg [1-1:0] M_game_controlunit_fast_counter;
   reg [1-1:0] M_game_controlunit_slow_counter;
   reg [1-1:0] M_game_controlunit_forward_pressed;
@@ -85,7 +88,8 @@ module game_customBeta_4 (
     .control_sig_rb(M_game_controlunit_control_sig_rb),
     .control_sig_rc(M_game_controlunit_control_sig_rc),
     .control_sig_wdsel(M_game_controlunit_control_sig_wdsel),
-    .state_number(M_game_controlunit_state_number)
+    .state_number(M_game_controlunit_state_number),
+    .result(M_game_controlunit_result)
   );
   wire [16-1:0] M_memory_out_a;
   wire [16-1:0] M_memory_out_b;
@@ -109,6 +113,7 @@ module game_customBeta_4 (
   wire [16-1:0] M_memory_playerscore;
   wire [16-1:0] M_memory_lives_left_output;
   wire [16-1:0] M_memory_slow_counter_output;
+  wire [16-1:0] M_memory_difficulty_level_output;
   reg [5-1:0] M_memory_write_address;
   reg [1-1:0] M_memory_we;
   reg [16-1:0] M_memory_data;
@@ -143,7 +148,8 @@ module game_customBeta_4 (
     .e16position(M_memory_e16position),
     .playerscore(M_memory_playerscore),
     .lives_left_output(M_memory_lives_left_output),
-    .slow_counter_output(M_memory_slow_counter_output)
+    .slow_counter_output(M_memory_slow_counter_output),
+    .difficulty_level_output(M_memory_difficulty_level_output)
   );
   wire [1-1:0] M_slow_timer_value;
   counter_11 slow_timer (
@@ -175,6 +181,8 @@ module game_customBeta_4 (
     slow_counter_time = M_memory_slow_counter_output;
     playerposition = M_memory_playerposition;
     state_number = M_game_controlunit_state_number;
+    level = M_memory_difficulty_level_output;
+    result = M_game_controlunit_result;
     
     case (M_game_controlunit_control_sig_asel)
       2'h0: begin

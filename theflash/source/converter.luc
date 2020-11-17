@@ -1,5 +1,7 @@
 module converter (
     input pp[16],
+    input lives[2],
+    input level[2],
     output out[4][4]
   ) {
   sig diff[5];
@@ -9,7 +11,7 @@ module converter (
     out[0] = diff[3:0];
     diff2 = (pp[6:0]/b01010);
     out[1] = diff2[3:0];
-    out[2] = b0000;
-    out[3] = b0000; 
+    out[2] = c{b00,lives};
+    out[3] = c{b00,level}; 
   }
 }

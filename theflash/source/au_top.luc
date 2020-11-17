@@ -51,6 +51,7 @@ module au_top (
     // io_led = 3x{{8h00}};    // turn LEDs off
     io_led = 3x{{8h00}};
     io_led[0] = c{0, gameMachine.state_number};
+    io_led[1][7] = gameMachine.result;
     
     btn_cond_up.in=io_button[0]; //to reduce the bouncing effects of your button 
     btn_cond_down.in=io_button[2]; // must change to external button io
@@ -69,7 +70,9 @@ module au_top (
     // io_led[0] = gameMachine.p1_out;    
     // io_led[1] = gameMachine.p2_out;
     io_seg = ~test_display.seg;
-    converter.pp = b0010000;
+    converter.pp = gameMachine.playerposition;
+    converter.lives = gameMachine.lives;
+    converter.level = gameMachine.level;
     test_display.values = converter.out;
     io_sel = ~test_display.sel;
   

@@ -16,7 +16,8 @@ module game_CU (
     output control_sig_rb[5],
     output control_sig_rc[5],
     output control_sig_wdsel[2],
-    output state_number
+    output state_number[7],
+    output result[1]
   ) {
   .clk(clk){
   
@@ -124,6 +125,7 @@ module game_CU (
     control_sig_wdsel        = 00;
     state_number = b0000000;
     done = 0;
+    result = 0;
     
 
     
@@ -135,7 +137,7 @@ module game_CU (
     case(game_fsm.q){
     
      game_fsm.IDLE: 
-        state_number             = b0001000;
+        state_number             = b0000001;
        
         control_sig_write_enable = b0;
         //if counter is set
@@ -455,7 +457,7 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PP
-        control_sig_rb           = b01; //E1
+        control_sig_rb           = b00001; //E1
         control_sig_rc           = b10111; //TEMP
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E1;
@@ -464,11 +466,12 @@ game_fsm.FAST_COUNTER_PLUS:
         state_number             = b0011100;
         control_sig_rb           = b10111;
         control_sig_write_enable = b0;
+        result = rb_data[0];
 
-        if (rb_data[0] == 1){
-          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
-        }
-        else game_fsm.d = game_fsm.CHECKPP_EQ_E2;
+        // if (rb_data[0] == 1){
+          // game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        // }
+        // else game_fsm.d = game_fsm.CHECKPP_EQ_E2;
      game_fsm.CHECKPP_EQ_E2:
         state_number             = b0011101;
         control_sig_alufn        = b110011; //CMPEQ
@@ -476,7 +479,7 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PP
-        control_sig_rb           = b010; //E1
+        control_sig_rb           = b00010; //E1
         control_sig_rc           = b10111; //TEMP
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E2;
@@ -497,7 +500,7 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PP
-        control_sig_rb           = b011; //E1
+        control_sig_rb           = b00011; //E1
         control_sig_rc           = b10111; //TEMP
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E3;
@@ -518,7 +521,7 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PP
-        control_sig_rb           = b0100; //E1
+        control_sig_rb           = b00100; //E1
         control_sig_rc           = b10111; //TEMP
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E4;
@@ -539,7 +542,7 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PP
-        control_sig_rb           = b0101; //E1
+        control_sig_rb           = b00101; 
         control_sig_rc           = b10111; //TEMP
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E5;
@@ -918,7 +921,6 @@ game_fsm.FAST_COUNTER_PLUS:
 
      game_fsm.PP_PLUS:
         state_number             = b1000110;
-        state_number = b10; //2
         control_sig_alufn        = b000000; //add
         control_sig_asel         = b10;
         control_sig_bsel         = b00;
