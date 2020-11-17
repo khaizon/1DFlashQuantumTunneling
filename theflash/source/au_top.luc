@@ -17,21 +17,19 @@ module au_top (
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
     
-    fsm game_fsm={
-      IDLE, FWD, CHECKPP, BPP, BWD };
-      
-    edge_detector timerClock(#RISE(1), #FALL(0));
-    
     reset_conditioner reset_cond;
     
-    edge_detector edge_dt_btn_p1 (#RISE(1), #FALL(0));
-    edge_detector edge_dt_btn_p2(#RISE(1), #FALL(0));
+    // detect up and down button pressers of player
+    edge_detector edge_dt_btn_up (#RISE(1), #FALL(0));
+    edge_detector edge_dt_btn_down(#RISE(1), #FALL(0));
 
-    button_conditioner btn_cond_p1;
-    button_conditioner btn_cond_p2;
+    // button conditioner for up and down button
+    button_conditioner btn_cond_up;
+    button_conditioner btn_cond_down;
     
     .rst(rst){
       counter timer(#SIZE(1), #DIV(25));
+      game_customBeta gameMachine;
      }
     
   }
@@ -48,52 +46,23 @@ module au_top (
     
     io_led = 3x{{8h00}};    // turn LEDs off
     
-    btn_cond_p1.in=io_button[4]; //to reduce the bouncing effects of your button 
-    btn_cond_p2.in=io_button[3];
-    edge_dt_btn_p1.in=btn_cond_p1.out; //get the edge of button press
-    edge_dt_btn_p2.in=btn_cond_p2.out;
+    btn_cond_up.in=io_button[4]; //to reduce the bouncing effects of your button 
+    btn_cond_down.in=io_button[3]; // must change to external button io
+    edge_dt_btn_up.in=btn_cond_up.out; //get the edge of button press
+    edge_dt_btn_down.in=btn_cond_down.out;
     
-    timerClock.in = timer.value;
+    // detect up and down button presses
+    // serves as input into our game's beta CPU 
+    gameMachine.up_button = edge_dt_btn_up.out;
+    gameMachine.down_button = edge_dt_btn_down.out;
     
-    // standard setting unless otherwise overwritten by each case 
-    // regfile_write_address = 1111;
-    // regfile_read_address_a = 0000;
-    // regfile_read_address_b = 0000;
-    // alu_out_sel = 0;
+    // set LED strip to display output of gameMachine
+    // io_led[0] = gameMachine.p1_out;    
+    // io_led[1] = gameMachine.p2_out;
     
-    case(game_fsm.q) {
     
-      game_fsm.IDLE:
-        if (edge_dt_btn_p1.out)
-          game_fsm.d = game_fsm.FWD;
-        else if (edge_dt_btn_p2.out)
-          game_fsm.d = game_fsm.CHECKPP;
-          
-      game_fsm.FWD:
-        // alufn = b000001;
-        // asel = b10;
-        // bsel = b00;
-        // we_regfile = b1;
-        io_led[0] = c{0000, 0, 1, 0, 1};
-        if (timerClock.out==1) 
-          game_fsm.d = game_fsm.IDLE;
-          
-      game_fsm.CHECKPP:
-        io_led[0] = c{0000, 0, 0, 0, 1};
-        if (timerClock.out==1)
-          game_fsm.d = game_fsm.BPP;
-        
-      game_fsm.BPP:
-        io_led[0] = c{0000, 0, 0, 0, 0};
-        if (timerClock.out==1)
-          game_fsm.d = game_fsm.BWD;
-        
-      game_fsm.BWD:
-        io_led[0] = c{0000, 1, 0, 0, 1};
-        if (timerClock.out==1)
-          game_fsm.d = game_fsm.IDLE;
-        
-      }
+    // update 2 digits of 7 segment to show count-up timer
+    
     
   }
 }
