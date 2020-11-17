@@ -8,7 +8,6 @@ module handle_entities (
   
   .clk(clk){
     .rst(rst){
-      
       dff led_ctr[5];
       dff enemy_ctr[4];
     }
@@ -43,5 +42,10 @@ module handle_entities (
     }
     else{
       entities[led_ctr.q] = 2;
+    }
+    
+    if(led_ctr.q ==31){
+      led_ctr.d = 0;
+      enemy_ctr.d = 0;
     }
 }

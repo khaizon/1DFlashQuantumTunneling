@@ -13,7 +13,8 @@ module au_top (
   ) {
   
   sig rst;                  // reset signal
-  led_driver led_strip(#PIXEL_COUNT(3), .clk(clk), .rst(rst)); //set for 3 pixels
+  led_driver led_strip(#PIXEL_COUNT(32), .clk(clk), .rst(rst)); //set for 32 pixels
+  seven_seg seg;
   .clk(clk) {
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
@@ -47,5 +48,8 @@ module au_top (
     led_strip.update=1; //sample write
     //led_strip.color=24b1; //sample color RED for all
     outled=led_strip.led;
+    seg.char = led_strip.led;
+    io_seg = ~seg.segs;
+    io_sel = 0;
   }
 }
