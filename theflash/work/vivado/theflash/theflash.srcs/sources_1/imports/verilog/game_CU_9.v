@@ -112,6 +112,8 @@ module game_CU_9 (
   
   reg [6:0] M_game_fsm_d, M_game_fsm_q = IDLE_game_fsm;
   
+  reg done;
+  
   always @* begin
     M_game_fsm_d = M_game_fsm_q;
     
@@ -123,14 +125,16 @@ module game_CU_9 (
     control_sig_rb = 1'h0;
     control_sig_rc = 1'h0;
     control_sig_wdsel = 1'h0;
-    state_number = 1'h0;
+    state_number = 7'h00;
+    done = 1'h0;
     if (rst) begin
       M_game_fsm_d = RESET_PP_game_fsm;
     end else begin
       
       case (M_game_fsm_q)
         IDLE_game_fsm: begin
-          state_number = 7'h01;
+          state_number = 7'h08;
+          control_sig_write_enable = 1'h0;
           if (forward_pressed) begin
             M_game_fsm_d = PP_PLUS_game_fsm;
           end else begin

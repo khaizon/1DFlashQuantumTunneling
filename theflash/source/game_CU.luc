@@ -107,6 +107,10 @@ module game_CU (
 
       
   }
+  
+  
+  sig done;
+  
   always {
     
     // standard setting unless otherwise overwritten by each case 
@@ -118,7 +122,10 @@ module game_CU (
     control_sig_rb           = 00000;
     control_sig_rc           = 00000;
     control_sig_wdsel        = 00;
-    state_number = 0;
+    state_number = b0000000;
+    done = 0;
+    
+
     
     if (rst){
         game_fsm.d = game_fsm.RESET_PP;
@@ -128,7 +135,9 @@ module game_CU (
     case(game_fsm.q){
     
      game_fsm.IDLE: 
-        state_number             = b0000001;
+        state_number             = b0001000;
+       
+        control_sig_write_enable = b0;
         //if counter is set
         //if (fast_counter){                      //direct read in
         //  game_fsm.d = game_fsm.FAST_COUNTER_PLUS;
@@ -136,7 +145,6 @@ module game_CU (
         //else if(slow_counter){
         //  game_fsm.d =  game_fsm.CHECK_STOP_GAME;
         //}
-        if(slow_counter){
           if(forward_pressed){
             game_fsm.d =  game_fsm.PP_PLUS;
           }
@@ -146,9 +154,9 @@ module game_CU (
           else if(reset_pressed){
             game_fsm.d =  game_fsm.RESET_PP;
           }
-          else {game_fsm.d =  game_fsm.IDLE;}}
+          else {game_fsm.d =  game_fsm.IDLE;}
 
-     game_fsm.FAST_COUNTER_PLUS:
+game_fsm.FAST_COUNTER_PLUS:
         state_number             = b0000010;
         control_sig_alufn        = b000000;
         control_sig_asel         = b10;
@@ -176,6 +184,7 @@ module game_CU (
         state_number             = b0000100;
         control_sig_rb           = b10111;
         control_sig_write_enable = b0;
+
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.BLINK_E1;
         }

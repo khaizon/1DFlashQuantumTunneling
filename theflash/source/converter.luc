@@ -5,9 +5,9 @@ module converter (
   sig diff[5];
   sig diff2[5];
   always {
-    diff = (pp[4:0]-((pp[4:0]/b01010)*b01010));
+    diff = (pp[6:0]-((pp[6:0]/b01010)*b01010));
     out[0] = diff[3:0];
-    diff2 = (pp[4:0]/b01010);
+    diff2 = (pp[6:0]/b01010);
     out[1] = diff2[3:0];
     out[2] = b0000;
     out[3] = b0000; 

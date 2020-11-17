@@ -125,7 +125,7 @@ module au_top_0 (
     M_gameMachine_down_button = M_edge_dt_btn_down_out;
     M_gameMachine_middle_button = M_edge_dt_btn_mid_out;
     io_seg = ~M_test_display_seg;
-    M_converter_pp = M_gameMachine_playerposition;
+    M_converter_pp = M_gameMachine_state_nummber;
     M_test_display_values = M_converter_out;
     io_sel = ~M_test_display_sel;
   end

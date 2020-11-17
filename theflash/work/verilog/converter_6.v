@@ -16,9 +16,9 @@ module converter_6 (
   reg [4:0] diff2;
   
   always @* begin
-    diff = (pp[0+4-:5] - ((pp[0+4-:5] / 5'h0a) * 5'h0a));
+    diff = (pp[0+6-:7] - ((pp[0+6-:7] / 5'h0a) * 5'h0a));
     out[0+3-:4] = diff[0+3-:4];
-    diff2 = (pp[0+4-:5] / 5'h0a);
+    diff2 = (pp[0+6-:7] / 5'h0a);
     out[4+3-:4] = diff2[0+3-:4];
     out[8+3-:4] = 4'h0;
     out[12+3-:4] = 4'h0;
