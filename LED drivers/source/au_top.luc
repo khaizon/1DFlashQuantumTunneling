@@ -24,8 +24,8 @@ module au_top (
     }
   }
   
-  const PLAYERLOCATON = 4;
-  const ENEMYLOCATION =  16x{{32783}};
+  const PLAYERLOCATON = 5;
+  const ENEMYLOCATION =  16x{{32774}};
   
   
   always {
@@ -41,14 +41,16 @@ module au_top (
     led = 8h00;             // turn LEDs off
     
     io_led = 3x{{8h01}};    // turn LEDs off
-    io_seg = 8hff;          // turn segments off
-    io_sel = 4hf;           // select no digits
+    //io_seg = 8hff;          // turn segments off
+    //io_sel = 4hf;           // select no digits
     
     
     led_strip.update=1; //sample write
     //led_strip.color=24b1; //sample color RED for all
     outled=led_strip.led;
-    seg.char = led_strip.led;
+    seg.char = led_strip.pixel;
+    //seg.char = 3; displays 3 on each 7 seg display, works 
+    
     io_seg = ~seg.segs;
     io_sel = 0;
   }
