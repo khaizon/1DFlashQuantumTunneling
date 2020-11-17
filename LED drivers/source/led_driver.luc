@@ -36,8 +36,6 @@ module led_driver #(
     //   color.q[8], color.q[9], color.q[10], color.q[11], color.q[12], color.q[13], color.q[14], color.q[15]};
     
     
-    
-    
     // .q is to read and .d is to write
     pixel = pixel_ctr.q;
     case (state.q) {
@@ -47,36 +45,37 @@ module led_driver #(
           1: color_bits.d = PURPLE;
           2: color_bits.d = BLUE;
           3: color_bits.d = RED;
-            if (color_bits.q[bit_ctr.q])
-              led = ctr.q < 80;
-            else
-              led = ctr.q < 40;
-            
-            ctr.d = ctr.q + 1;
-            if (ctr.q == 125){ //check if you can send next bit
-              ctr.d = 0;
-              
-              bit_ctr.d = bit_ctr.q + 1;
-              if (bit_ctr.q == 23) { //check if you have sent all 24 bits
-                bit_ctr.d = 0;
-                pixel_ctr.d = pixel_ctr.q + 1;
-                
-                if (pixel_ctr.q == PIXEL_COUNT-1) { //check if you have sent data to all LEDs
-                  pixel_ctr.d = 0;
-                  state.d = state.RESET;
-                }
-              }
-            }
+        }
+        if (color_bits.q[bit_ctr.q])
+          led = ctr.q < 80;
+        else
+          led = ctr.q < 40;
+        
+        ctr.d = ctr.q + 1;
+        if (ctr.q == 125){ //check if you can send next bit
+          ctr.d = 0;
           
-          state.RESET:
-            if (&rst_ctr.q) { // if contents of rst_ctr.q is all 1
-              if (update) {
-                rst_ctr.d = 0;
-                state.d = state.SEND_PIXEL; //send again
-              }
-            } else {
-              rst_ctr.d = rst_ctr.q + 1;
+          bit_ctr.d = bit_ctr.q + 1;
+          if (bit_ctr.q == 23) { //check if you have sent all 24 bits
+            bit_ctr.d = 0;
+            pixel_ctr.d = pixel_ctr.q + 1;
+            
+            if (pixel_ctr.q == PIXEL_COUNT-1) { //check if you have sent data to all LEDs
+              pixel_ctr.d = 0;
+              state.d = state.RESET;
             }
+          }
+        }
+      
+      state.RESET:
+        if (&rst_ctr.q) { // if contents of rst_ctr.q is all 1
+          if (update) {
+            rst_ctr.d = 0;
+            state.d = state.SEND_PIXEL; //send again
+          }
+        } else {
+          rst_ctr.d = rst_ctr.q + 1;
         }
     }
+  }
 }
