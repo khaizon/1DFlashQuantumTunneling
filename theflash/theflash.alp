@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="theflash" board="Alchitry Au" language="Lucid" version="3">
   <files>
-    <src>regfile.luc</src>
+    <src>game_CU.luc</src>
     <component>pipeline.luc</component>
-    <component>counter.luc</component>
     <src top="true">au_top.luc</src>
     <component>reset_conditioner.luc</component>
     <component>edge_detector.luc</component>
+    <src>regfile.luc</src>
     <component>button_conditioner.luc</component>
     <constraint lib="true">alchitry.acf</constraint>
     <constraint lib="true">io.acf</constraint>
     <constraint lib="true">au.xdc</constraint>
-    <constraint lib="true">io_shield.ucf</constraint>
   </files>
 </project>
