@@ -1,0 +1,81 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
+| Date         : Tue Nov 17 18:55:04 2020
+| Host         : DESKTOP-LEHPGBB running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file au_top_0_control_sets_placed.rpt
+| Design       : au_top_0
+| Device       : xc7a35t
+-------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    15 |
+| Unused register locations in slices containing registers |    32 |
++----------------------------------------------------------+-------+
+
+
+2. Histogram
+------------
+
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      4 |            1 |
+|      9 |            1 |
+|    16+ |           13 |
++--------+--------------+
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               9 |            5 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              22 |            8 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             241 |           95 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------+------------------------------------------------------------------+--------------------------------------+------------------+----------------+
+|  Clock Signal  |                           Enable Signal                          |           Set/Reset Signal           | Slice Load Count | Bel Load Count |
++----------------+------------------------------------------------------------------+--------------------------------------+------------------+----------------+
+|  clk_IBUF_BUFG |                                                                  | reset_cond/M_reset_cond_in           |                3 |              4 |
+|  clk_IBUF_BUFG |                                                                  |                                      |                5 |              9 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/E[0]                                | reset_cond/Q[0]                      |                7 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/FSM_onehot_M_game_fsm_q_reg[8]_0[0] | reset_cond/Q[0]                      |                6 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_11[0]              | reset_cond/Q[0]                      |                9 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_13[0]              | reset_cond/Q[0]                      |                7 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_15[0]              | reset_cond/Q[0]                      |               11 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_16[0]              | reset_cond/Q[0]                      |                8 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_12[0]              | reset_cond/Q[0]                      |                7 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_14[0]              | reset_cond/Q[0]                      |                9 |             16 |
+|  clk_IBUF_BUFG |                                                                  | reset_cond/Q[0]                      |                5 |             18 |
+|  clk_IBUF_BUFG | btn_cond_down/M_ctr_q[0]_i_2__0_n_0                              | btn_cond_down/sync/M_pipe_q_reg[1]_0 |                5 |             20 |
+|  clk_IBUF_BUFG | btn_cond_mid/M_ctr_q[0]_i_2__1_n_0                               | btn_cond_mid/sync/M_pipe_q_reg[1]_0  |                5 |             20 |
+|  clk_IBUF_BUFG | btn_cond_up/sel                                                  | btn_cond_up/sync/clear               |                5 |             20 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/FSM_onehot_M_game_fsm_q[52]_i_1_n_0 | reset_cond/Q[0]                      |               16 |             53 |
++----------------+------------------------------------------------------------------+--------------------------------------+------------------+----------------+
+
+
