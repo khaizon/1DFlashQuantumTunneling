@@ -12,7 +12,7 @@ module game_customBeta (
     output level[16],
     output slow_counter_time[16],
     output state_number[7],
-    output result[1]
+    output result[16]
   ) {
   
   //temp variables for ALU inputs A and B

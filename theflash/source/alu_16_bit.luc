@@ -3,9 +3,6 @@ module alu_16_bit (
     input a[16],
     input b[16],
     input alufn[6],
-    output z,
-    output v,
-    output n,
     output out[16]
   ) {
   
@@ -34,15 +31,9 @@ module alu_16_bit (
     int_v = arithmeticUnit.v;
     int_n = arithmeticUnit.n;
     
-    // writing to outputs z, v, n
-    z = int_z;
-    v = int_v;
-    n = int_n;
-    
-    compareUnit.alufn = alufn[3:0];
-    compareUnit.z = int_z;
-    compareUnit.v = int_v;
-    compareUnit.n = int_n;
+    compareUnit.alufn = alufn;
+    compareUnit.a = a;
+    compareUnit.b = b;
     
     booleanUnit.alufn = alufn[3:0];
     booleanUnit.a = a;

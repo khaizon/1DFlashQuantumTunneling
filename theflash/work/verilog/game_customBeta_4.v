@@ -15,7 +15,7 @@ module game_customBeta_4 (
     output reg [15:0] level,
     output reg [15:0] slow_counter_time,
     output reg [6:0] state_number,
-    output reg [0:0] result
+    output reg [15:0] result
   );
   
   
@@ -24,9 +24,6 @@ module game_customBeta_4 (
   
   reg [15:0] alu_b;
   
-  wire [1-1:0] M_game_alu_z;
-  wire [1-1:0] M_game_alu_v;
-  wire [1-1:0] M_game_alu_n;
   wire [16-1:0] M_game_alu_out;
   reg [16-1:0] M_game_alu_a;
   reg [16-1:0] M_game_alu_b;
@@ -35,9 +32,6 @@ module game_customBeta_4 (
     .a(M_game_alu_a),
     .b(M_game_alu_b),
     .alufn(M_game_alu_alufn),
-    .z(M_game_alu_z),
-    .v(M_game_alu_v),
-    .n(M_game_alu_n),
     .out(M_game_alu_out)
   );
   
@@ -64,7 +58,7 @@ module game_customBeta_4 (
   wire [5-1:0] M_game_controlunit_control_sig_rc;
   wire [2-1:0] M_game_controlunit_control_sig_wdsel;
   wire [7-1:0] M_game_controlunit_state_number;
-  wire [1-1:0] M_game_controlunit_result;
+  wire [16-1:0] M_game_controlunit_result;
   reg [1-1:0] M_game_controlunit_fast_counter;
   reg [1-1:0] M_game_controlunit_slow_counter;
   reg [1-1:0] M_game_controlunit_forward_pressed;

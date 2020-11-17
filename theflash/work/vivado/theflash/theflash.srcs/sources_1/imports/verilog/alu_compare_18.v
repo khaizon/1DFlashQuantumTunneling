@@ -5,10 +5,9 @@
 */
 
 module alu_compare_18 (
-    input z,
-    input v,
-    input n,
-    input [3:0] alufn,
+    input [15:0] a,
+    input [15:0] b,
+    input [5:0] alufn,
     output reg [15:0] out
   );
   
@@ -17,15 +16,15 @@ module alu_compare_18 (
   always @* begin
     out = 16'h0000;
     
-    case (alufn[0+3-:4])
-      4'h3: begin
-        out[0+0-:1] = z;
+    case (alufn)
+      6'h33: begin
+        out[0+0-:1] = (a == b);
       end
-      4'h5: begin
-        out[0+0-:1] = n ^ v;
+      6'h35: begin
+        out[0+0-:1] = (a < b);
       end
-      4'h7: begin
-        out[0+0-:1] = z | (n ^ v);
+      6'h37: begin
+        out[0+0-:1] = (a <= b);
       end
       default: begin
         out[0+0-:1] = 1'h0;

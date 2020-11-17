@@ -22,7 +22,7 @@ module game_CU_9 (
     output reg [4:0] control_sig_rc,
     output reg [1:0] control_sig_wdsel,
     output reg [6:0] state_number,
-    output reg [0:0] result
+    output reg [15:0] result
   );
   
   
@@ -459,7 +459,12 @@ module game_CU_9 (
           state_number = 7'h1c;
           control_sig_rb = 5'h17;
           control_sig_write_enable = 1'h0;
-          result = rb_data[0+0-:1];
+          result = rb_data;
+          if (rb_data[0+0-:1] == 1'h1) begin
+            M_game_fsm_d = CHECK_LIVES_MORE_THAN_1_game_fsm;
+          end else begin
+            M_game_fsm_d = CHECKPP_EQ_E2_game_fsm;
+          end
         end
         CHECKPP_EQ_E2_game_fsm: begin
           state_number = 7'h1d;

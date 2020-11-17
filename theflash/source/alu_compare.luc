@@ -1,8 +1,7 @@
 module alu_compare (
-    input z,
-    input v,
-    input n,
-    input alufn[4],
+    input a[16],
+    input b[16],
+    input alufn[6],
     output out[16] 
   ) {
   
@@ -10,15 +9,15 @@ module alu_compare (
   
     // Since only LSB is important
     out = 16b0;
-    case (alufn[3:0]) {
+    case (alufn) {
     
       // Compare Operations:
       // CMPEQ: A = B
-      b0011: out[0] = z;
+      b110011: out[0] = (a == b);
       // CMLT: A < B
-      b0101: out[0] = n ^ v;
+      b110101: out[0] = (a < b);
       // CMLE: A <= B
-      b0111: out[0] = z | (n ^ v);
+      b110111: out[0] = (a <= b);
       default: out[0] = 0;
       
     }

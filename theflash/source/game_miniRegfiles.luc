@@ -40,7 +40,7 @@ module game_miniRegfiles (
 {
   .clk(clk){
     .rst(rst){
-      dff player_position[16] (#INIT (h8000));
+      dff player_position[16] (#INIT (h8005)); // put 5 for testing, supposed to be 0
       dff e1_position[16](#INIT (h8800));
       dff e2_position[16](#INIT (h8800));
       dff e3_position[16](#INIT (h8800));
@@ -79,7 +79,7 @@ module game_miniRegfiles (
   }
 
   always {
-  
+    
     lives_left_output = lives_left.q;
     slow_counter_output = slow_counter.q;
     difficulty_level_output = difficulty_level.q;

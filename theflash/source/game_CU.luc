@@ -17,7 +17,7 @@ module game_CU (
     output control_sig_rc[5],
     output control_sig_wdsel[2],
     output state_number[7],
-    output result[1]
+    output result[16]
   ) {
   .clk(clk){
   
@@ -454,7 +454,7 @@ game_fsm.FAST_COUNTER_PLUS:
         state_number             = b0011011;
         control_sig_alufn        = b110011; //CMPEQ
         control_sig_asel         = b00;
-        control_sig_bsel         = b00;
+        control_sig_bsel         = b00; 
         control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PP
         control_sig_rb           = b00001; //E1
@@ -464,14 +464,14 @@ game_fsm.FAST_COUNTER_PLUS:
 
      game_fsm.BRANCH_PP_EQ_E1:
         state_number             = b0011100;
-        control_sig_rb           = b10111;
+        control_sig_rb           = b10111; // to get enemy1 pos
         control_sig_write_enable = b0;
-        result = rb_data[0];
+        result = rb_data;
 
-        // if (rb_data[0] == 1){
-          // game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
-        // }
-        // else game_fsm.d = game_fsm.CHECKPP_EQ_E2;
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E2;
      game_fsm.CHECKPP_EQ_E2:
         state_number             = b0011101;
         control_sig_alufn        = b110011; //CMPEQ

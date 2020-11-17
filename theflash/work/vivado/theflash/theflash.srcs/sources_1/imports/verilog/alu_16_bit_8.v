@@ -8,9 +8,6 @@ module alu_16_bit_8 (
     input [15:0] a,
     input [15:0] b,
     input [5:0] alufn,
-    output reg z,
-    output reg v,
-    output reg n,
     output reg [15:0] out
   );
   
@@ -45,14 +42,12 @@ module alu_16_bit_8 (
   );
   
   wire [16-1:0] M_compareUnit_out;
-  reg [1-1:0] M_compareUnit_z;
-  reg [1-1:0] M_compareUnit_v;
-  reg [1-1:0] M_compareUnit_n;
-  reg [4-1:0] M_compareUnit_alufn;
+  reg [16-1:0] M_compareUnit_a;
+  reg [16-1:0] M_compareUnit_b;
+  reg [6-1:0] M_compareUnit_alufn;
   alu_compare_18 compareUnit (
-    .z(M_compareUnit_z),
-    .v(M_compareUnit_v),
-    .n(M_compareUnit_n),
+    .a(M_compareUnit_a),
+    .b(M_compareUnit_b),
     .alufn(M_compareUnit_alufn),
     .out(M_compareUnit_out)
   );
@@ -84,13 +79,9 @@ module alu_16_bit_8 (
     int_z = M_arithmeticUnit_z;
     int_v = M_arithmeticUnit_v;
     int_n = M_arithmeticUnit_n;
-    z = int_z;
-    v = int_v;
-    n = int_n;
-    M_compareUnit_alufn = alufn[0+3-:4];
-    M_compareUnit_z = int_z;
-    M_compareUnit_v = int_v;
-    M_compareUnit_n = int_n;
+    M_compareUnit_alufn = alufn;
+    M_compareUnit_a = a;
+    M_compareUnit_b = b;
     M_booleanUnit_alufn = alufn[0+3-:4];
     M_booleanUnit_a = a;
     M_booleanUnit_b = b;
