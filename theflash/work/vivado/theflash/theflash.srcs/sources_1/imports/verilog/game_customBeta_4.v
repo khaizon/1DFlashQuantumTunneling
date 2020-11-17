@@ -13,7 +13,7 @@ module game_customBeta_4 (
     output reg [15:0] lives,
     output reg [15:0] playerposition,
     output reg [15:0] slow_counter_time,
-    output reg state_nummber
+    output reg state_number
   );
   
   
@@ -174,7 +174,7 @@ module game_customBeta_4 (
     lives = M_memory_lives_left_output;
     slow_counter_time = M_memory_slow_counter_output;
     playerposition = M_memory_playerposition;
-    state_nummber = M_game_controlunit_state_number;
+    state_number = M_game_controlunit_state_number;
     
     case (M_game_controlunit_control_sig_asel)
       2'h0: begin

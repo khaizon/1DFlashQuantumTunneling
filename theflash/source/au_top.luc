@@ -69,7 +69,7 @@ module au_top (
     // io_led[0] = gameMachine.p1_out;    
     // io_led[1] = gameMachine.p2_out;
     io_seg = ~test_display.seg;
-    converter.pp = gameMachine.state_number;
+    converter.pp = b0010000;
     test_display.values = converter.out;
     io_sel = ~test_display.sel;
   

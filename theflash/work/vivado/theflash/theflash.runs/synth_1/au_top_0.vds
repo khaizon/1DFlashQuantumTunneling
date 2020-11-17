@@ -2,8 +2,8 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Tue Nov 17 18:12:47 2020
-# Process ID: 23604
+# Start of session at: Tue Nov 17 18:52:30 2020
+# Process ID: 4064
 # Current directory: C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1
 # Command line: vivado.exe -log au_top_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source au_top_0.tcl
 # Log file: C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1/au_top_0.vds
@@ -15,9 +15,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 23948 
+INFO: Helper process launched with PID 23868 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 339.563 ; gain = 94.668
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 339.813 ; gain = 94.738
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'au_top_0' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/au_top_0.v:7]
 INFO: [Synth 8-6157] synthesizing module 'reset_conditioner_1' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/reset_conditioner_1.v:11]
@@ -258,7 +258,7 @@ WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[2]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[1]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[0]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 395.422 ; gain = 150.527
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 395.965 ; gain = 150.891
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -271,10 +271,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 395.422 ; gain = 150.527
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 395.965 ; gain = 150.891
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 395.422 ; gain = 150.527
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 395.965 ; gain = 150.891
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a35tftg256-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -291,30 +291,30 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/au_top_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc]
 Finished Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc]
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 740.621 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 741.063 ; gain = 0.000
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 740.621 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 741.063 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 740.621 ; gain = 0.000
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.036 . Memory (MB): peak = 740.621 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 741.063 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 741.063 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:31 ; elapsed = 00:00:40 . Memory (MB): peak = 740.621 ; gain = 495.727
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:22 . Memory (MB): peak = 741.063 ; gain = 495.988
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tftg256-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:31 ; elapsed = 00:00:40 . Memory (MB): peak = 740.621 ; gain = 495.727
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:22 . Memory (MB): peak = 741.063 ; gain = 495.988
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:41 . Memory (MB): peak = 740.621 ; gain = 495.727
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:22 . Memory (MB): peak = 741.063 ; gain = 495.988
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_arithmetic_16.v:23]
 INFO: [Synth 8-802] inferred FSM for state register 'M_game_fsm_q_reg' in module 'game_CU_9'
@@ -407,7 +407,7 @@ BRANCH_NEXT_LVL_EXISTS_game_fsm | 0010000000000000000000000000000000000000000000
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'M_game_fsm_q_reg' using encoding 'one-hot' in module 'game_CU_9'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:35 ; elapsed = 00:00:45 . Memory (MB): peak = 740.621 ; gain = 495.727
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:25 . Memory (MB): peak = 741.063 ; gain = 495.988
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -624,102 +624,38 @@ WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[2]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[1]
 WARNING: [Synth 8-3331] design au_top_0 has unconnected port io_dip[0]
 WARNING: [Synth 8-3332] Sequential element (gameMachine/game_controlunit/FSM_onehot_M_game_fsm_q_reg[53]) is unused and will be removed from module au_top_0.
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e1_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e2_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e3_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e4_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e5_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e6_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e7_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e12_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e13_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e14_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e15_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e8_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e9_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e10_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e11_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e16_position_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_player_score_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg6_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[8]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[8] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e1_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e2_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e3_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e4_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e5_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e6_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e7_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e12_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e13_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e14_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e15_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e8_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e9_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e10_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e11_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[11]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[11]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[11]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg5_q_reg[11]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg6_q_reg[11]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[11]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[11]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg8_q_reg[11] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e16_position_q_reg[11]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[11]'
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (\gameMachine/memory/M_player_score_q_reg[11] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e1_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e2_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e3_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e4_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e5_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e6_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e7_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e12_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e13_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e14_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e15_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e8_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e9_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e10_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e11_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e16_position_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_player_score_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg6_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[13]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[13] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e1_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e2_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e3_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e4_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e5_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e6_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e7_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e12_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e13_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e14_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e15_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e8_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e9_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e10_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e11_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e16_position_q_reg[15]' (FDSE) to 'gameMachine/memory/M_player_score_q_reg[15]'
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (\gameMachine/memory/M_player_score_q_reg[15] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg6_q_reg[15]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[15]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[15]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[15]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[15]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[15]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[15]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[15] )
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e12_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e13_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e14_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e15_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e8_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e9_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e10_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e11_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e4_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e5_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e6_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e7_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e1_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e2_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e3_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e16_position_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_player_score_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg5_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg6_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg8_q_reg[1] )
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e12_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e13_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e14_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e15_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e8_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e9_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e10_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e11_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
 INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e4_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
 INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e5_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
 INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e6_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
@@ -727,24 +663,88 @@ INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e7_position_q_reg[2]
 INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e1_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
 INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e2_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
 INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e3_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e8_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e9_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e10_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
-INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg8_q_reg[2] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_player_score_q_reg[10] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[9] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[14] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_player_score_q_reg[7] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_player_score_q_reg[12] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[5] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_player_score_q_reg[6] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg8_q_reg[4] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[1] )
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e16_position_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_player_score_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg6_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[2]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg5_q_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[2] )
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e4_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e5_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e6_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e7_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e1_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e2_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e3_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e8_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e9_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e10_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e11_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e12_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e13_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e14_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e15_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e16_position_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_player_score_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg5_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg6_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg8_q_reg[3] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg8_q_reg[0] )
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e4_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e5_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e6_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e7_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e1_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e2_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e3_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e8_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e9_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e10_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e11_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e12_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e13_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e14_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e15_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e16_position_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_player_score_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg5_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg6_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[4]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg8_q_reg[4] )
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e12_position_q_reg[5]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[5]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e13_position_q_reg[5]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[5]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e14_position_q_reg[5]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[5]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e15_position_q_reg[5]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[5]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e8_position_q_reg[5]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[5]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e9_position_q_reg[5]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[5]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e10_position_q_reg[5]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[5]'
+INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_e11_position_q_reg[5]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[5]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg8_q_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_player_score_q_reg[10] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\gameMachine/memory/M_player_score_q_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[12] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[13] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[14] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\gameMachine/memory/M_player_score_q_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\gameMachine/memory/M_temp_reg5_q_reg[0] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:05 ; elapsed = 00:01:16 . Memory (MB): peak = 740.621 ; gain = 495.727
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:42 . Memory (MB): peak = 741.063 ; gain = 495.988
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -772,13 +772,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:35 ; elapsed = 00:01:47 . Memory (MB): peak = 769.918 ; gain = 525.023
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:51 ; elapsed = 00:00:58 . Memory (MB): peak = 769.563 ; gain = 524.488
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:44 ; elapsed = 00:01:57 . Memory (MB): peak = 859.160 ; gain = 614.266
+Finished Timing Optimization : Time (s): cpu = 00:00:56 ; elapsed = 00:01:03 . Memory (MB): peak = 855.391 ; gain = 610.316
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -790,7 +790,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:46 ; elapsed = 00:01:58 . Memory (MB): peak = 860.180 ; gain = 615.285
+Finished Technology Mapping : Time (s): cpu = 00:00:57 ; elapsed = 00:01:04 . Memory (MB): peak = 856.398 ; gain = 611.324
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -814,7 +814,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:48 ; elapsed = 00:02:01 . Memory (MB): peak = 860.180 ; gain = 615.285
+Finished IO Insertion : Time (s): cpu = 00:00:58 ; elapsed = 00:01:05 . Memory (MB): peak = 856.398 ; gain = 611.324
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -827,7 +827,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:48 ; elapsed = 00:02:01 . Memory (MB): peak = 860.180 ; gain = 615.285
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:58 ; elapsed = 00:01:05 . Memory (MB): peak = 856.398 ; gain = 611.324
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -839,25 +839,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:49 ; elapsed = 00:02:02 . Memory (MB): peak = 860.180 ; gain = 615.285
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:58 ; elapsed = 00:01:05 . Memory (MB): peak = 856.398 ; gain = 611.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:49 ; elapsed = 00:02:02 . Memory (MB): peak = 860.180 ; gain = 615.285
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:58 ; elapsed = 00:01:05 . Memory (MB): peak = 856.398 ; gain = 611.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:49 ; elapsed = 00:02:02 . Memory (MB): peak = 860.180 ; gain = 615.285
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:58 ; elapsed = 00:01:05 . Memory (MB): peak = 856.398 ; gain = 611.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:49 ; elapsed = 00:02:02 . Memory (MB): peak = 860.180 ; gain = 615.285
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:58 ; elapsed = 00:01:05 . Memory (MB): peak = 856.398 ; gain = 611.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -876,12 +876,12 @@ Report Cell Usage:
 |1     |BUFG    |     1|
 |2     |CARRY4  |   108|
 |3     |DSP48E1 |     1|
-|4     |LUT1    |    13|
-|5     |LUT2    |    90|
-|6     |LUT3    |   234|
-|7     |LUT4    |    60|
-|8     |LUT5    |    60|
-|9     |LUT6    |   201|
+|4     |LUT1    |    11|
+|5     |LUT2    |    94|
+|6     |LUT3    |   227|
+|7     |LUT4    |    43|
+|8     |LUT5    |    63|
+|9     |LUT6    |   219|
 |10    |FDRE    |   263|
 |11    |FDSE    |     9|
 |12    |IBUF    |     6|
@@ -892,7 +892,7 @@ Report Instance Areas:
 +------+---------------------+-----------------------+------+
 |      |Instance             |Module                 |Cells |
 +------+---------------------+-----------------------+------+
-|1     |top                  |                       |  1091|
+|1     |top                  |                       |  1090|
 |2     |  btn_cond_down      |button_conditioner_3   |    36|
 |3     |    sync             |pipeline_7_5           |     3|
 |4     |  btn_cond_mid       |button_conditioner_3_0 |    35|
@@ -902,37 +902,37 @@ Report Instance Areas:
 |8     |  edge_dt_btn_down   |edge_detector_2        |     1|
 |9     |  edge_dt_btn_mid    |edge_detector_2_2      |     2|
 |10    |  edge_dt_btn_up     |edge_detector_2_3      |     1|
-|11    |  gameMachine        |game_customBeta_4      |   871|
+|11    |  gameMachine        |game_customBeta_4      |   870|
 |12    |    game_alu         |alu_16_bit_8           |    37|
 |13    |      arithmeticUnit |alu_arithmetic_16      |    37|
-|14    |    game_controlunit |game_CU_9              |   693|
-|15    |    memory           |game_miniRegfiles_10   |   141|
-|16    |  reset_cond         |reset_conditioner_1    |     7|
-|17    |  test_display       |multi_seven_seg_5      |    50|
-|18    |    ctr              |counter_13             |    50|
+|14    |    game_controlunit |game_CU_9              |   691|
+|15    |    memory           |game_miniRegfiles_10   |   142|
+|16    |  reset_cond         |reset_conditioner_1    |     6|
+|17    |  test_display       |multi_seven_seg_5      |    51|
+|18    |    ctr              |counter_13             |    51|
 +------+---------------------+-----------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:49 ; elapsed = 00:02:02 . Memory (MB): peak = 860.180 ; gain = 615.285
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:58 ; elapsed = 00:01:05 . Memory (MB): peak = 856.398 ; gain = 611.324
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 76 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:24 ; elapsed = 00:01:44 . Memory (MB): peak = 860.180 ; gain = 270.086
-Synthesis Optimization Complete : Time (s): cpu = 00:01:49 ; elapsed = 00:02:02 . Memory (MB): peak = 860.180 ; gain = 615.285
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:47 ; elapsed = 00:00:56 . Memory (MB): peak = 856.398 ; gain = 266.227
+Synthesis Optimization Complete : Time (s): cpu = 00:00:59 ; elapsed = 00:01:06 . Memory (MB): peak = 856.398 ; gain = 611.324
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 109 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 860.180 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 856.398 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
 210 Infos, 159 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:53 ; elapsed = 00:02:07 . Memory (MB): peak = 860.180 ; gain = 615.285
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 860.180 ; gain = 0.000
+synth_design: Time (s): cpu = 00:01:01 ; elapsed = 00:01:09 . Memory (MB): peak = 856.398 ; gain = 611.324
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 856.398 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1/au_top_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file au_top_0_utilization_synth.rpt -pb au_top_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Nov 17 18:15:04 2020...
+INFO: [Common 17-206] Exiting Vivado at Tue Nov 17 18:53:43 2020...
