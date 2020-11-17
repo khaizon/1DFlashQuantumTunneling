@@ -1,5 +1,5 @@
 //the regfile for all game information
-module game_miniRegfiles (
+module regfile (
     input clk,  // clock
     input rst,  // reset
     input write_address[5], // write address
@@ -76,7 +76,7 @@ module game_miniRegfiles (
   }
 
   always {
-  
+    
     //write port
     if (we){
       case(write_address){
@@ -193,7 +193,7 @@ module game_miniRegfiles (
       
     
     
-
+    //For debugging
     playerposition = player_position.q;
     e1position = e1_position.q;
     e2position = e2_position.q;
