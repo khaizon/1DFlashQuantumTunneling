@@ -33,12 +33,13 @@ module game_miniRegfiles_10 (
     output reg [15:0] e16position,
     output reg [15:0] playerscore,
     output reg [15:0] lives_left_output,
-    output reg [15:0] slow_counter_output
+    output reg [15:0] slow_counter_output,
+    output reg [15:0] difficulty_level_output
   );
   
   
   
-  reg [15:0] M_player_position_d, M_player_position_q = 16'h8000;
+  reg [15:0] M_player_position_d, M_player_position_q = 16'h8005;
   reg [15:0] M_e1_position_d, M_e1_position_q = 16'h8800;
   reg [15:0] M_e2_position_d, M_e2_position_q = 16'h8800;
   reg [15:0] M_e3_position_d, M_e3_position_q = 16'h8800;
@@ -65,18 +66,17 @@ module game_miniRegfiles_10 (
   reg [15:0] M_temp_reg2_d, M_temp_reg2_q = 1'h0;
   reg [15:0] M_temp_reg3_d, M_temp_reg3_q = 1'h0;
   reg [15:0] M_temp_reg4_d, M_temp_reg4_q = 1'h0;
-  reg [15:0] M_temp_reg5_d, M_temp_reg5_q = 1'h0;
-  reg [15:0] M_temp_reg6_d, M_temp_reg6_q = 1'h0;
+  reg [15:0] M_always_one_d, M_always_one_q = 16'h0001;
+  reg [15:0] M_start_position_d, M_start_position_q = 16'h8000;
   reg [15:0] M_temp_reg7_d, M_temp_reg7_q = 1'h0;
   reg [15:0] M_temp_reg8_d, M_temp_reg8_q = 1'h0;
   reg [15:0] M_temp_reg9_d, M_temp_reg9_q = 1'h0;
   
   always @* begin
+    M_start_position_d = M_start_position_q;
     M_temp_reg8_d = M_temp_reg8_q;
     M_e11_position_d = M_e11_position_q;
     M_temp_reg7_d = M_temp_reg7_q;
-    M_temp_reg6_d = M_temp_reg6_q;
-    M_temp_reg5_d = M_temp_reg5_q;
     M_temp_reg4_d = M_temp_reg4_q;
     M_temp_reg3_d = M_temp_reg3_q;
     M_temp_reg2_d = M_temp_reg2_q;
@@ -92,6 +92,7 @@ module game_miniRegfiles_10 (
     M_e1_position_d = M_e1_position_q;
     M_e10_position_d = M_e10_position_q;
     M_temp_reg9_d = M_temp_reg9_q;
+    M_always_one_d = M_always_one_q;
     M_difficulty_level_d = M_difficulty_level_q;
     M_e4_position_d = M_e4_position_q;
     M_player_score_d = M_player_score_q;
@@ -105,8 +106,11 @@ module game_miniRegfiles_10 (
     M_e5_position_d = M_e5_position_q;
     M_e14_position_d = M_e14_position_q;
     
+    M_always_one_d = 16'h0001;
+    M_start_position_d = 16'h8000;
     lives_left_output = M_lives_left_q;
     slow_counter_output = M_slow_counter_q;
+    difficulty_level_output = M_difficulty_level_q;
     if (we) begin
       
       case (write_address)
@@ -192,10 +196,10 @@ module game_miniRegfiles_10 (
           M_temp_reg4_d = data;
         end
         5'h1b: begin
-          M_temp_reg5_d = data;
+          M_always_one_d = data;
         end
         5'h1c: begin
-          M_temp_reg6_d = data;
+          M_start_position_d = data;
         end
         5'h1d: begin
           M_temp_reg7_d = data;
@@ -292,10 +296,10 @@ module game_miniRegfiles_10 (
         out_a = M_temp_reg4_q;
       end
       5'h1b: begin
-        out_a = M_temp_reg5_q;
+        out_a = M_always_one_q;
       end
       5'h1c: begin
-        out_a = M_temp_reg6_q;
+        out_a = M_start_position_q;
       end
       5'h1d: begin
         out_a = M_temp_reg7_q;
@@ -394,10 +398,10 @@ module game_miniRegfiles_10 (
         out_b = M_temp_reg4_q;
       end
       5'h1b: begin
-        out_b = M_temp_reg5_q;
+        out_b = M_always_one_q;
       end
       5'h1c: begin
-        out_b = M_temp_reg6_q;
+        out_b = M_start_position_q;
       end
       5'h1d: begin
         out_b = M_temp_reg7_q;
@@ -434,7 +438,7 @@ module game_miniRegfiles_10 (
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
-      M_player_position_q <= 16'h8000;
+      M_player_position_q <= 16'h8005;
       M_e1_position_q <= 16'h8800;
       M_e2_position_q <= 16'h8800;
       M_e3_position_q <= 16'h8800;
@@ -461,8 +465,8 @@ module game_miniRegfiles_10 (
       M_temp_reg2_q <= 1'h0;
       M_temp_reg3_q <= 1'h0;
       M_temp_reg4_q <= 1'h0;
-      M_temp_reg5_q <= 1'h0;
-      M_temp_reg6_q <= 1'h0;
+      M_always_one_q <= 16'h0001;
+      M_start_position_q <= 16'h8000;
       M_temp_reg7_q <= 1'h0;
       M_temp_reg8_q <= 1'h0;
       M_temp_reg9_q <= 1'h0;
@@ -494,8 +498,8 @@ module game_miniRegfiles_10 (
       M_temp_reg2_q <= M_temp_reg2_d;
       M_temp_reg3_q <= M_temp_reg3_d;
       M_temp_reg4_q <= M_temp_reg4_d;
-      M_temp_reg5_q <= M_temp_reg5_d;
-      M_temp_reg6_q <= M_temp_reg6_d;
+      M_always_one_q <= M_always_one_d;
+      M_start_position_q <= M_start_position_d;
       M_temp_reg7_q <= M_temp_reg7_d;
       M_temp_reg8_q <= M_temp_reg8_d;
       M_temp_reg9_q <= M_temp_reg9_d;

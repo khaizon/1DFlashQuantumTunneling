@@ -12,8 +12,10 @@ module game_customBeta_4 (
     input middle_button,
     output reg [15:0] lives,
     output reg [15:0] playerposition,
+    output reg [15:0] level,
     output reg [15:0] slow_counter_time,
-    output reg state_nummber
+    output reg [6:0] state_number,
+    output reg [15:0] result
   );
   
   
@@ -22,9 +24,6 @@ module game_customBeta_4 (
   
   reg [15:0] alu_b;
   
-  wire [1-1:0] M_game_alu_z;
-  wire [1-1:0] M_game_alu_v;
-  wire [1-1:0] M_game_alu_n;
   wire [16-1:0] M_game_alu_out;
   reg [16-1:0] M_game_alu_a;
   reg [16-1:0] M_game_alu_b;
@@ -33,9 +32,6 @@ module game_customBeta_4 (
     .a(M_game_alu_a),
     .b(M_game_alu_b),
     .alufn(M_game_alu_alufn),
-    .z(M_game_alu_z),
-    .v(M_game_alu_v),
-    .n(M_game_alu_n),
     .out(M_game_alu_out)
   );
   
@@ -61,7 +57,8 @@ module game_customBeta_4 (
   wire [5-1:0] M_game_controlunit_control_sig_rb;
   wire [5-1:0] M_game_controlunit_control_sig_rc;
   wire [2-1:0] M_game_controlunit_control_sig_wdsel;
-  wire [1-1:0] M_game_controlunit_state_number;
+  wire [7-1:0] M_game_controlunit_state_number;
+  wire [16-1:0] M_game_controlunit_result;
   reg [1-1:0] M_game_controlunit_fast_counter;
   reg [1-1:0] M_game_controlunit_slow_counter;
   reg [1-1:0] M_game_controlunit_forward_pressed;
@@ -85,7 +82,8 @@ module game_customBeta_4 (
     .control_sig_rb(M_game_controlunit_control_sig_rb),
     .control_sig_rc(M_game_controlunit_control_sig_rc),
     .control_sig_wdsel(M_game_controlunit_control_sig_wdsel),
-    .state_number(M_game_controlunit_state_number)
+    .state_number(M_game_controlunit_state_number),
+    .result(M_game_controlunit_result)
   );
   wire [16-1:0] M_memory_out_a;
   wire [16-1:0] M_memory_out_b;
@@ -109,6 +107,7 @@ module game_customBeta_4 (
   wire [16-1:0] M_memory_playerscore;
   wire [16-1:0] M_memory_lives_left_output;
   wire [16-1:0] M_memory_slow_counter_output;
+  wire [16-1:0] M_memory_difficulty_level_output;
   reg [5-1:0] M_memory_write_address;
   reg [1-1:0] M_memory_we;
   reg [16-1:0] M_memory_data;
@@ -143,7 +142,8 @@ module game_customBeta_4 (
     .e16position(M_memory_e16position),
     .playerscore(M_memory_playerscore),
     .lives_left_output(M_memory_lives_left_output),
-    .slow_counter_output(M_memory_slow_counter_output)
+    .slow_counter_output(M_memory_slow_counter_output),
+    .difficulty_level_output(M_memory_difficulty_level_output)
   );
   wire [1-1:0] M_slow_timer_value;
   counter_11 slow_timer (
@@ -174,7 +174,9 @@ module game_customBeta_4 (
     lives = M_memory_lives_left_output;
     slow_counter_time = M_memory_slow_counter_output;
     playerposition = M_memory_playerposition;
-    state_nummber = M_game_controlunit_state_number;
+    state_number = M_game_controlunit_state_number;
+    level = M_memory_difficulty_level_output;
+    result = M_game_controlunit_result;
     
     case (M_game_controlunit_control_sig_asel)
       2'h0: begin
@@ -202,7 +204,7 @@ module game_customBeta_4 (
         alu_b = 1'h0;
       end
       2'h2: begin
-        alu_b = 8'h1f;
+        alu_b = 16'h801f;
       end
       2'h3: begin
         alu_b = 2'h2;

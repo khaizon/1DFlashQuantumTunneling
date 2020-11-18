@@ -29,7 +29,7 @@ module alu_arithmetic (
       
     }
     
-    z = s == 0;
+    z = (s == d0);
     v = ( a[15] & (b[15] ^ alufn[0]) & ~s[15] ) | ( ~a[15] & ~(b[15] ^ alufn[0]) & s[15] );
     n = s[15];
     

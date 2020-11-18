@@ -6,6 +6,8 @@
 
 module converter_6 (
     input [15:0] pp,
+    input [15:0] lives,
+    input [15:0] level,
     output reg [15:0] out
   );
   
@@ -20,7 +22,7 @@ module converter_6 (
     out[0+3-:4] = diff[0+3-:4];
     diff2 = (pp[0+4-:5] / 5'h0a);
     out[4+3-:4] = diff2[0+3-:4];
-    out[8+3-:4] = 4'h0;
-    out[12+3-:4] = 4'h0;
+    out[8+3-:4] = lives[0+3-:4];
+    out[12+3-:4] = level[0+3-:4];
   end
 endmodule

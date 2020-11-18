@@ -16,7 +16,8 @@ module game_CU (
     output control_sig_rb[5],
     output control_sig_rc[5],
     output control_sig_wdsel[2],
-    output state_number
+    output state_number[7],
+    output result[16]
   ) {
   .clk(clk){
   
@@ -107,6 +108,10 @@ module game_CU (
 
       
   }
+  
+  
+  sig done;
+  
   always {
     
     // standard setting unless otherwise overwritten by each case 
@@ -118,10 +123,14 @@ module game_CU (
     control_sig_rb           = 00000;
     control_sig_rc           = 00000;
     control_sig_wdsel        = 00;
-    state_number = 0;
+    state_number = b0000000;
+    done = 0;
+    result = 0;
+    
+
     
     if (rst){
-        game_fsm.d = game_fsm.RESET_PP;
+        // game_fsm.d = game_fsm.RESET_PP;
     }
     else{
       
@@ -129,6 +138,8 @@ module game_CU (
     
      game_fsm.IDLE: 
         state_number             = b0000001;
+       
+        control_sig_write_enable = b0;
         //if counter is set
         //if (fast_counter){                      //direct read in
         //  game_fsm.d = game_fsm.FAST_COUNTER_PLUS;
@@ -136,7 +147,6 @@ module game_CU (
         //else if(slow_counter){
         //  game_fsm.d =  game_fsm.CHECK_STOP_GAME;
         //}
-        if(slow_counter){
           if(forward_pressed){
             game_fsm.d =  game_fsm.PP_PLUS;
           }
@@ -146,9 +156,9 @@ module game_CU (
           else if(reset_pressed){
             game_fsm.d =  game_fsm.RESET_PP;
           }
-          else {game_fsm.d =  game_fsm.IDLE;}}
+          else {game_fsm.d =  game_fsm.IDLE;}
 
-     game_fsm.FAST_COUNTER_PLUS:
+game_fsm.FAST_COUNTER_PLUS:
         state_number             = b0000010;
         control_sig_alufn        = b000000;
         control_sig_asel         = b10;
@@ -176,6 +186,7 @@ module game_CU (
         state_number             = b0000100;
         control_sig_rb           = b10111;
         control_sig_write_enable = b0;
+
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.BLINK_E1;
         }
@@ -443,23 +454,25 @@ module game_CU (
         state_number             = b0011011;
         control_sig_alufn        = b110011; //CMPEQ
         control_sig_asel         = b00;
-        control_sig_bsel         = b00;
+        control_sig_bsel         = b00; 
         control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PP
-        control_sig_rb           = b01; //E1
+        control_sig_rb           = b00001; //E1
         control_sig_rc           = b10111; //TEMP
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E1;
 
      game_fsm.BRANCH_PP_EQ_E1:
         state_number             = b0011100;
-        control_sig_rb           = b10111;
+        control_sig_rb           = b10111; // to get enemy1 pos
         control_sig_write_enable = b0;
+        result = rb_data;
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E2;
+          
      game_fsm.CHECKPP_EQ_E2:
         state_number             = b0011101;
         control_sig_alufn        = b110011; //CMPEQ
@@ -467,7 +480,7 @@ module game_CU (
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PP
-        control_sig_rb           = b010; //E1
+        control_sig_rb           = b00010; //E1
         control_sig_rc           = b10111; //TEMP
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E2;
@@ -488,7 +501,7 @@ module game_CU (
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PP
-        control_sig_rb           = b011; //E1
+        control_sig_rb           = b00011; //E1
         control_sig_rc           = b10111; //TEMP
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E3;
@@ -509,7 +522,7 @@ module game_CU (
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PP
-        control_sig_rb           = b0100; //E1
+        control_sig_rb           = b00100; //E1
         control_sig_rc           = b10111; //TEMP
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E4;
@@ -530,7 +543,7 @@ module game_CU (
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PP
-        control_sig_rb           = b0101; //E1
+        control_sig_rb           = b00101; 
         control_sig_rc           = b10111; //TEMP
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E5;
@@ -844,7 +857,7 @@ module game_CU (
         control_sig_ra           = b00000;
         control_sig_rb           = b00000; //LIVES LEFT
         control_sig_rc           = b0000; //TEMP
-        control_sig_wdsel        = b11;
+        control_sig_wdsel        = b11;   //reset to start position 
         game_fsm.d = game_fsm.RESET_STOP_GAME;
 
       game_fsm.RESET_STOP_GAME:
@@ -885,9 +898,9 @@ module game_CU (
 
      game_fsm.RESET_LIVES:
         state_number             = b1000100;
-        control_sig_alufn        = b000000; //CMPLT
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
+        control_sig_alufn        = b000000; //ADD
+        control_sig_asel         = b11;
+        control_sig_bsel         = b01;
         control_sig_write_enable = b1;
         control_sig_ra           = b00000;
         control_sig_rb           = b00000; //LIVES LEFT
@@ -897,9 +910,9 @@ module game_CU (
 
      game_fsm.RESET_LVL:
         state_number             = b1000101;
-        control_sig_alufn        = b000000; //CMPLT
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
+        control_sig_alufn        = b000000; //ADD
+        control_sig_asel         = b10;
+        control_sig_bsel         = b01;
         control_sig_write_enable = b1;
         control_sig_ra           = b00000;
         control_sig_rb           = b00000; //LIVES LEFT
@@ -909,7 +922,6 @@ module game_CU (
 
      game_fsm.PP_PLUS:
         state_number             = b1000110;
-        state_number = b10; //2
         control_sig_alufn        = b000000; //add
         control_sig_asel         = b10;
         control_sig_bsel         = b00;
@@ -923,11 +935,11 @@ module game_CU (
      game_fsm.CHECK_PP:
         state_number             = b1000111;
         control_sig_alufn        = b110101; //cmplt
-        control_sig_asel         = b01;
+        control_sig_asel         = b00;
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_ra           = b11100; //REG always_one: h8000
+        control_sig_rb           = b00000; //PP
         control_sig_rc           = b11111;
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.BRANCH_PP;
@@ -945,12 +957,12 @@ module game_CU (
 
      game_fsm.PP_MINUS:
         state_number             = b1001001;
-        control_sig_alufn        = b000001; //add
-        control_sig_asel         = b10;
-        control_sig_bsel         = b00;
+        control_sig_alufn        = b000001; //SUB
+        control_sig_asel         = b00; 
+        control_sig_bsel         = b00; 
         control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b11011; //REG storing value 1
         control_sig_rc           = b00000;
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.CHECKPP_EQ_E1;
@@ -962,7 +974,7 @@ module game_CU (
         control_sig_bsel         = b10;
         control_sig_write_enable = b10;
         control_sig_ra           = b00000; //PP
-        control_sig_rb           = b00000; //E1
+        control_sig_rb           = b00000; //not used
         control_sig_rc           = b10111; //TEMP
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.BRANCH_END_REACHED;
@@ -971,11 +983,12 @@ module game_CU (
         state_number             = b1001011;
         control_sig_rb           = b10111;
         control_sig_write_enable = b0;
+        result = rb_data;
 
         if (rb_data[0] == 1){
-          game_fsm.d = game_fsm.CHECK_NEXTLVL_EXISTS;
+          game_fsm.d = game_fsm.CHECK_NEXTLVL_EXISTS; // TO FIX
         }
-        else game_fsm.d = game_fsm.IDLE;
+        else game_fsm.d = game_fsm.IDLE; // goes to IDLE, does not check next level exists
 
      game_fsm.CHECK_NEXTLVL_EXISTS:
         state_number             = b1001100;
@@ -987,7 +1000,7 @@ module game_CU (
         control_sig_rb           = b10010; //CURRENT LVEL
         control_sig_rc           = b10111; //TEMP
         control_sig_wdsel        = b00;
-        game_fsm.d = game_fsm.BRANCH_NEXT_LVL_EXISTS;
+        // game_fsm.d = game_fsm.BRANCH_NEXT_LVL_EXISTS;
 
      game_fsm.BRANCH_NEXT_LVL_EXISTS:
         state_number             = b1001101;
@@ -998,6 +1011,18 @@ module game_CU (
           game_fsm.d = game_fsm.WIN;
         }
         else game_fsm.d = game_fsm.CURRENT_LVL_PLUS;
+          
+     game_fsm.CURRENT_LVL_PLUS:
+        state_number             = b1010011;
+        control_sig_alufn        = b000000;
+        control_sig_asel         = b10;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b10;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b10010; //current level register
+        control_sig_rc           = b10010;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.NEXT_LVL_PP;
 
      game_fsm.NEXT_LVL_PP:
         state_number             = b1001110;

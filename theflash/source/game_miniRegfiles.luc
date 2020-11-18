@@ -32,14 +32,15 @@ module game_miniRegfiles (
     output e16position[16],
     output playerscore[16],
     output lives_left_output[16],
-    output slow_counter_output[16]
+    output slow_counter_output[16],
+    output difficulty_level_output[16]
 
   ) 
 
 {
   .clk(clk){
     .rst(rst){
-      dff player_position[16] (#INIT (h8000));
+      dff player_position[16] (#INIT (h8005)); // put 5 for testing, supposed to be 0
       dff e1_position[16](#INIT (h8800));
       dff e2_position[16](#INIT (h8800));
       dff e3_position[16](#INIT (h8800));
@@ -66,8 +67,8 @@ module game_miniRegfiles (
       dff temp_reg2[16];
       dff temp_reg3[16];
       dff temp_reg4[16];
-      dff temp_reg5[16];
-      dff temp_reg6[16];
+      dff always_one[16](#INIT (h0001));
+      dff start_position[16](#INIT (h8000));
       dff temp_reg7[16];
       dff temp_reg8[16];
       dff temp_reg9[16];
@@ -78,9 +79,15 @@ module game_miniRegfiles (
   }
 
   always {
-  
+    
+    // lives_left.d = d3;
+    // player_position.d = d5;
+    // difficulty_level.d = d1;
+    always_one.d = h0001;
+    start_position.d = h8000;
     lives_left_output = lives_left.q;
     slow_counter_output = slow_counter.q;
+    difficulty_level_output = difficulty_level.q;
   
     //write port
     if (we){
@@ -112,8 +119,8 @@ module game_miniRegfiles (
         b11000 : temp_reg2.d = data;
         b11001 : temp_reg3.d = data;
         b11010 : temp_reg4.d = data;
-        b11011 : temp_reg5.d = data;
-        b11100 : temp_reg6.d = data;
+        b11011 : always_one.d = data;
+        b11100 : start_position.d = data;
         b11101 : temp_reg7.d = data;
         b11110 : temp_reg8.d = data;
         b11111 : temp_reg9.d = data;
@@ -151,8 +158,8 @@ module game_miniRegfiles (
         b11000 : out_a = temp_reg2.q;
         b11001 : out_a = temp_reg3.q;
         b11010 : out_a = temp_reg4.q;
-        b11011 : out_a = temp_reg5.q;
-        b11100 : out_a = temp_reg6.q;
+        b11011 : out_a = always_one.q;
+        b11100 : out_a = start_position.q;
         b11101 : out_a = temp_reg7.q;
         b11110 : out_a = temp_reg8.q;
         b11111 : out_a = temp_reg9.q;
@@ -188,8 +195,8 @@ module game_miniRegfiles (
         b11000 : out_b = temp_reg2.q;
         b11001 : out_b = temp_reg3.q;
         b11010 : out_b = temp_reg4.q;
-        b11011 : out_b = temp_reg5.q;
-        b11100 : out_b = temp_reg6.q;
+        b11011 : out_b = always_one.q;
+        b11100 : out_b = start_position.q;
         b11101 : out_b = temp_reg7.q;
         b11110 : out_b = temp_reg8.q;
         b11111 : out_b = temp_reg9.q;
