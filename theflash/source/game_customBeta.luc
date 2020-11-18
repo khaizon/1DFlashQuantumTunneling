@@ -1,0 +1,152 @@
+module game_customBeta (
+    input clk,  // clock
+    input rst,  // reset
+    
+    input up_button,
+    input down_button,
+    input middle_button,
+    
+    // output debug_out[16],
+    output lives[16],
+    output playerposition[16], // temp for testing
+    output level[16],
+    output slow_counter_time[16],
+    output state_number[7],
+    output result[16],
+    output e1position[16],
+    output e2position[16],
+    output e3position[16],
+    output e4position[16],
+    output e5position[16],
+    output e6position[16],
+    output e7position[16],
+    output e8position[16],
+    output e9position[16],
+    output e10position[16],
+    output e11position[16],
+    output e12position[16],
+    output e13position[16],
+    output e14position[16],
+    output e15position[16],
+    output e16position[16]
+
+  ) {
+  
+  //temp variables for ALU inputs A and B
+  sig alu_a[16];
+  sig alu_b[16];
+  
+  alu_16_bit game_alu;
+  
+  .clk(clk){
+    edge_detector fast_timer_detector (#RISE(1), #FALL(0));
+    edge_detector slow_timer_detector(#RISE(1), #FALL(0));
+    
+    .rst(rst){
+      game_CU game_controlunit;
+      game_miniRegfiles memory;
+
+      // slow_timer used to count-up time taken by player
+      counter slow_timer(#SIZE(1),#DIV(26)); // ~1 second 
+      // fast_timer used to flash/blink the enemy LEDs
+      counter fast_timer(#SIZE(1),#DIV(25)); // ~1 millisecond
+      
+    }
+  }
+
+  always {
+    
+    //edge detectors
+    fast_timer_detector.in = fast_timer.value; // 30 second timer detector
+    slow_timer_detector.in = slow_timer.value; // random counter increase signal 
+    
+    //pass timer and counter signals to CU unit 
+    game_controlunit.fast_counter = fast_timer_detector.out;
+    game_controlunit.slow_counter = slow_timer_detector.out;
+    
+    //pass button press signal to Control Unit
+    game_controlunit.forward_pressed = up_button;
+    game_controlunit.backward_pressed = down_button;
+    game_controlunit.reset_pressed = middle_button;
+    
+    //Setup REGFILE unit 
+    memory.we = game_controlunit.control_sig_write_enable;
+    memory.write_address = game_controlunit.control_sig_rc;
+   
+    memory.read_address_a = game_controlunit.control_sig_ra;
+    memory.read_address_b = game_controlunit.control_sig_rb;
+    
+    //bootstrap reg_b output to CU for convenient branching conditions
+    game_controlunit.rb_data = memory.out_b;
+    
+    // show lives left
+    lives = memory.lives_left_output;
+    
+    // show count up timer 
+    slow_counter_time = memory.slow_counter_output;
+    
+    playerposition = memory.playerposition;
+    
+    state_number = game_controlunit.state_number;
+    
+    level = memory.difficulty_level_output;
+    
+    result = game_controlunit.result;
+    
+    e1position = memory.e1position;
+    e2position = memory.e2position;
+    e3position = memory.e3position;
+    e4position = memory.e4position;
+    e5position = memory.e5position;
+    e6position = memory.e6position;
+    e7position = memory.e7position;
+    e8position = memory.e8position;
+    e9position = memory.e9position;
+    e10position = memory.e10position;
+    e11position = memory.e11position;
+    e12position = memory.e12position;
+    e13position = memory.e13position;
+    e14position = memory.e14position;
+    e15position = memory.e15position;
+    e16position = memory.e16position;
+    
+
+    //asel mux
+    case(game_controlunit.control_sig_asel){
+      b00  : alu_a = memory.out_a;
+      b01  : alu_a = 0; 
+      b10  : alu_a = 1;
+      b11  : alu_a = 3;
+      default : //init
+          alu_a = 0;
+    }
+    
+    //bsel mux
+    case(game_controlunit.control_sig_bsel){
+      b00 : alu_b = memory.out_b;
+      b01 : alu_b = 0;
+      b10 : alu_b = h801F;
+      b11 : alu_b = 2;
+      default: //necessary to init
+          alu_b = 0;
+      
+    }
+    
+    //ALU
+    game_alu.a = alu_a;
+    game_alu.b = alu_b;
+    game_alu.alufn = game_controlunit.control_sig_alufn;
+   
+    
+    //wdsel mux
+    case (game_controlunit.control_sig_wdsel){ //broken
+      b01 : memory.data = h1A;
+      b10 : memory.data = h11B;
+      b11 : memory.data = h8000;
+      default : //b00
+          memory.data = game_alu.out;
+    }
+    
+    
+  }
+}
