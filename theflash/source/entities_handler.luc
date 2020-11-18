@@ -1,0 +1,35 @@
+module entities_handler (
+    input playerposition[16],
+    input e6position[16],
+    input e11position[16],
+    input e16position[16],
+    output out[32][24]
+  ) {
+
+  always {
+  out = 32x{{24h000000}};
+    
+    if (e16position[15] == b1){//level1 enemies on
+      out[3] = h00FF00;
+      out[4] = h00FF00;
+      out[17] = h00FF00;
+      out[18] = h00FF00;
+      out[24] = h00FF00;
+      }
+    if (e11position[15] == b1){//level2 enemies on
+      out[7] = h00FF00;
+      out[8] = h00FF00;
+      out[15] = h00FF00;
+      out[21] = h00FF00;
+      out[22] = h00FF00;
+    }
+    if (e6position[15] == b1){//level2 enemies on
+      out[11] = h00FF00;
+      out[12] = h00FF00;
+      out[13] = h00FF00;
+      out[26] = h00FF00;
+      out[29] = h00FF00;
+      out[30] = h00FF00;
+    }
+    out[playerposition[4:0]] = hFF0000;
+}

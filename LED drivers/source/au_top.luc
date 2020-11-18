@@ -14,14 +14,16 @@ module au_top (
   
   sig rst;                  // reset signal
   led_driver led_strip(#PIXEL_COUNT(32), .clk(clk), .rst(rst)); //set for 32 pixels
-  seven_seg seg;
+  
   .clk(clk) {
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
     reset_conditioner reset_cond;
     .rst(rst){
       handle_entities entities;
+      multi_seven_seg multiseg;
     }
+    
   }
   
   const PLAYERLOCATON = 5;
@@ -48,10 +50,10 @@ module au_top (
     led_strip.update=1; //sample write
     //led_strip.color=24b1; //sample color RED for all
     outled=led_strip.led;
-    seg.char = led_strip.pixel;
+    multiseg.values = {b0000,b0000,c{b000,led_strip.pixel[4]},led_strip.pixel[3:0]};
     //seg.char = 3; displays 3 on each 7 seg display, works 
     
-    io_seg = ~seg.segs;
-    io_sel = 0;
+    io_seg = ~multiseg.seg;
+    io_sel = ~multiseg.sel;
   }
 }

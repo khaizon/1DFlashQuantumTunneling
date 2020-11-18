@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="theflash" board="Alchitry Au" language="Lucid" version="3">
   <files>
-    <component>pipeline.luc</component>
-    <component>reset_conditioner.luc</component>
-    <src>alu_shifter.luc</src>
-    <src>game_miniRegfiles.luc</src>
     <src>seven_seg.luc</src>
-    <src>alu_16_bit.luc</src>
-    <component>edge_detector.luc</component>
     <src>game_customBeta.luc</src>
-    <src>converter.luc</src>
     <src>alu_boolean.luc</src>
-    <component>button_conditioner.luc</component>
-    <src top="true">au_top.luc</src>
-    <src>multi_seven_seg.luc</src>
-    <component>counter.luc</component>
     <src>game_CU.luc</src>
-    <src>alu_compare.luc</src>
-    <src>alu_arithmetic.luc</src>
+    <src>game_miniRegfiles.luc</src>
+    <component>reset_conditioner.luc</component>
     <component>decoder.luc</component>
+    <src>ws2812b_writer.luc</src>
+    <src>alu_16_bit.luc</src>
+    <component>counter.luc</component>
+    <src>alu_arithmetic.luc</src>
+    <component>button_conditioner.luc</component>
+    <src>alu_shifter.luc</src>
+    <component>edge_detector.luc</component>
+    <src top="true">au_top.luc</src>
+    <src>alu_compare.luc</src>
+    <src>entities_handler.luc</src>
+    <component>pipeline.luc</component>
+    <src>converter.luc</src>
+    <src>multi_seven_seg.luc</src>
+    <constraint>custom.acf</constraint>
     <constraint lib="true">alchitry.acf</constraint>
     <constraint lib="true">au.xdc</constraint>
     <constraint lib="true">io.acf</constraint>

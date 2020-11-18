@@ -9,11 +9,12 @@ module au_top (
     output usb_tx,          // USB->Serial output
     output io_seg [8],      // 7-segment LEDs on IO Shield
     output io_sel [4],      // Digit select on IO Shield
-    input io_dip [3][8]     // DIP switches on IO Shield
+    input io_dip [3][8],     // DIP switches on IO Shield
+    output outled
   ) {
   
   sig rst;                  // reset signal
-  
+  ws2812b_writer led_strip(#PIXEL_COUNT(30), .clk(clk), .rst(rst)); //set for 3 pixels
   .clk(clk) {
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.
@@ -38,6 +39,7 @@ module au_top (
     
   }
   converter converter;
+  entities_handler entities_hand;
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
@@ -84,7 +86,13 @@ module au_top (
   
     // update 2 digits of 7 segment to show count-up timer
     
-    
+    entities_hand.e6position = gameMachine.e6position;
+    entities_hand.e16position = gameMachine.e16position;
+    entities_hand.e11position = gameMachine.e11position;
+    entities_hand.playerposition = gameMachine.playerposition;
+    led_strip.color = entities_hand.out[led_strip.pixel];
+    led_strip.update = 1;
+    outled = led_strip.led;
     
     
   }

@@ -14,6 +14,7 @@ module handle_entities (
   }
   
   always {
+    
     entities = 32x{{2b00}};
     
     if (led_ctr.q != enemy_location[enemy_ctr.q][14:0] && led_ctr.q != player_location[14:0]){ //if the current LED being accessed is not equal to the current enemy location and player location

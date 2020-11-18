@@ -6,6 +6,7 @@
     <src>led_driver.luc</src>
     <component>decoder.luc</component>
     <component>reset_conditioner.luc</component>
+    <component>edge_detector.luc</component>
     <src>seven_seg.luc</src>
     <src>multi_seven_seg.luc</src>
     <component>counter.luc</component>
