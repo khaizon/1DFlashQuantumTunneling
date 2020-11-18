@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1/au_top_0.tcl"
+  variable script "C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1/au_top_0.tcl"
   variable category "vivado_synth"
 }
 
@@ -76,34 +76,34 @@ create_project -in_memory -part xc7a35tftg256-1
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.cache/wt [current_project]
-set_property parent.project_path C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.cache/wt [current_project]
+set_property parent.project_path C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_8.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_arithmetic_16.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_boolean_17.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_compare_18.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_shifter_19.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/button_conditioner_3.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/converter_6.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_11.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_12.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_13.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/decoder_15.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/edge_detector_2.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_9.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_4.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_10.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/multi_seven_seg_5.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/pipeline_7.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/reset_conditioner_1.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/seven_seg_14.v
-  C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/au_top_0.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_8.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_arithmetic_16.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_boolean_17.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_compare_18.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_shifter_19.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/button_conditioner_3.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/converter_6.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_11.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_12.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_13.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/decoder_15.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/edge_detector_2.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_9.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_4.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_10.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/multi_seven_seg_5.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/pipeline_7.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/reset_conditioner_1.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/seven_seg_14.v
+  C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/au_top_0.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -114,14 +114,14 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc
-set_property used_in_implementation false [get_files C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]
+read_xdc C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc
+set_property used_in_implementation false [get_files C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]
 
-read_xdc C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc
-set_property used_in_implementation false [get_files C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc]
+read_xdc C:/Users/Bryan/OneDrive/Desktop/alchitry-labs-1.2.0/library/components/au.xdc
+set_property used_in_implementation false [get_files C:/Users/Bryan/OneDrive/Desktop/alchitry-labs-1.2.0/library/components/au.xdc]
 
-read_xdc {{C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc}}
-set_property used_in_implementation false [get_files {{C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc}}]
+read_xdc C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc
+set_property used_in_implementation false [get_files C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

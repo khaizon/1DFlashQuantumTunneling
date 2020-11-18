@@ -2,12 +2,12 @@
 # Vivado v2020.1 (64-bit)
 # SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
 # IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
-# Start of session at: Tue Nov 17 22:55:27 2020
-# Process ID: 26096
-# Current directory: C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1
+# Start of session at: Wed Nov 18 11:17:25 2020
+# Process ID: 10308
+# Current directory: C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1
 # Command line: vivado.exe -log au_top_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source au_top_0.tcl
-# Log file: C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1/au_top_0.vds
-# Journal file: C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1\vivado.jou
+# Log file: C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1/au_top_0.vds
+# Journal file: C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
 source au_top_0.tcl -notrace
 Command: synth_design -top au_top_0 -part xc7a35tftg256-1
@@ -17,39 +17,39 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tftg256-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 24652
+INFO: [Synth 8-7075] Helper process launched with PID 12428
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1017.031 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1016.285 ; gain = 0.000
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'au_top_0' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/au_top_0.v:7]
-INFO: [Synth 8-6157] synthesizing module 'reset_conditioner_1' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/reset_conditioner_1.v:11]
+INFO: [Synth 8-6157] synthesizing module 'au_top_0' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/au_top_0.v:7]
+INFO: [Synth 8-6157] synthesizing module 'reset_conditioner_1' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/reset_conditioner_1.v:11]
 	Parameter STAGES bound to: 3'b100 
-INFO: [Synth 8-6155] done synthesizing module 'reset_conditioner_1' (1#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/reset_conditioner_1.v:11]
-INFO: [Synth 8-6157] synthesizing module 'edge_detector_2' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/edge_detector_2.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'reset_conditioner_1' (1#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/reset_conditioner_1.v:11]
+INFO: [Synth 8-6157] synthesizing module 'edge_detector_2' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/edge_detector_2.v:12]
 	Parameter RISE bound to: 1'b1 
 	Parameter FALL bound to: 1'b0 
-INFO: [Synth 8-6155] done synthesizing module 'edge_detector_2' (2#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/edge_detector_2.v:12]
-INFO: [Synth 8-6157] synthesizing module 'button_conditioner_3' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/button_conditioner_3.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'edge_detector_2' (2#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/edge_detector_2.v:12]
+INFO: [Synth 8-6157] synthesizing module 'button_conditioner_3' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/button_conditioner_3.v:13]
 	Parameter CLK_FREQ bound to: 26'b10111110101111000010000000 
 	Parameter MIN_DELAY bound to: 5'b10100 
 	Parameter NUM_SYNC bound to: 2'b10 
-INFO: [Synth 8-6157] synthesizing module 'pipeline_7' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/pipeline_7.v:11]
+INFO: [Synth 8-6157] synthesizing module 'pipeline_7' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/pipeline_7.v:11]
 	Parameter DEPTH bound to: 2'b10 
-INFO: [Synth 8-6155] done synthesizing module 'pipeline_7' (3#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/pipeline_7.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'button_conditioner_3' (4#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/button_conditioner_3.v:13]
-INFO: [Synth 8-6157] synthesizing module 'game_customBeta_4' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_4.v:7]
-INFO: [Synth 8-6157] synthesizing module 'alu_16_bit_8' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_8.v:7]
-INFO: [Synth 8-6157] synthesizing module 'alu_arithmetic_16' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_arithmetic_16.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'alu_arithmetic_16' (5#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_arithmetic_16.v:7]
-INFO: [Synth 8-6157] synthesizing module 'alu_boolean_17' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_boolean_17.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'alu_boolean_17' (6#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_boolean_17.v:7]
-INFO: [Synth 8-6157] synthesizing module 'alu_compare_18' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_compare_18.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'alu_compare_18' (7#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_compare_18.v:7]
-INFO: [Synth 8-6157] synthesizing module 'alu_shifter_19' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_shifter_19.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'alu_shifter_19' (8#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_shifter_19.v:7]
-INFO: [Synth 8-226] default block is never used [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_8.v:92]
-INFO: [Synth 8-6155] done synthesizing module 'alu_16_bit_8' (9#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_8.v:7]
-INFO: [Synth 8-6157] synthesizing module 'game_CU_9' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_9.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'pipeline_7' (3#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/pipeline_7.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'button_conditioner_3' (4#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/button_conditioner_3.v:13]
+INFO: [Synth 8-6157] synthesizing module 'game_customBeta_4' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_4.v:7]
+INFO: [Synth 8-6157] synthesizing module 'alu_16_bit_8' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_8.v:7]
+INFO: [Synth 8-6157] synthesizing module 'alu_arithmetic_16' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_arithmetic_16.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'alu_arithmetic_16' (5#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_arithmetic_16.v:7]
+INFO: [Synth 8-6157] synthesizing module 'alu_boolean_17' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_boolean_17.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'alu_boolean_17' (6#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_boolean_17.v:7]
+INFO: [Synth 8-6157] synthesizing module 'alu_compare_18' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_compare_18.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'alu_compare_18' (7#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_compare_18.v:7]
+INFO: [Synth 8-6157] synthesizing module 'alu_shifter_19' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_shifter_19.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'alu_shifter_19' (8#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_shifter_19.v:7]
+INFO: [Synth 8-226] default block is never used [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_8.v:92]
+INFO: [Synth 8-6155] done synthesizing module 'alu_16_bit_8' (9#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_8.v:7]
+INFO: [Synth 8-6157] synthesizing module 'game_CU_9' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_9.v:7]
 	Parameter IDLE_game_fsm bound to: 7'b0000000 
 	Parameter CHECK_PP_game_fsm bound to: 7'b0000001 
 	Parameter PP_PLUS_game_fsm bound to: 7'b0000010 
@@ -133,158 +133,162 @@ INFO: [Synth 8-6157] synthesizing module 'game_CU_9' [C:/Users/sqiya/OneDrive/Do
 	Parameter LIVES_MINUS_game_fsm bound to: 7'b1010000 
 	Parameter LOSE_game_fsm bound to: 7'b1010001 
 	Parameter RESPAWN_PP_game_fsm bound to: 7'b1010010 
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_9.v:136]
-INFO: [Synth 8-6155] done synthesizing module 'game_CU_9' (10#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_9.v:7]
-INFO: [Synth 8-6157] synthesizing module 'game_miniRegfiles_10' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_10.v:7]
-INFO: [Synth 8-226] default block is never used [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_10.v:216]
-INFO: [Synth 8-226] default block is never used [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_10.v:318]
-INFO: [Synth 8-6155] done synthesizing module 'game_miniRegfiles_10' (11#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_10.v:7]
-INFO: [Synth 8-6157] synthesizing module 'counter_11' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_11.v:14]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_9.v:136]
+INFO: [Synth 8-6155] done synthesizing module 'game_CU_9' (10#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_9.v:7]
+INFO: [Synth 8-6157] synthesizing module 'game_miniRegfiles_10' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_10.v:7]
+INFO: [Synth 8-226] default block is never used [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_10.v:216]
+INFO: [Synth 8-226] default block is never used [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_10.v:318]
+INFO: [Synth 8-6155] done synthesizing module 'game_miniRegfiles_10' (11#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_10.v:7]
+INFO: [Synth 8-6157] synthesizing module 'counter_11' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_11.v:14]
 	Parameter SIZE bound to: 1'b1 
 	Parameter DIV bound to: 5'b11010 
 	Parameter TOP bound to: 1'b0 
 	Parameter UP bound to: 1'b1 
 	Parameter MAX_VALUE bound to: 27'b011111111111111111111111111 
-INFO: [Synth 8-6155] done synthesizing module 'counter_11' (12#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_11.v:14]
-INFO: [Synth 8-6157] synthesizing module 'counter_12' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_12.v:14]
+INFO: [Synth 8-6155] done synthesizing module 'counter_11' (12#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_11.v:14]
+INFO: [Synth 8-6157] synthesizing module 'counter_12' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_12.v:14]
 	Parameter SIZE bound to: 1'b1 
 	Parameter DIV bound to: 5'b11001 
 	Parameter TOP bound to: 1'b0 
 	Parameter UP bound to: 1'b1 
 	Parameter MAX_VALUE bound to: 26'b01111111111111111111111111 
-INFO: [Synth 8-6155] done synthesizing module 'counter_12' (13#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_12.v:14]
-INFO: [Synth 8-226] default block is never used [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_4.v:181]
-INFO: [Synth 8-226] default block is never used [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_4.v:199]
-INFO: [Synth 8-6155] done synthesizing module 'game_customBeta_4' (14#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_4.v:7]
-INFO: [Synth 8-6157] synthesizing module 'multi_seven_seg_5' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/multi_seven_seg_5.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'counter_12' (13#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_12.v:14]
+INFO: [Synth 8-226] default block is never used [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_4.v:181]
+INFO: [Synth 8-226] default block is never used [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_4.v:199]
+INFO: [Synth 8-6155] done synthesizing module 'game_customBeta_4' (14#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_4.v:7]
+INFO: [Synth 8-6157] synthesizing module 'multi_seven_seg_5' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/multi_seven_seg_5.v:12]
 	Parameter DIGITS bound to: 3'b100 
 	Parameter DIV bound to: 5'b10000 
 	Parameter DIGIT_BITS bound to: 2'b10 
-INFO: [Synth 8-6157] synthesizing module 'counter_13' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_13.v:14]
+INFO: [Synth 8-6157] synthesizing module 'counter_13' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_13.v:14]
 	Parameter SIZE bound to: 2'b10 
 	Parameter DIV bound to: 5'b10000 
 	Parameter TOP bound to: 4'b0011 
 	Parameter UP bound to: 1'b1 
 	Parameter MAX_VALUE bound to: 20'b00111111111111111111 
-INFO: [Synth 8-6155] done synthesizing module 'counter_13' (15#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_13.v:14]
-INFO: [Synth 8-6157] synthesizing module 'seven_seg_14' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/seven_seg_14.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'seven_seg_14' (16#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/seven_seg_14.v:7]
-INFO: [Synth 8-6157] synthesizing module 'decoder_15' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/decoder_15.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'counter_13' (15#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_13.v:14]
+INFO: [Synth 8-6157] synthesizing module 'seven_seg_14' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/seven_seg_14.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'seven_seg_14' (16#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/seven_seg_14.v:7]
+INFO: [Synth 8-6157] synthesizing module 'decoder_15' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/decoder_15.v:11]
 	Parameter WIDTH bound to: 2'b10 
-INFO: [Synth 8-6155] done synthesizing module 'decoder_15' (17#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/decoder_15.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'multi_seven_seg_5' (18#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/multi_seven_seg_5.v:12]
-INFO: [Synth 8-6157] synthesizing module 'converter_6' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/converter_6.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'converter_6' (19#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/converter_6.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'au_top_0' (20#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/au_top_0.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'decoder_15' (17#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/decoder_15.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'multi_seven_seg_5' (18#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/multi_seven_seg_5.v:12]
+INFO: [Synth 8-6157] synthesizing module 'converter_6' [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/converter_6.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'converter_6' (19#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/converter_6.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'au_top_0' (20#1) [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/au_top_0.v:7]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1017.031 ; gain = 0.000
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1016.285 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1017.031 ; gain = 0.000
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1016.285 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1017.031 ; gain = 0.000
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1016.285 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.037 . Memory (MB): peak = 1017.031 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.026 . Memory (MB): peak = 1016.285 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]
-Finished Parsing XDC File [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/au_top_0_propImpl.xdc].
+Parsing XDC File [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]
+Finished Parsing XDC File [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/au_top_0_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/au_top_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc]
-Finished Parsing XDC File [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/au_top_0_propImpl.xdc].
+Parsing XDC File [C:/Users/Bryan/OneDrive/Desktop/alchitry-labs-1.2.0/library/components/au.xdc]
+Finished Parsing XDC File [C:/Users/Bryan/OneDrive/Desktop/alchitry-labs-1.2.0/library/components/au.xdc]
+Parsing XDC File [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc]
+Finished Parsing XDC File [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/au_top_0_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/au_top_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc]
-Finished Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1017.031 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1016.285 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1017.031 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1016.285 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1017.031 ; gain = 0.000
+Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1016.285 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tftg256-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1017.031 ; gain = 0.000
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1016.285 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1017.031 ; gain = 0.000
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1016.285 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'M_game_fsm_q_reg' in module 'game_CU_9'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
-           IDLE_game_fsm |                           000000 |                          0000000
-        PP_PLUS_game_fsm |                           000001 |                          0000010
-       CHECK_PP_game_fsm |                           000010 |                          0000001
-      BRANCH_PP_game_fsm |                           000011 |                          0000100
-       PP_MINUS_game_fsm |                           000100 |                          0000011
-  CHECKPP_EQ_E1_game_fsm |                           000101 |                          0000101
-BRANCH_PP_EQ_E1_game_fsm |                           000110 |                          0010101
-  CHECKPP_EQ_E2_game_fsm |                           000111 |                          0000110
-BRANCH_PP_EQ_E2_game_fsm |                           001000 |                          0010110
-  CHECKPP_EQ_E3_game_fsm |                           001001 |                          0000111
-BRANCH_PP_EQ_E3_game_fsm |                           001010 |                          0010111
-  CHECKPP_EQ_E4_game_fsm |                           001011 |                          0001000
-BRANCH_PP_EQ_E4_game_fsm |                           001100 |                          0011000
-  CHECKPP_EQ_E5_game_fsm |                           001101 |                          0001001
-BRANCH_PP_EQ_E5_game_fsm |                           001110 |                          0011001
-  CHECKPP_EQ_E6_game_fsm |                           001111 |                          0001010
-BRANCH_PP_EQ_E6_game_fsm |                           010000 |                          0011010
-  CHECKPP_EQ_E7_game_fsm |                           010001 |                          0001011
-BRANCH_PP_EQ_E7_game_fsm |                           010010 |                          0011011
-  CHECKPP_EQ_E8_game_fsm |                           010011 |                          0001100
-BRANCH_PP_EQ_E8_game_fsm |                           010100 |                          0011100
-  CHECKPP_EQ_E9_game_fsm |                           010101 |                          0001101
-BRANCH_PP_EQ_E9_game_fsm |                           010110 |                          0011101
- CHECKPP_EQ_E10_game_fsm |                           010111 |                          0001110
-BRANCH_PP_EQ_E10_game_fsm |                           011000 |                          0011110
- CHECKPP_EQ_E11_game_fsm |                           011001 |                          0001111
-BRANCH_PP_EQ_E11_game_fsm |                           011010 |                          0011111
- CHECKPP_EQ_E12_game_fsm |                           011011 |                          0010000
-BRANCH_PP_EQ_E12_game_fsm |                           011100 |                          0100000
- CHECKPP_EQ_E13_game_fsm |                           011101 |                          0010001
-BRANCH_PP_EQ_E13_game_fsm |                           011110 |                          0100001
- CHECKPP_EQ_E14_game_fsm |                           011111 |                          0010010
-BRANCH_PP_EQ_E14_game_fsm |                           100000 |                          0100010
- CHECKPP_EQ_E15_game_fsm |                           100001 |                          0010011
-BRANCH_PP_EQ_E15_game_fsm |                           100010 |                          0100011
- CHECKPP_EQ_E16_game_fsm |                           100011 |                          0010100
-BRANCH_PP_EQ_E16_game_fsm |                           100100 |                          0100100
-CHECK_LIVES_MORE_THAN_1_game_fsm |                           100101 |                          1001110
-BRANCH_LIVES_MORE_THAN_1_game_fsm |                           100110 |                          1001111
-    LIVES_MINUS_game_fsm |                           100111 |                          1010000
-     RESPAWN_PP_game_fsm |                           101000 |                          1010010
-           LOSE_game_fsm |                           101001 |                          1010001
-CHECK_END_REACHED_game_fsm |                           101010 |                          0100101
-BRANCH_END_REACHED_game_fsm |                           101011 |                          0100110
-CHECK_NEXTLVL_EXISTS_game_fsm |                           101100 |                          0100111
-       RESET_PP_game_fsm |                           101101 |                          0101100
-RESET_STOP_GAME_game_fsm |                           101110 |                          0101101
-RESET_FAST_COUNTER_game_fsm |                           101111 |                          0101110
-RESET_SLOW_COUNTER_game_fsm |                           110000 |                          0101111
-    RESET_LIVES_game_fsm |                           110001 |                          0110000
-      RESET_LVL_game_fsm |                           110010 |                          0110001
+           IDLE_game_fsm | 0000000000000000000000000000000000000000000000000000001 |                          0000000
+        PP_PLUS_game_fsm | 0000000000000000000000000000000000000000000000000000010 |                          0000010
+       CHECK_PP_game_fsm | 0000000000000000000000000000000000000000000000000000100 |                          0000001
+      BRANCH_PP_game_fsm | 0000000000000000000000000000000000000000000000000001000 |                          0000100
+       PP_MINUS_game_fsm | 0000000000000000000000000000000000000000000000000010000 |                          0000011
+  CHECKPP_EQ_E1_game_fsm | 0000000000000000000000000000000000000000000000000100000 |                          0000101
+BRANCH_PP_EQ_E1_game_fsm | 0000000000000000000000000000000000000000000000001000000 |                          0010101
+  CHECKPP_EQ_E2_game_fsm | 0000000000000000000000000000000000000000000000010000000 |                          0000110
+BRANCH_PP_EQ_E2_game_fsm | 0000000000000000000000000000000000000000000000100000000 |                          0010110
+  CHECKPP_EQ_E3_game_fsm | 0000000000000000000000000000000000000000000001000000000 |                          0000111
+BRANCH_PP_EQ_E3_game_fsm | 0000000000000000000000000000000000000000000010000000000 |                          0010111
+  CHECKPP_EQ_E4_game_fsm | 0000000000000000000000000000000000000000000100000000000 |                          0001000
+BRANCH_PP_EQ_E4_game_fsm | 0000000000000000000000000000000000000000001000000000000 |                          0011000
+  CHECKPP_EQ_E5_game_fsm | 0000000000000000000000000000000000000000010000000000000 |                          0001001
+BRANCH_PP_EQ_E5_game_fsm | 0000000000000000000000000000000000000000100000000000000 |                          0011001
+  CHECKPP_EQ_E6_game_fsm | 0000000000000000000000000000000000000001000000000000000 |                          0001010
+BRANCH_PP_EQ_E6_game_fsm | 0000000000000000000000000000000000000010000000000000000 |                          0011010
+  CHECKPP_EQ_E7_game_fsm | 0000000000000000000000000000000000000100000000000000000 |                          0001011
+BRANCH_PP_EQ_E7_game_fsm | 0000000000000000000000000000000000001000000000000000000 |                          0011011
+  CHECKPP_EQ_E8_game_fsm | 0000000000000000000000000000000000010000000000000000000 |                          0001100
+BRANCH_PP_EQ_E8_game_fsm | 0000000000000000000000000000000000100000000000000000000 |                          0011100
+  CHECKPP_EQ_E9_game_fsm | 0000000000000000000000000000000001000000000000000000000 |                          0001101
+BRANCH_PP_EQ_E9_game_fsm | 0000000000000000000000000000000010000000000000000000000 |                          0011101
+ CHECKPP_EQ_E10_game_fsm | 0000000000000000000000000000000100000000000000000000000 |                          0001110
+BRANCH_PP_EQ_E10_game_fsm | 0000000000000000000000000000001000000000000000000000000 |                          0011110
+ CHECKPP_EQ_E11_game_fsm | 0000000000000000000000000000010000000000000000000000000 |                          0001111
+BRANCH_PP_EQ_E11_game_fsm | 0000000000000000000000000000100000000000000000000000000 |                          0011111
+ CHECKPP_EQ_E12_game_fsm | 0000000000000000000000000001000000000000000000000000000 |                          0010000
+BRANCH_PP_EQ_E12_game_fsm | 0000000000000000000000000010000000000000000000000000000 |                          0100000
+ CHECKPP_EQ_E13_game_fsm | 0000000000000000000000000100000000000000000000000000000 |                          0010001
+BRANCH_PP_EQ_E13_game_fsm | 0000000000000000000000001000000000000000000000000000000 |                          0100001
+ CHECKPP_EQ_E14_game_fsm | 0000000000000000000000010000000000000000000000000000000 |                          0010010
+BRANCH_PP_EQ_E14_game_fsm | 0000000000000000000000100000000000000000000000000000000 |                          0100010
+ CHECKPP_EQ_E15_game_fsm | 0000000000000000000001000000000000000000000000000000000 |                          0010011
+BRANCH_PP_EQ_E15_game_fsm | 0000000000000000000010000000000000000000000000000000000 |                          0100011
+ CHECKPP_EQ_E16_game_fsm | 0000000000000000000100000000000000000000000000000000000 |                          0010100
+BRANCH_PP_EQ_E16_game_fsm | 0000000000000000001000000000000000000000000000000000000 |                          0100100
+CHECK_LIVES_MORE_THAN_1_game_fsm | 0000000000000000010000000000000000000000000000000000000 |                          1001110
+BRANCH_LIVES_MORE_THAN_1_game_fsm | 0000000000000000100000000000000000000000000000000000000 |                          1001111
+    LIVES_MINUS_game_fsm | 0000000000000001000000000000000000000000000000000000000 |                          1010000
+     RESPAWN_PP_game_fsm | 0000000000000010000000000000000000000000000000000000000 |                          1010010
+           LOSE_game_fsm | 0000000000000100000000000000000000000000000000000000000 |                          1010001
+CHECK_END_REACHED_game_fsm | 0000000000001000000000000000000000000000000000000000000 |                          0100101
+BRANCH_END_REACHED_game_fsm | 0000000000010000000000000000000000000000000000000000000 |                          0100110
+CHECK_NEXTLVL_EXISTS_game_fsm | 0000000000100000000000000000000000000000000000000000000 |                          0100111
+BRANCH_NEXT_LVL_EXISTS_game_fsm | 0000000001000000000000000000000000000000000000000000000 |                          0101000
+            WIN_game_fsm | 0000000010000000000000000000000000000000000000000000000 |                          0101001
+CURRENT_LVL_PLUS_game_fsm | 0000000100000000000000000000000000000000000000000000000 |                          0101010
+    NEXT_LVL_PP_game_fsm | 0000001000000000000000000000000000000000000000000000000 |                          0101011
+       RESET_PP_game_fsm | 0000010000000000000000000000000000000000000000000000000 |                          0101100
+RESET_STOP_GAME_game_fsm | 0000100000000000000000000000000000000000000000000000000 |                          0101101
+RESET_FAST_COUNTER_game_fsm | 0001000000000000000000000000000000000000000000000000000 |                          0101110
+RESET_SLOW_COUNTER_game_fsm | 0010000000000000000000000000000000000000000000000000000 |                          0101111
+    RESET_LIVES_game_fsm | 0100000000000000000000000000000000000000000000000000000 |                          0110000
+      RESET_LVL_game_fsm | 1000000000000000000000000000000000000000000000000000000 |                          0110001
 ---------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'M_game_fsm_q_reg' using encoding 'sequential' in module 'game_CU_9'
+INFO: [Synth 8-3354] encoded FSM with state register 'M_game_fsm_q_reg' using encoding 'one-hot' in module 'game_CU_9'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1017.031 ; gain = 0.000
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1016.285 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -303,22 +307,24 @@ Detailed RTL Component Info :
 	                2 Bit    Registers := 3     
 	                1 Bit    Registers := 5     
 +---Muxes : 
+	  55 Input   55 Bit        Muxes := 1     
+	   2 Input   55 Bit        Muxes := 23    
 	   2 Input   18 Bit        Muxes := 1     
 	   2 Input   16 Bit        Muxes := 5     
 	   5 Input   16 Bit        Muxes := 2     
 	   4 Input   16 Bit        Muxes := 6     
-	  51 Input   16 Bit        Muxes := 1     
+	  55 Input   16 Bit        Muxes := 1     
 	  32 Input   16 Bit        Muxes := 2     
-	  51 Input    7 Bit        Muxes := 1     
+	  55 Input    7 Bit        Muxes := 1     
 	   2 Input    7 Bit        Muxes := 1     
-	  51 Input    6 Bit        Muxes := 2     
-	   2 Input    6 Bit        Muxes := 23    
-	  51 Input    5 Bit        Muxes := 3     
+	  55 Input    6 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 1     
+	  55 Input    5 Bit        Muxes := 2     
 	   2 Input    5 Bit        Muxes := 3     
 	   4 Input    4 Bit        Muxes := 1     
-	  51 Input    2 Bit        Muxes := 3     
+	  55 Input    2 Bit        Muxes := 3     
 	   2 Input    2 Bit        Muxes := 3     
-	  51 Input    1 Bit        Muxes := 2     
+	  55 Input    1 Bit        Muxes := 2     
 	  32 Input    1 Bit        Muxes := 30    
 	   2 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
@@ -341,7 +347,7 @@ DSP Report: operator arithmeticUnit/s1 is absorbed into DSP arithmeticUnit/s1.
 DSP Report: Generating DSP arithmeticUnit/s0, operation Mode is: A*B.
 DSP Report: operator arithmeticUnit/s0 is absorbed into DSP arithmeticUnit/s0.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1017.031 ; gain = 0.000
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1016.285 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -363,19 +369,19 @@ Finished ROM, RAM, DSP and Shift Register Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 1017.031 ; gain = 0.000
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:30 . Memory (MB): peak = 1016.285 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1029.191 ; gain = 12.160
+Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1057.629 ; gain = 41.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 1039.262 ; gain = 22.230
+Finished Technology Mapping : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1067.785 ; gain = 51.500
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -393,37 +399,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1039.262 ; gain = 22.230
+Finished IO Insertion : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 1067.785 ; gain = 51.500
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1039.262 ; gain = 22.230
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 1067.785 ; gain = 51.500
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1039.262 ; gain = 22.230
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 1067.785 ; gain = 51.500
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1039.262 ; gain = 22.230
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 1067.785 ; gain = 51.500
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1039.262 ; gain = 22.230
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 1067.785 ; gain = 51.500
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1039.262 ; gain = 22.230
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 1067.785 ; gain = 51.500
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -440,38 +446,38 @@ Report Cell Usage:
 |      |Cell   |Count |
 +------+-------+------+
 |1     |BUFG   |     1|
-|2     |CARRY4 |    28|
-|3     |LUT1   |    11|
-|4     |LUT2   |    44|
-|5     |LUT3   |    61|
-|6     |LUT4   |    46|
-|7     |LUT5   |    29|
-|8     |LUT6   |   154|
-|9     |FDRE   |   215|
-|10    |FDSE   |    10|
+|2     |CARRY4 |    30|
+|3     |LUT1   |    12|
+|4     |LUT2   |    83|
+|5     |LUT3   |    16|
+|6     |LUT4   |   103|
+|7     |LUT5   |    66|
+|8     |LUT6   |   126|
+|9     |FDRE   |   262|
+|10    |FDSE   |    12|
 |11    |IBUF   |     6|
 |12    |OBUF   |    45|
 +------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1039.262 ; gain = 22.230
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 1067.785 ; gain = 51.500
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:34 ; elapsed = 00:00:43 . Memory (MB): peak = 1039.262 ; gain = 22.230
-Synthesis Optimization Complete : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 1039.262 ; gain = 22.230
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:00:35 . Memory (MB): peak = 1067.785 ; gain = 51.500
+Synthesis Optimization Complete : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 1067.785 ; gain = 51.500
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1045.082 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 28 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1076.605 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 30 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1045.082 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1076.605 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
 64 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:50 ; elapsed = 00:00:53 . Memory (MB): peak = 1045.082 ; gain = 28.051
-INFO: [Common 17-1381] The checkpoint 'C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1/au_top_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:42 ; elapsed = 00:00:44 . Memory (MB): peak = 1076.605 ; gain = 60.320
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1/au_top_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file au_top_0_utilization_synth.rpt -pb au_top_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Nov 17 22:56:23 2020...
+INFO: [Common 17-206] Exiting Vivado at Wed Nov 18 11:18:11 2020...

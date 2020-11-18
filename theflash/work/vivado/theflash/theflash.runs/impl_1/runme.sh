@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/impl_1'
+HD_PWD='C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

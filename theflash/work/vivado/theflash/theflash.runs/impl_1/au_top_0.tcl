@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/impl_1/au_top_0.tcl"
+  variable script "C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/impl_1/au_top_0.tcl"
   variable category "vivado_impl"
 }
 
@@ -121,24 +121,24 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param chipscope.maxJobs 2
+  set_param chipscope.maxJobs 3
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a35tftg256-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.cache/wt [current_project]
-  set_property parent.project_path C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.xpr [current_project]
-  set_property ip_output_repo C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.cache/wt [current_project]
+  set_property parent.project_path C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.xpr [current_project]
+  set_property ip_output_repo C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1/au_top_0.dcp
+  add_files -quiet C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1/au_top_0.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc
-  read_xdc C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc
-  read_xdc {{C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc}}
+  read_xdc C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc
+  read_xdc C:/Users/Bryan/OneDrive/Desktop/alchitry-labs-1.2.0/library/components/au.xdc
+  read_xdc C:/Users/Bryan/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

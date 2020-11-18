@@ -972,7 +972,7 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_alufn        = b110011; //CMPEQ
         control_sig_asel         = b00;
         control_sig_bsel         = b10;
-        control_sig_write_enable = b10;
+        control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PP
         control_sig_rb           = b00000; //not used
         control_sig_rc           = b10111; //TEMP
@@ -986,7 +986,7 @@ game_fsm.FAST_COUNTER_PLUS:
         result = rb_data;
 
         if (rb_data[0] == 1){
-          game_fsm.d = game_fsm.CHECK_NEXTLVL_EXISTS; // TO FIX
+        game_fsm.d = game_fsm.CHECK_NEXTLVL_EXISTS; // TO FIX
         }
         else game_fsm.d = game_fsm.IDLE; // goes to IDLE, does not check next level exists
 
@@ -995,12 +995,12 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_alufn        = b110011; //CMPEQ
         control_sig_asel         = b11;
         control_sig_bsel         = b00;
-        control_sig_write_enable = b10;
+        control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PPP
         control_sig_rb           = b10010; //CURRENT LVEL
         control_sig_rc           = b10111; //TEMP
         control_sig_wdsel        = b00;
-        // game_fsm.d = game_fsm.BRANCH_NEXT_LVL_EXISTS;
+        game_fsm.d = game_fsm.BRANCH_NEXT_LVL_EXISTS;
 
      game_fsm.BRANCH_NEXT_LVL_EXISTS:
         state_number             = b1001101;
@@ -1017,7 +1017,7 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_alufn        = b000000;
         control_sig_asel         = b10;
         control_sig_bsel         = b00;
-        control_sig_write_enable = b10;
+        control_sig_write_enable = b1;
         control_sig_ra           = b00000;
         control_sig_rb           = b10010; //current level register
         control_sig_rc           = b10010;
@@ -1027,13 +1027,13 @@ game_fsm.FAST_COUNTER_PLUS:
      game_fsm.NEXT_LVL_PP:
         state_number             = b1001110;
         control_sig_alufn        = b110011; //TO FORCE A 0 BY COMPARING TWO DIFF NUMBERS
-        control_sig_asel         = b10;
-        control_sig_bsel         = b10;
-        control_sig_write_enable = b10;
+        control_sig_asel         = b01;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
         control_sig_ra           = b00000; //PPP
-        control_sig_rb           = b00000; //CURRENT LVEL
+        control_sig_rb           = b11100; //CURRENT LVEL
         control_sig_rc           = b00000; //PPP
-        control_sig_wdsel        = b11;
+        control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.IDLE;
 
      game_fsm.WIN:
@@ -1041,7 +1041,7 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_alufn        = b000000; //ADD 1 TO 0
         control_sig_asel         = b10;
         control_sig_bsel         = b00;
-        control_sig_write_enable = b10;
+        control_sig_write_enable = b1;
         control_sig_ra           = b00000;
         control_sig_rb           = b00000;
         control_sig_rc           = b10110; //STOP GAME
@@ -1054,7 +1054,7 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_alufn        = b110011; //CMPEQ
         control_sig_asel         = b10;
         control_sig_bsel         = b00;
-        control_sig_write_enable = b10;
+        control_sig_write_enable = b1;
         control_sig_ra           = b00000;
         control_sig_rb           = b10110; //stop game
         control_sig_rc           = b10111; //TEMP
@@ -1076,7 +1076,7 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_alufn        = b000000;
         control_sig_asel         = b10;
         control_sig_bsel         = b00;
-        control_sig_write_enable = b10;
+        control_sig_write_enable = b1;
         control_sig_ra           = b00000;
         control_sig_rb           = b10100; //slow counter register
         control_sig_rc           = b10100;
