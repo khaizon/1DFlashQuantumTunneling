@@ -10,7 +10,8 @@ module au_top (
     output io_seg [8],      // 7-segment LEDs on IO Shield
     output io_sel [4],      // Digit select on IO Shield
     input io_dip [3][8],     // DIP switches on IO Shield
-    output outled
+    output outled,
+    input customin[1]
   ) {
   
   sig rst;                  // reset signal
@@ -61,7 +62,7 @@ module au_top (
     //io_led[2] = gameMachine.result[15:8];
     
     
-    btn_cond_up.in=io_button[0]; //to reduce the bouncing effects of your button 
+    btn_cond_up.in=customin[0]; //to reduce the bouncing effects of your button 
     btn_cond_down.in=io_button[2]; // must change to external button io
     btn_cond_mid.in=io_button[1];
     edge_dt_btn_up.in=btn_cond_up.out; //get the edge of button press

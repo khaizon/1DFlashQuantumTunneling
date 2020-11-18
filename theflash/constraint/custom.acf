@@ -1,1 +1,2 @@
 pin outled C49;
+pin customin[0] C3;
