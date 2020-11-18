@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date                      : Wed Nov 18 20:57:36 2020
+| Date                      : Wed Nov 18 22:00:34 2020
 | Host                      : DESKTOP-6N6MSBK running 64-bit major release  (build 9200)
 | Command                   : report_io -file au_top_0_io_placed.rpt
 | Design                    : au_top_0
@@ -25,7 +25,7 @@ Table of Contents
 +---------------+
 | Total User IO |
 +---------------+
-|            78 |
+|            79 |
 +---------------+
 
 
@@ -271,7 +271,7 @@ Table of Contents
 | R10        |              | High Range | IO_L17P_T2_A14_D30_14        | User IO     |             |      14 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | R11        |              | High Range | IO_L17N_T2_A13_D29_14        | User IO     |             |      14 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | R12        |              | High Range | IO_L15P_T2_DQS_RDWR_B_14     | User IO     |             |      14 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
-| R13        |              | High Range | IO_L16P_T2_CSI_B_14          | User IO     |             |      14 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
+| R13        | customin[0]  | High Range | IO_L16P_T2_CSI_B_14          | INPUT       | LVCMOS33    |      14 |            |      |                     |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | R14        |              | High Range | VCCO_14                      | VCCO        |             |      14 |            |      |                     |                      |    3.30 |            |           |          |      |                  |              |                   |              |
 | R15        |              | High Range | IO_L9P_T1_DQS_14             | User IO     |             |      14 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | R16        |              | High Range | IO_L9N_T1_DQS_D13_14         | User IO     |             |      14 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |

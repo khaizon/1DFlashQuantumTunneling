@@ -3,6 +3,8 @@ set_property SRC_FILE_INFO {cfile:C:/Users/amris/Documents/GitHub/1DFlashQuantum
 set_property SRC_FILE_INFO {cfile:C:/Users/amris/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc rfile:../../../../../constraint/io.xdc id:3} [current_design]
 set_property src_info {type:XDC file:1 line:1 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN P11 [get_ports {outled}]
+set_property src_info {type:XDC file:1 line:3 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN R13 [get_ports {customin[0]}]
 set_property src_info {type:XDC file:2 line:3 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN N14 [get_ports {clk}]
 set_property src_info {type:XDC file:2 line:5 export:INPUT save:INPUT read:READ} [current_design]

@@ -39,7 +39,7 @@ module game_miniRegfiles_12 (
   
   
   
-  reg [15:0] M_player_position_d, M_player_position_q = 16'h801e;
+  reg [15:0] M_player_position_d, M_player_position_q = 16'h8000;
   reg [15:0] M_e1_position_d, M_e1_position_q = 16'h001e;
   reg [15:0] M_e2_position_d, M_e2_position_q = 16'h001d;
   reg [15:0] M_e3_position_d, M_e3_position_q = 16'h001a;
@@ -438,7 +438,7 @@ module game_miniRegfiles_12 (
   
   always @(posedge clk) begin
     if (rst == 1'b1) begin
-      M_player_position_q <= 16'h801e;
+      M_player_position_q <= 16'h8000;
       M_e1_position_q <= 16'h001e;
       M_e2_position_q <= 16'h001d;
       M_e3_position_q <= 16'h001a;

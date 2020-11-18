@@ -15,7 +15,8 @@ module au_top_0 (
     output reg [7:0] io_seg,
     output reg [3:0] io_sel,
     input [23:0] io_dip,
-    output reg outled
+    output reg outled,
+    input [0:0] customin
   );
   
   
@@ -184,7 +185,7 @@ module au_top_0 (
     io_led[0+7-:8] = {M_gameMachine_slow_counter_time[0+7-:8]};
     io_led[8+7-:8] = {M_gameMachine_e14position[15+0-:1], M_gameMachine_e15position[15+0-:1], M_gameMachine_e8position[15+0-:1], M_gameMachine_e7position[15+0-:1], M_gameMachine_e16position[15+0-:1], M_gameMachine_e3position[15+0-:1], M_gameMachine_e2position[15+0-:1], M_gameMachine_e1position[15+0-:1]};
     io_led[16+7-:8] = {M_gameMachine_e12position[15+0-:1], M_gameMachine_e13position[15+0-:1], M_gameMachine_e11position[15+0-:1], M_gameMachine_e10position[15+0-:1], M_gameMachine_e6position[15+0-:1], M_gameMachine_e5position[15+0-:1], M_gameMachine_e4position[15+0-:1], M_gameMachine_e9position[15+0-:1]};
-    M_btn_cond_up_in = io_button[0+0-:1];
+    M_btn_cond_up_in = customin[0+0-:1];
     M_btn_cond_down_in = io_button[2+0-:1];
     M_btn_cond_mid_in = io_button[1+0-:1];
     M_edge_dt_btn_up_in = M_btn_cond_up_out;

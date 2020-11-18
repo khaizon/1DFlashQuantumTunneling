@@ -40,7 +40,7 @@ module game_miniRegfiles (
 {
   .clk(clk){
     .rst(rst){
-      dff player_position[16] (#INIT (h801E)); // put 5 for testing, supposed to be 0
+      dff player_position[16] (#INIT (h8000)); // put 5 for testing, supposed to be 0
       dff e1_position[16](#INIT (h001E));
       dff e2_position[16](#INIT (h001D));
       dff e3_position[16](#INIT (h001A));
