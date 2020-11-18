@@ -15,7 +15,23 @@ module game_customBeta_4 (
     output reg [15:0] level,
     output reg [15:0] slow_counter_time,
     output reg [6:0] state_number,
-    output reg [15:0] result
+    output reg [15:0] result,
+    output reg [15:0] e1position,
+    output reg [15:0] e2position,
+    output reg [15:0] e3position,
+    output reg [15:0] e4position,
+    output reg [15:0] e5position,
+    output reg [15:0] e6position,
+    output reg [15:0] e7position,
+    output reg [15:0] e8position,
+    output reg [15:0] e9position,
+    output reg [15:0] e10position,
+    output reg [15:0] e11position,
+    output reg [15:0] e12position,
+    output reg [15:0] e13position,
+    output reg [15:0] e14position,
+    output reg [15:0] e15position,
+    output reg [15:0] e16position
   );
   
   
@@ -177,6 +193,22 @@ module game_customBeta_4 (
     state_number = M_game_controlunit_state_number;
     level = M_memory_difficulty_level_output;
     result = M_game_controlunit_result;
+    e1position = M_memory_e1position;
+    e2position = M_memory_e2position;
+    e3position = M_memory_e3position;
+    e4position = M_memory_e4position;
+    e5position = M_memory_e5position;
+    e6position = M_memory_e6position;
+    e7position = M_memory_e7position;
+    e8position = M_memory_e8position;
+    e9position = M_memory_e9position;
+    e10position = M_memory_e10position;
+    e11position = M_memory_e11position;
+    e12position = M_memory_e12position;
+    e13position = M_memory_e13position;
+    e14position = M_memory_e14position;
+    e15position = M_memory_e15position;
+    e16position = M_memory_e16position;
     
     case (M_game_controlunit_control_sig_asel)
       2'h0: begin

@@ -50,10 +50,14 @@ module au_top (
     
     // io_led = 3x{{8h00}};    // turn LEDs off
     io_led = 3x{{8h00}};
-    io_led[0] = c{0, gameMachine.state_number};
-    io_led[1] = gameMachine.result[7:0];
-    io_led[2] = gameMachine.result[15:8];
+    io_led[0] = c{gameMachine.slow_counter_time[7:0]};
+    io_led[1] = c{gameMachine.e14position[15], gameMachine.e15position[15], gameMachine.e8position[15], gameMachine.e7position[15], gameMachine.e16position[15], gameMachine.e3position[15], gameMachine.e2position[15], gameMachine.e1position[15]};
+    io_led[2] = c{gameMachine.e12position[15], gameMachine.e13position[15], gameMachine.e11position[15], gameMachine.e10position[15], gameMachine.e6position[15], gameMachine.e5position[15], gameMachine.e4position[15], gameMachine.e9position[15]};
     // interchange w pp for debugging 
+   // io_led[0] = c{0,gameMachine.state_number};
+    //io_led[1] = gameMachine.result[7:0];
+    //io_led[2] = gameMachine.result[15:8];
+    
     
     btn_cond_up.in=io_button[0]; //to reduce the bouncing effects of your button 
     btn_cond_down.in=io_button[2]; // must change to external button io

@@ -40,6 +40,9 @@ module alu_boolean_17 (
       4'h4: begin
         out = {~a[15+0-:1], a[0+14-:15]};
       end
+      4'hb: begin
+        out = {1'h0, a[0+14-:15]};
+      end
       default: begin
         out = 16'h0000;
       end

@@ -110,6 +110,18 @@ module game_CU_9 (
   localparam LIVES_MINUS_game_fsm = 7'd80;
   localparam LOSE_game_fsm = 7'd81;
   localparam RESPAWN_PP_game_fsm = 7'd82;
+  localparam TEMP_STATE_game_fsm = 7'd83;
+  localparam RESET_E1_game_fsm = 7'd84;
+  localparam RESET_E2_game_fsm = 7'd85;
+  localparam RESET_E3_game_fsm = 7'd86;
+  localparam RESET_E4_game_fsm = 7'd87;
+  localparam RESET_E5_game_fsm = 7'd88;
+  localparam RESET_E6_game_fsm = 7'd89;
+  localparam RESET_E7_game_fsm = 7'd90;
+  localparam RESET_E8_game_fsm = 7'd91;
+  localparam RESET_E9_game_fsm = 7'd92;
+  localparam RESET_E10_game_fsm = 7'd93;
+  localparam RESET_E11_game_fsm = 7'd94;
   
   reg [6:0] M_game_fsm_d, M_game_fsm_q = IDLE_game_fsm;
   
@@ -137,16 +149,24 @@ module game_CU_9 (
         IDLE_game_fsm: begin
           state_number = 7'h01;
           control_sig_write_enable = 1'h0;
-          if (forward_pressed) begin
-            M_game_fsm_d = PP_PLUS_game_fsm;
+          if (fast_counter) begin
+            M_game_fsm_d = FAST_COUNTER_PLUS_game_fsm;
           end else begin
-            if (backward_pressed) begin
-              M_game_fsm_d = CHECK_PP_game_fsm;
+            if (slow_counter) begin
+              M_game_fsm_d = CHECK_STOP_GAME_game_fsm;
             end else begin
-              if (reset_pressed) begin
-                M_game_fsm_d = RESET_PP_game_fsm;
+              if (forward_pressed) begin
+                M_game_fsm_d = PP_PLUS_game_fsm;
               end else begin
-                M_game_fsm_d = IDLE_game_fsm;
+                if (backward_pressed) begin
+                  M_game_fsm_d = CHECK_PP_game_fsm;
+                end else begin
+                  if (reset_pressed) begin
+                    M_game_fsm_d = RESET_PP_game_fsm;
+                  end else begin
+                    M_game_fsm_d = IDLE_game_fsm;
+                  end
+                end
               end
             end
           end
@@ -439,7 +459,7 @@ module game_CU_9 (
           control_sig_write_enable = 1'h1;
           control_sig_ra = 5'h10;
           control_sig_rb = 5'h00;
-          control_sig_rc = 5'h08;
+          control_sig_rc = 5'h10;
           control_sig_wdsel = 2'h0;
           M_game_fsm_d = CHECKPP_EQ_E1_game_fsm;
         end
@@ -821,25 +841,25 @@ module game_CU_9 (
         LIVES_MINUS_game_fsm: begin
           state_number = 7'h3d;
           control_sig_alufn = 6'h01;
-          control_sig_asel = 2'h2;
+          control_sig_asel = 2'h0;
           control_sig_bsel = 2'h0;
           control_sig_write_enable = 1'h1;
-          control_sig_ra = 5'h00;
-          control_sig_rb = 5'h15;
+          control_sig_ra = 5'h15;
+          control_sig_rb = 5'h1b;
           control_sig_rc = 5'h15;
           control_sig_wdsel = 2'h0;
           M_game_fsm_d = RESPAWN_PP_game_fsm;
         end
         RESPAWN_PP_game_fsm: begin
           state_number = 7'h3e;
-          control_sig_alufn = 6'h01;
-          control_sig_asel = 2'h2;
+          control_sig_alufn = 6'h00;
+          control_sig_asel = 2'h1;
           control_sig_bsel = 2'h0;
           control_sig_write_enable = 1'h1;
           control_sig_ra = 5'h00;
-          control_sig_rb = 5'h15;
-          control_sig_rc = 5'h15;
-          control_sig_wdsel = 2'h3;
+          control_sig_rb = 5'h1c;
+          control_sig_rc = 5'h00;
+          control_sig_wdsel = 2'h0;
           M_game_fsm_d = IDLE_game_fsm;
         end
         LOSE_game_fsm: begin
@@ -859,13 +879,13 @@ module game_CU_9 (
         RESET_PP_game_fsm: begin
           state_number = 7'h40;
           control_sig_alufn = 6'h00;
-          control_sig_asel = 2'h0;
+          control_sig_asel = 2'h1;
           control_sig_bsel = 2'h0;
           control_sig_write_enable = 1'h1;
           control_sig_ra = 5'h00;
-          control_sig_rb = 5'h00;
-          control_sig_rc = 4'h0;
-          control_sig_wdsel = 2'h3;
+          control_sig_rb = 5'h1c;
+          control_sig_rc = 5'h00;
+          control_sig_wdsel = 2'h0;
           M_game_fsm_d = RESET_STOP_GAME_game_fsm;
         end
         RESET_STOP_GAME_game_fsm: begin
@@ -925,6 +945,138 @@ module game_CU_9 (
           control_sig_ra = 5'h00;
           control_sig_rb = 5'h00;
           control_sig_rc = 5'h12;
+          control_sig_wdsel = 2'h0;
+          M_game_fsm_d = RESET_E1_game_fsm;
+        end
+        RESET_E1_game_fsm: begin
+          state_number = 7'h45;
+          control_sig_alufn = 6'h1b;
+          control_sig_asel = 2'h0;
+          control_sig_bsel = 2'h0;
+          control_sig_write_enable = 1'h1;
+          control_sig_ra = 5'h01;
+          control_sig_rb = 5'h00;
+          control_sig_rc = 5'h01;
+          control_sig_wdsel = 2'h0;
+          M_game_fsm_d = RESET_E2_game_fsm;
+        end
+        RESET_E2_game_fsm: begin
+          state_number = 7'h45;
+          control_sig_alufn = 6'h1b;
+          control_sig_asel = 2'h0;
+          control_sig_bsel = 2'h0;
+          control_sig_write_enable = 1'h1;
+          control_sig_ra = 5'h02;
+          control_sig_rb = 5'h00;
+          control_sig_rc = 5'h02;
+          control_sig_wdsel = 2'h0;
+          M_game_fsm_d = RESET_E3_game_fsm;
+        end
+        RESET_E3_game_fsm: begin
+          state_number = 7'h45;
+          control_sig_alufn = 6'h1b;
+          control_sig_asel = 2'h0;
+          control_sig_bsel = 2'h0;
+          control_sig_write_enable = 1'h1;
+          control_sig_ra = 5'h03;
+          control_sig_rb = 5'h00;
+          control_sig_rc = 5'h03;
+          control_sig_wdsel = 2'h0;
+          M_game_fsm_d = RESET_E4_game_fsm;
+        end
+        RESET_E4_game_fsm: begin
+          state_number = 7'h45;
+          control_sig_alufn = 6'h1b;
+          control_sig_asel = 2'h0;
+          control_sig_bsel = 2'h0;
+          control_sig_write_enable = 1'h1;
+          control_sig_ra = 5'h04;
+          control_sig_rb = 5'h00;
+          control_sig_rc = 5'h04;
+          control_sig_wdsel = 2'h0;
+          M_game_fsm_d = RESET_E5_game_fsm;
+        end
+        RESET_E5_game_fsm: begin
+          state_number = 7'h45;
+          control_sig_alufn = 6'h1b;
+          control_sig_asel = 2'h0;
+          control_sig_bsel = 2'h0;
+          control_sig_write_enable = 1'h1;
+          control_sig_ra = 5'h05;
+          control_sig_rb = 5'h00;
+          control_sig_rc = 5'h05;
+          control_sig_wdsel = 2'h0;
+          M_game_fsm_d = RESET_E6_game_fsm;
+        end
+        RESET_E6_game_fsm: begin
+          state_number = 7'h45;
+          control_sig_alufn = 6'h1b;
+          control_sig_asel = 2'h0;
+          control_sig_bsel = 2'h0;
+          control_sig_write_enable = 1'h1;
+          control_sig_ra = 5'h06;
+          control_sig_rb = 5'h00;
+          control_sig_rc = 5'h06;
+          control_sig_wdsel = 2'h0;
+          M_game_fsm_d = RESET_E7_game_fsm;
+        end
+        RESET_E7_game_fsm: begin
+          state_number = 7'h45;
+          control_sig_alufn = 6'h1b;
+          control_sig_asel = 2'h0;
+          control_sig_bsel = 2'h0;
+          control_sig_write_enable = 1'h1;
+          control_sig_ra = 5'h07;
+          control_sig_rb = 5'h00;
+          control_sig_rc = 5'h07;
+          control_sig_wdsel = 2'h0;
+          M_game_fsm_d = RESET_E8_game_fsm;
+        end
+        RESET_E8_game_fsm: begin
+          state_number = 7'h45;
+          control_sig_alufn = 6'h1b;
+          control_sig_asel = 2'h0;
+          control_sig_bsel = 2'h0;
+          control_sig_write_enable = 1'h1;
+          control_sig_ra = 5'h08;
+          control_sig_rb = 5'h00;
+          control_sig_rc = 5'h08;
+          control_sig_wdsel = 2'h0;
+          M_game_fsm_d = RESET_E9_game_fsm;
+        end
+        RESET_E9_game_fsm: begin
+          state_number = 7'h45;
+          control_sig_alufn = 6'h1b;
+          control_sig_asel = 2'h0;
+          control_sig_bsel = 2'h0;
+          control_sig_write_enable = 1'h1;
+          control_sig_ra = 5'h09;
+          control_sig_rb = 5'h00;
+          control_sig_rc = 5'h09;
+          control_sig_wdsel = 2'h0;
+          M_game_fsm_d = RESET_E10_game_fsm;
+        end
+        RESET_E10_game_fsm: begin
+          state_number = 7'h45;
+          control_sig_alufn = 6'h1b;
+          control_sig_asel = 2'h0;
+          control_sig_bsel = 2'h0;
+          control_sig_write_enable = 1'h1;
+          control_sig_ra = 5'h0a;
+          control_sig_rb = 5'h00;
+          control_sig_rc = 5'h0a;
+          control_sig_wdsel = 2'h0;
+          M_game_fsm_d = RESET_E11_game_fsm;
+        end
+        RESET_E11_game_fsm: begin
+          state_number = 7'h45;
+          control_sig_alufn = 6'h1b;
+          control_sig_asel = 2'h0;
+          control_sig_bsel = 2'h0;
+          control_sig_write_enable = 1'h1;
+          control_sig_ra = 5'h0b;
+          control_sig_rb = 5'h00;
+          control_sig_rc = 5'h0b;
           control_sig_wdsel = 2'h0;
           M_game_fsm_d = IDLE_game_fsm;
         end
@@ -1031,9 +1183,15 @@ module game_CU_9 (
           control_sig_wdsel = 2'h0;
           M_game_fsm_d = NEXT_LVL_PP_game_fsm;
         end
+        TEMP_STATE_game_fsm: begin
+          state_number = 7'h7f;
+          control_sig_rb = 5'h0b;
+          control_sig_write_enable = 1'h0;
+          result = rb_data;
+        end
         NEXT_LVL_PP_game_fsm: begin
           state_number = 7'h4e;
-          control_sig_alufn = 6'h33;
+          control_sig_alufn = 6'h00;
           control_sig_asel = 2'h1;
           control_sig_bsel = 2'h0;
           control_sig_write_enable = 1'h1;

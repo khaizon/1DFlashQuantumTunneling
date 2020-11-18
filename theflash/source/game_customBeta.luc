@@ -12,7 +12,24 @@ module game_customBeta (
     output level[16],
     output slow_counter_time[16],
     output state_number[7],
-    output result[16]
+    output result[16],
+    output e1position[16],
+    output e2position[16],
+    output e3position[16],
+    output e4position[16],
+    output e5position[16],
+    output e6position[16],
+    output e7position[16],
+    output e8position[16],
+    output e9position[16],
+    output e10position[16],
+    output e11position[16],
+    output e12position[16],
+    output e13position[16],
+    output e14position[16],
+    output e15position[16],
+    output e16position[16]
+
   ) {
   
   //temp variables for ALU inputs A and B
@@ -76,6 +93,24 @@ module game_customBeta (
     
     result = game_controlunit.result;
     
+    e1position = memory.e1position;
+    e2position = memory.e2position;
+    e3position = memory.e3position;
+    e4position = memory.e4position;
+    e5position = memory.e5position;
+    e6position = memory.e6position;
+    e7position = memory.e7position;
+    e8position = memory.e8position;
+    e9position = memory.e9position;
+    e10position = memory.e10position;
+    e11position = memory.e11position;
+    e12position = memory.e12position;
+    e13position = memory.e13position;
+    e14position = memory.e14position;
+    e15position = memory.e15position;
+    e16position = memory.e16position;
+    
+
     //asel mux
     case(game_controlunit.control_sig_asel){
       b00  : alu_a = memory.out_a;
@@ -104,7 +139,7 @@ module game_customBeta (
    
     
     //wdsel mux
-    case (game_controlunit.control_sig_wdsel){
+    case (game_controlunit.control_sig_wdsel){ //broken
       b01 : memory.data = h1A;
       b10 : memory.data = h11B;
       b11 : memory.data = h8000;

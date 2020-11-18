@@ -76,6 +76,22 @@ module au_top_0 (
   wire [16-1:0] M_gameMachine_slow_counter_time;
   wire [7-1:0] M_gameMachine_state_number;
   wire [16-1:0] M_gameMachine_result;
+  wire [16-1:0] M_gameMachine_e1position;
+  wire [16-1:0] M_gameMachine_e2position;
+  wire [16-1:0] M_gameMachine_e3position;
+  wire [16-1:0] M_gameMachine_e4position;
+  wire [16-1:0] M_gameMachine_e5position;
+  wire [16-1:0] M_gameMachine_e6position;
+  wire [16-1:0] M_gameMachine_e7position;
+  wire [16-1:0] M_gameMachine_e8position;
+  wire [16-1:0] M_gameMachine_e9position;
+  wire [16-1:0] M_gameMachine_e10position;
+  wire [16-1:0] M_gameMachine_e11position;
+  wire [16-1:0] M_gameMachine_e12position;
+  wire [16-1:0] M_gameMachine_e13position;
+  wire [16-1:0] M_gameMachine_e14position;
+  wire [16-1:0] M_gameMachine_e15position;
+  wire [16-1:0] M_gameMachine_e16position;
   reg [1-1:0] M_gameMachine_up_button;
   reg [1-1:0] M_gameMachine_down_button;
   reg [1-1:0] M_gameMachine_middle_button;
@@ -90,7 +106,23 @@ module au_top_0 (
     .level(M_gameMachine_level),
     .slow_counter_time(M_gameMachine_slow_counter_time),
     .state_number(M_gameMachine_state_number),
-    .result(M_gameMachine_result)
+    .result(M_gameMachine_result),
+    .e1position(M_gameMachine_e1position),
+    .e2position(M_gameMachine_e2position),
+    .e3position(M_gameMachine_e3position),
+    .e4position(M_gameMachine_e4position),
+    .e5position(M_gameMachine_e5position),
+    .e6position(M_gameMachine_e6position),
+    .e7position(M_gameMachine_e7position),
+    .e8position(M_gameMachine_e8position),
+    .e9position(M_gameMachine_e9position),
+    .e10position(M_gameMachine_e10position),
+    .e11position(M_gameMachine_e11position),
+    .e12position(M_gameMachine_e12position),
+    .e13position(M_gameMachine_e13position),
+    .e14position(M_gameMachine_e14position),
+    .e15position(M_gameMachine_e15position),
+    .e16position(M_gameMachine_e16position)
   );
   wire [7-1:0] M_test_display_seg;
   wire [4-1:0] M_test_display_sel;
@@ -122,9 +154,9 @@ module au_top_0 (
     io_sel = 4'hf;
     usb_tx = usb_rx;
     io_led = 24'h000000;
-    io_led[0+7-:8] = {1'h0, M_gameMachine_state_number};
-    io_led[8+7-:8] = M_gameMachine_result[0+7-:8];
-    io_led[16+7-:8] = M_gameMachine_result[8+7-:8];
+    io_led[0+7-:8] = {M_gameMachine_slow_counter_time[0+7-:8]};
+    io_led[8+7-:8] = {M_gameMachine_e14position[15+0-:1], M_gameMachine_e15position[15+0-:1], M_gameMachine_e8position[15+0-:1], M_gameMachine_e7position[15+0-:1], M_gameMachine_e16position[15+0-:1], M_gameMachine_e3position[15+0-:1], M_gameMachine_e2position[15+0-:1], M_gameMachine_e1position[15+0-:1]};
+    io_led[16+7-:8] = {M_gameMachine_e12position[15+0-:1], M_gameMachine_e13position[15+0-:1], M_gameMachine_e11position[15+0-:1], M_gameMachine_e10position[15+0-:1], M_gameMachine_e6position[15+0-:1], M_gameMachine_e5position[15+0-:1], M_gameMachine_e4position[15+0-:1], M_gameMachine_e9position[15+0-:1]};
     M_btn_cond_up_in = io_button[0+0-:1];
     M_btn_cond_down_in = io_button[2+0-:1];
     M_btn_cond_mid_in = io_button[1+0-:1];

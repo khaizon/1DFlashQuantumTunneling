@@ -17,8 +17,8 @@ module alu_compare (
       // CMLT: A < B
       b110101: out[0] = (a < b);
       // CMLE: A <= B
-      b110111: out[0] = (a <= b);
-      default: out[0] = 0;
+      b110111: out[0] = (a <= b); 
+      default: out[0] = 0; 
       
     }
   }

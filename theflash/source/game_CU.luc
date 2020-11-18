@@ -104,7 +104,19 @@ module game_CU (
       BRANCH_LIVES_MORE_THAN_1,
       LIVES_MINUS,
       LOSE,
-      RESPAWN_PP};
+      RESPAWN_PP,
+      TEMP_STATE,
+      RESET_E1,
+      RESET_E2,
+      RESET_E3,
+      RESET_E4,
+      RESET_E5,
+      RESET_E6,
+      RESET_E7,
+      RESET_E8,
+      RESET_E9,
+      RESET_E10,
+      RESET_E11};
 
       
   }
@@ -141,13 +153,12 @@ module game_CU (
        
         control_sig_write_enable = b0;
         //if counter is set
-        //if (fast_counter){                      //direct read in
-        //  game_fsm.d = game_fsm.FAST_COUNTER_PLUS;
-        //}
-        //else if(slow_counter){
-        //  game_fsm.d =  game_fsm.CHECK_STOP_GAME;
-        //}
-          if(forward_pressed){
+          if (fast_counter){                      //direct read in
+          game_fsm.d = game_fsm.FAST_COUNTER_PLUS;}
+          else if(slow_counter){
+            game_fsm.d =  game_fsm.CHECK_STOP_GAME;
+          }
+          else if(forward_pressed){
             game_fsm.d =  game_fsm.PP_PLUS;
           }
           else if(backward_pressed){
@@ -446,7 +457,7 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_write_enable = b1;
         control_sig_ra           = b10000;
         control_sig_rb           = b00000;
-        control_sig_rc           = b01000;
+        control_sig_rc           = b10000;
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.CHECKPP_EQ_E1;
 
@@ -813,26 +824,26 @@ game_fsm.FAST_COUNTER_PLUS:
 
      game_fsm.LIVES_MINUS:
         state_number             = b0111101;
-        control_sig_alufn        = b000001; //CMPLT
-        control_sig_asel         = b10;
+        control_sig_alufn        = b000001; //SUB
+        control_sig_asel         = b00;
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b10101; //LIVES LEFT
-        control_sig_rc           = b10101; //TEMP
+        control_sig_ra           = b10101;
+        control_sig_rb           = b11011; //ALWAYS ONE
+        control_sig_rc           = b10101; //LIVES
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.RESPAWN_PP;
 
      game_fsm.RESPAWN_PP:
         state_number             = b0111110;
-        control_sig_alufn        = b000001; //CMPLT
-        control_sig_asel         = b10;
+        control_sig_alufn        = b000000; //CMPLT
+        control_sig_asel         = b01;
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;
         control_sig_ra           = b00000;
-        control_sig_rb           = b10101; //LIVES LEFT
-        control_sig_rc           = b10101; //TEMP
-        control_sig_wdsel        = b11;
+        control_sig_rb           = b11100; //start position
+        control_sig_rc           = b00000; //pp
+        control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.IDLE;
 
      game_fsm.LOSE:
@@ -851,13 +862,13 @@ game_fsm.FAST_COUNTER_PLUS:
      game_fsm.RESET_PP:
         state_number             = b1000000;
         control_sig_alufn        = b000000;
-        control_sig_asel         = b00;
+        control_sig_asel         = b01;
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;
         control_sig_ra           = b00000;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b0000; //TEMP
-        control_sig_wdsel        = b11;   //reset to start position 
+        control_sig_rb           = b11100; //LIVES LEFT
+        control_sig_rc           = b00000; //TEMP
+        control_sig_wdsel        = b00;   //reset to start position 
         game_fsm.d = game_fsm.RESET_STOP_GAME;
 
       game_fsm.RESET_STOP_GAME:
@@ -917,6 +928,138 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_ra           = b00000;
         control_sig_rb           = b00000; //LIVES LEFT
         control_sig_rc           = b10010;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E1;
+          
+     game_fsm.RESET_E1:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00001;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00001;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E2;
+          
+     game_fsm.RESET_E2:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00010;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00010;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E3;
+     
+     game_fsm.RESET_E3:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00011;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00011;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E4;
+          
+     game_fsm.RESET_E4:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00100;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00100;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E5;
+          
+      game_fsm.RESET_E5:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00101;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00101;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E6;
+          
+      game_fsm.RESET_E6:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00110;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00110;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E7;
+          
+       game_fsm.RESET_E7:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00111;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00111;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E8;
+          
+       game_fsm.RESET_E8:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01000;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b01000;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E9;
+          
+       game_fsm.RESET_E9:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01001;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b01001;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E10;
+          
+       game_fsm.RESET_E10:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01010;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b01010;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E11;
+          
+       game_fsm.RESET_E11:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01011;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b01011;
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.IDLE;
 
@@ -1006,7 +1149,7 @@ game_fsm.FAST_COUNTER_PLUS:
         state_number             = b1001101;
         control_sig_rb           = b10111;
         control_sig_write_enable = b0;
-
+        
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.WIN;
         }
@@ -1023,10 +1166,18 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_rc           = b10010;
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.NEXT_LVL_PP;
+          
+          
+     game_fsm.TEMP_STATE:
+        state_number             = b1111111;
+        control_sig_rb           = b01011;
+        control_sig_write_enable = b0;
+        result = rb_data;
+     
 
      game_fsm.NEXT_LVL_PP:
         state_number             = b1001110;
-        control_sig_alufn        = b110011; //TO FORCE A 0 BY COMPARING TWO DIFF NUMBERS
+        control_sig_alufn        = b000000; 
         control_sig_asel         = b01;
         control_sig_bsel         = b00;
         control_sig_write_enable = b1;

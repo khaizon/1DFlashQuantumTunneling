@@ -41,23 +41,23 @@ module game_miniRegfiles (
   .clk(clk){
     .rst(rst){
       dff player_position[16] (#INIT (h801E)); // put 5 for testing, supposed to be 0
-      dff e1_position[16](#INIT (h8800));
-      dff e2_position[16](#INIT (h8800));
-      dff e3_position[16](#INIT (h8800));
-      dff e4_position[16](#INIT (h8800));
-      dff e5_position[16](#INIT (h8800));
-      dff e6_position[16](#INIT (h8800));
-      dff e7_position[16](#INIT (h8800));
-      dff e8_position[16](#INIT (h8800));
-      dff e9_position[16](#INIT (h8800));
-      dff e10_position[16](#INIT (h8800));
-      dff e11_position[16](#INIT (h8800));
-      dff e12_position[16](#INIT (h8800));
-      dff e13_position[16](#INIT (h8800));
-      dff e14_position[16](#INIT (h8800));
-      dff e15_position[16](#INIT (h8800));
-      dff e16_position[16](#INIT (h8800));
-      dff player_score[16](#INIT (h8800));
+      dff e1_position[16](#INIT (h001E));
+      dff e2_position[16](#INIT (h001D));
+      dff e3_position[16](#INIT (h001A));
+      dff e4_position[16](#INIT (h000D));
+      dff e5_position[16](#INIT (h000C));
+      dff e6_position[16](#INIT (h000B));
+      dff e7_position[16](#INIT (h0016));
+      dff e8_position[16](#INIT (h0015));
+      dff e9_position[16](#INIT (h000F));
+      dff e10_position[16](#INIT (h0008));
+      dff e11_position[16](#INIT (h0007));
+      dff e12_position[16](#INIT (h0003));
+      dff e13_position[16](#INIT (h0004));
+      dff e14_position[16](#INIT (h0011));
+      dff e15_position[16](#INIT (h0012));
+      dff e16_position[16](#INIT (h0018));
+      dff player_score[16](#INIT (h0800));
       dff difficulty_level[16](#INIT (h0001));
       dff fast_counter[16];
       dff slow_counter[16];
