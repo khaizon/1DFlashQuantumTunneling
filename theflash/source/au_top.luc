@@ -15,7 +15,7 @@ module au_top (
   ) {
   
   sig rst;                  // reset signal
-  ws2812b_writer led_strip(#PIXEL_COUNT(30), .clk(clk), .rst(rst)); //set for 3 pixels
+  ws2812b_writer led_strip(#PIXEL_COUNT(32), .clk(clk), .rst(rst)); //set for 3 pixels
   .clk(clk) {
     // The reset conditioner is used to synchronize the reset signal to the FPGA
     // clock. This ensures the entire FPGA comes out of reset at the same time.

@@ -6,7 +6,7 @@
 
 /*
    Parameters:
-     PIXEL_COUNT = 30
+     PIXEL_COUNT = 32
 */
 module ws2812b_writer_1 (
     input clk,
@@ -17,7 +17,7 @@ module ws2812b_writer_1 (
     output reg led
   );
   
-  localparam PIXEL_COUNT = 5'h1e;
+  localparam PIXEL_COUNT = 6'h20;
   
   
   localparam SEND_PIXEL_state = 1'd0;
@@ -53,7 +53,7 @@ module ws2812b_writer_1 (
           if (M_bit_ctr_q == 5'h17) begin
             M_bit_ctr_d = 1'h0;
             M_pixel_ctr_d = M_pixel_ctr_q + 1'h1;
-            if (M_pixel_ctr_q == 6'h1d) begin
+            if (M_pixel_ctr_q == 7'h1f) begin
               M_pixel_ctr_d = 1'h0;
               M_state_d = RESET_state;
             end

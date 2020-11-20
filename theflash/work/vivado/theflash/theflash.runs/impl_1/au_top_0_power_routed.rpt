@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date             : Wed Nov 18 22:01:57 2020
+| Date             : Wed Nov 18 22:24:09 2020
 | Host             : DESKTOP-6N6MSBK running 64-bit major release  (build 9200)
 | Command          : report_power -file au_top_0_power_routed.rpt -pb au_top_0_power_summary_routed.pb -rpx au_top_0_power_routed.rpx
 | Design           : au_top_0
@@ -30,7 +30,7 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.121        |
+| Total On-Chip Power (W)  | 0.120        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
 | Dynamic (W)              | 0.049        |
@@ -53,17 +53,17 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.003 |        3 |       --- |             --- |
-| Slice Logic    |     0.012 |     1858 |       --- |             --- |
-|   LUT as Logic |     0.011 |      977 |     20800 |            4.70 |
+| Slice Logic    |     0.012 |     1921 |       --- |             --- |
+|   LUT as Logic |     0.011 |     1001 |     20800 |            4.81 |
 |   CARRY4       |    <0.001 |      132 |      8150 |            1.62 |
-|   Register     |    <0.001 |      600 |     41600 |            1.44 |
-|   F7/F8 Muxes  |    <0.001 |       46 |     32600 |            0.14 |
+|   Register     |    <0.001 |      612 |     41600 |            1.47 |
+|   F7/F8 Muxes  |    <0.001 |       58 |     32600 |            0.18 |
 |   Others       |     0.000 |       42 |       --- |             --- |
-| Signals        |     0.019 |     1664 |       --- |             --- |
+| Signals        |     0.019 |     1706 |       --- |             --- |
 | DSPs           |     0.002 |        2 |        90 |            2.22 |
 | I/O            |     0.013 |       52 |       170 |           30.59 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.121 |          |           |                 |
+| Total          |     0.120 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,7 +73,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.046 |       0.036 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.045 |       0.036 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.005 |       0.004 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -146,8 +146,8 @@ Table of Contents
 |   gameMachine        |     0.034 |
 |     game_alu         |     0.003 |
 |       arithmeticUnit |     0.003 |
-|     game_controlunit |     0.026 |
-|     memory           |     0.006 |
+|     game_controlunit |     0.025 |
+|     memory           |     0.005 |
 +----------------------+-----------+
 
 
