@@ -1,2 +1,10 @@
 pin outled C49;
 pin customin[0] C3;
+pin custominbackward[0] C5;
+pin custominreset[0] C6;
+pin livesled[0] D12;
+pin livesled[1] D11;
+pin livesled[2] C8;
+pin levelled[0] C40;
+pin levelled[1] C39;
+pin levelled[2] C11;

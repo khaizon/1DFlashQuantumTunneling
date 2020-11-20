@@ -7,7 +7,7 @@ module entities_handler (
   ) {
 
   always {
-  out = 32x{{24h0000FF}};
+  out = 32x{{24h000000}};
   
   
     

@@ -11,7 +11,11 @@ module au_top (
     output io_sel [4],      // Digit select on IO Shield
     input io_dip [3][8],     // DIP switches on IO Shield
     output outled,
-    input customin[1]
+    input customin[1],
+    input custominbackward[1],
+    input custominreset[1],
+    output livesled[3],
+    output levelled[3]
   ) {
   
   sig rst;                  // reset signal
@@ -63,18 +67,55 @@ module au_top (
     
     
     btn_cond_up.in=customin[0]; //to reduce the bouncing effects of your button 
-    btn_cond_down.in=io_button[2]; // must change to external button io
-    btn_cond_mid.in=io_button[1];
+    btn_cond_down.in=custominbackward[0]; // must change to external button io
+    btn_cond_mid.in=custominreset[0];
     edge_dt_btn_up.in=btn_cond_up.out; //get the edge of button press
     edge_dt_btn_down.in=btn_cond_down.out;
     edge_dt_btn_mid.in=btn_cond_mid.out;
     
+    
     // detect up and down button presses
     // serves as input into our game's beta CPU 
     gameMachine.up_button = edge_dt_btn_up.out;
+    
     gameMachine.down_button = edge_dt_btn_down.out;
     gameMachine.middle_button = edge_dt_btn_mid.out;
     
+    if (gameMachine.lives == d3) {
+    livesled[0] = 1;
+    livesled[1] =1;
+    livesled[2] = 1;    }
+    else if (gameMachine.lives == d2) {
+    livesled[0] = 1;
+    livesled[1] =1;
+    livesled[2] = 0; }
+    else if (gameMachine.lives == d1) {
+    livesled[0] = 1;
+    livesled[1] = 0;
+    livesled[2] = 0;
+    }
+    else {
+    livesled[0] = 0;
+    livesled[1] = 0;
+    livesled[2] = 0; }
+      
+    if (gameMachine.level == d3) {
+      levelled[0] = 1;
+      levelled[1] =1;
+      levelled[2] = 1;    }
+    else if (gameMachine.level == d2) {
+      levelled[0] = 1;
+      levelled[1] =1;
+      levelled[2] = 0; }
+    else if (gameMachine.level == d1) {
+      levelled[0] = 1;
+      levelled[1] = 0;
+    levelled[2] = 0;
+    }
+    else {
+    levelled[0] = 0;
+    levelled[1] = 0;
+    levelled[2] = 0; }
     // set LED strip to display output of gameMachine
     // io_led[0] = gameMachine.p1_out;    
     // io_led[1] = gameMachine.p2_out;
