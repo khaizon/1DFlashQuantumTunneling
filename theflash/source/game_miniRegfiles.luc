@@ -33,7 +33,8 @@ module game_miniRegfiles (
     output playerscore[16],
     output lives_left_output[16],
     output slow_counter_output[16],
-    output difficulty_level_output[16]
+    output difficulty_level_output[16],
+    output player_won_output[16]
 
   ) 
 
@@ -88,6 +89,7 @@ module game_miniRegfiles (
     lives_left_output = lives_left.q;
     slow_counter_output = slow_counter.q;
     difficulty_level_output = difficulty_level.q;
+    player_won_output = player_won.q;
   
     //write port
     if (we){

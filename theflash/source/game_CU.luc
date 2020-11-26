@@ -104,6 +104,7 @@ module game_CU (
       BRANCH_LIVES_MORE_THAN_1,
       LIVES_MINUS,
       LOSE,
+      LOSE_LIVES,
       RESPAWN_PP,
       TEMP_STATE,
       RESET_E1,
@@ -820,7 +821,7 @@ game_fsm.FAST_COUNTER_PLUS:
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.LIVES_MINUS;
         }
-        else game_fsm.d = game_fsm.LOSE; //TO IMPLEMENT
+        else game_fsm.d = game_fsm.LOSE_LIVES; //TO IMPLEMENT
 
      game_fsm.LIVES_MINUS:
         state_number             = b0111101;
@@ -845,6 +846,18 @@ game_fsm.FAST_COUNTER_PLUS:
         control_sig_rc           = b00000; //pp
         control_sig_wdsel        = b00;
         game_fsm.d = game_fsm.IDLE;
+          
+     game_fsm.LOSE_LIVES:
+        state_number             = b0111101;
+        control_sig_alufn        = b000001; //SUB
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b10101;
+        control_sig_rb           = b11011; //ALWAYS ONE
+        control_sig_rc           = b10101; //LIVES
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.LOSE;
 
      game_fsm.LOSE:
         state_number             = b0111111;

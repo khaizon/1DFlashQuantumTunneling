@@ -28,7 +28,8 @@ module game_customBeta (
     output e13position[16],
     output e14position[16],
     output e15position[16],
-    output e16position[16]
+    output e16position[16],
+    output player_won[16]
 
   ) {
   
@@ -81,7 +82,8 @@ module game_customBeta (
     
     // show lives left
     lives = memory.lives_left_output;
-    
+    // information on whether player has won
+    player_won = memory.player_won_output;    
     // show count up timer 
     slow_counter_time = memory.slow_counter_output;
     
@@ -91,7 +93,7 @@ module game_customBeta (
     
     level = memory.difficulty_level_output;
     
-    result = game_controlunit.result;
+    result = game_controlunit.result; //for debugging
     
     e1position = memory.e1position;
     e2position = memory.e2position;

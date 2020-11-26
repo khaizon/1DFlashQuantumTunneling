@@ -3,6 +3,8 @@ module entities_handler (
     input e6position[16],
     input e11position[16],
     input e16position[16],
+    input playerwon[16],
+    input lives_left[16],
     output out[32][24]
   ) {
 
@@ -34,4 +36,10 @@ module entities_handler (
       out[30] = h00FF00;
     }
     out[playerposition[4:0]] = hFF0000;
+  
+    //displays all green if player wins and all red if player loses.
+    if (playerwon[0] == 1){
+      if (lives_left[0] == 0){out = 32x{{24hFF0000}};}
+      else {out = 32x{{24h00FF00}};}
+    }
 }

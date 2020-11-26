@@ -45,6 +45,7 @@ module au_top (
   }
   converter converter;
   entities_handler entities_hand;
+  lives_and_levels lives_and_levels_handler;
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
@@ -81,41 +82,10 @@ module au_top (
     gameMachine.down_button = edge_dt_btn_down.out;
     gameMachine.middle_button = edge_dt_btn_mid.out;
     
-    if (gameMachine.lives == d3) {
-    livesled[0] = 1;
-    livesled[1] =1;
-    livesled[2] = 1;    }
-    else if (gameMachine.lives == d2) {
-    livesled[0] = 1;
-    livesled[1] =1;
-    livesled[2] = 0; }
-    else if (gameMachine.lives == d1) {
-    livesled[0] = 1;
-    livesled[1] = 0;
-    livesled[2] = 0;
-    }
-    else {
-    livesled[0] = 0;
-    livesled[1] = 0;
-    livesled[2] = 0; }
-      
-    if (gameMachine.level == d3) {
-      levelled[0] = 1;
-      levelled[1] =1;
-      levelled[2] = 1;    }
-    else if (gameMachine.level == d2) {
-      levelled[0] = 1;
-      levelled[1] =1;
-      levelled[2] = 0; }
-    else if (gameMachine.level == d1) {
-      levelled[0] = 1;
-      levelled[1] = 0;
-    levelled[2] = 0;
-    }
-    else {
-    levelled[0] = 0;
-    levelled[1] = 0;
-    levelled[2] = 0; }
+    lives_and_levels_handler.lives = gameMachine.lives[1:0];
+    lives_and_levels_handler.level = gameMachine.level[1:0];
+    livesled = lives_and_levels_handler.livesled_out;
+    levelled = lives_and_levels_handler.levelled_out;
     // set LED strip to display output of gameMachine
     // io_led[0] = gameMachine.p1_out;    
     // io_led[1] = gameMachine.p2_out;
@@ -126,12 +96,14 @@ module au_top (
     test_display.values = converter.out;
     io_sel = ~test_display.sel;
   
-    // update 2 digits of 7 segment to show count-up timer
     
     entities_hand.e6position = gameMachine.e6position;
     entities_hand.e16position = gameMachine.e16position;
     entities_hand.e11position = gameMachine.e11position;
     entities_hand.playerposition = gameMachine.playerposition;
+    entities_hand.lives_left = gameMachine.lives;
+    entities_hand.playerwon = gameMachine.player_won;
+    
     led_strip.color = entities_hand.out[led_strip.pixel];
     led_strip.update = 1;
     outled = led_strip.led;

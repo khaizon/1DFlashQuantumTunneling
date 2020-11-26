@@ -1,8 +1,8 @@
-Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version     : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
-| Date             : Fri Nov 20 14:32:05 2020
-| Host             : DESKTOP-SAE033K running 64-bit major release  (build 9200)
+| Tool Version     : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
+| Date             : Thu Nov 26 15:57:07 2020
+| Host             : DESKTOP-LEHPGBB running 64-bit major release  (build 9200)
 | Command          : report_power -file au_top_0_power_routed.rpt -pb au_top_0_power_summary_routed.pb -rpx au_top_0_power_routed.rpx
 | Design           : au_top_0
 | Device           : xc7a35tftg256-1
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.120        |
+| Total On-Chip Power (W)  | 0.115        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.048        |
+| Dynamic (W)              | 0.043        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 4.9          |
 | Max Ambient (C)          | 84.4         |
@@ -53,40 +53,40 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.003 |        3 |       --- |             --- |
-| Slice Logic    |     0.012 |     1880 |       --- |             --- |
-|   LUT as Logic |     0.011 |      991 |     20800 |            4.76 |
+| Slice Logic    |     0.010 |     1906 |       --- |             --- |
+|   LUT as Logic |     0.009 |      996 |     20800 |            4.79 |
 |   CARRY4       |    <0.001 |      132 |      8150 |            1.62 |
-|   Register     |    <0.001 |      606 |     41600 |            1.46 |
-|   F7/F8 Muxes  |    <0.001 |       48 |     32600 |            0.15 |
+|   Register     |    <0.001 |      594 |     41600 |            1.43 |
+|   F7/F8 Muxes  |    <0.001 |       65 |     32600 |            0.20 |
 |   Others       |     0.000 |       42 |       --- |             --- |
-| Signals        |     0.018 |     1683 |       --- |             --- |
-| DSPs           |     0.002 |        2 |        90 |            2.22 |
-| I/O            |     0.013 |       58 |       170 |           34.12 |
+| Signals        |     0.015 |     1655 |       --- |             --- |
+| DSPs           |     0.001 |        1 |        90 |            1.11 |
+| I/O            |     0.014 |       58 |       170 |           34.12 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.120 |          |           |                 |
+| Total          |     0.115 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
 1.2 Power Supply Summary
 ------------------------
 
-+-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
-+-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.045 |       0.035 |      0.010 |       NA    | Unspecified | NA         |
-| Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.005 |       0.004 |      0.001 |       NA    | Unspecified | NA         |
-| Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
-+-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
++-----------+-------------+-----------+-------------+------------+
+| Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
++-----------+-------------+-----------+-------------+------------+
+| Vccint    |       1.000 |     0.039 |       0.029 |      0.010 |
+| Vccaux    |       1.800 |     0.013 |       0.001 |      0.013 |
+| Vcco33    |       3.300 |     0.005 |       0.004 |      0.001 |
+| Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
+| Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
+| Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
+| Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
+| Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vccbram   |       1.000 |     0.000 |       0.000 |      0.000 |
+| MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
+| MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
+| Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |
++-----------+-------------+-----------+-------------+------------+
 
 
 1.3 Confidence Level
@@ -142,11 +142,11 @@ Table of Contents
 +----------------------+-----------+
 | Name                 | Power (W) |
 +----------------------+-----------+
-| au_top_0             |     0.048 |
-|   gameMachine        |     0.034 |
-|     game_alu         |     0.003 |
-|       arithmeticUnit |     0.003 |
-|     game_controlunit |     0.025 |
+| au_top_0             |     0.043 |
+|   gameMachine        |     0.028 |
+|     game_alu         |     0.002 |
+|       arithmeticUnit |     0.002 |
+|     game_controlunit |     0.021 |
 |     memory           |     0.005 |
 +----------------------+-----------+
 
