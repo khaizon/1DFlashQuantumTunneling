@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date             : Thu Nov 26 15:57:07 2020
+| Date             : Thu Nov 26 18:13:29 2020
 | Host             : DESKTOP-LEHPGBB running 64-bit major release  (build 9200)
 | Command          : report_power -file au_top_0_power_routed.rpt -pb au_top_0_power_summary_routed.pb -rpx au_top_0_power_routed.rpx
 | Design           : au_top_0
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.115        |
+| Total On-Chip Power (W)  | 0.116        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.043        |
+| Dynamic (W)              | 0.044        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 4.9          |
 | Max Ambient (C)          | 84.4         |
@@ -59,11 +59,11 @@ Table of Contents
 |   Register     |    <0.001 |      594 |     41600 |            1.43 |
 |   F7/F8 Muxes  |    <0.001 |       65 |     32600 |            0.20 |
 |   Others       |     0.000 |       42 |       --- |             --- |
-| Signals        |     0.015 |     1655 |       --- |             --- |
+| Signals        |     0.016 |     1656 |       --- |             --- |
 | DSPs           |     0.001 |        1 |        90 |            1.11 |
 | I/O            |     0.014 |       58 |       170 |           34.12 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.115 |          |           |                 |
+| Total          |     0.116 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,7 +73,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.039 |       0.029 |      0.010 |
+| Vccint    |       1.000 |     0.040 |       0.030 |      0.010 |
 | Vccaux    |       1.800 |     0.013 |       0.001 |      0.013 |
 | Vcco33    |       3.300 |     0.005 |       0.004 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -142,11 +142,11 @@ Table of Contents
 +----------------------+-----------+
 | Name                 | Power (W) |
 +----------------------+-----------+
-| au_top_0             |     0.043 |
-|   gameMachine        |     0.028 |
+| au_top_0             |     0.044 |
+|   gameMachine        |     0.029 |
 |     game_alu         |     0.002 |
 |       arithmeticUnit |     0.002 |
-|     game_controlunit |     0.021 |
+|     game_controlunit |     0.022 |
 |     memory           |     0.005 |
 +----------------------+-----------+
 

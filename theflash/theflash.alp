@@ -23,7 +23,6 @@
     <component>button_conditioner.luc</component>
     <src>game_miniRegfiles.luc</src>
     <constraint lib="true">alchitry.acf</constraint>
-    <constraint lib="true">io.acf</constraint>
     <constraint lib="true">au.xdc</constraint>
     <constraint>custom.acf</constraint>
   </files>

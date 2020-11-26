@@ -3,7 +3,6 @@ module au_top (
     input rst_n,            // reset button (active low)
     output led [8],         // 8 user controllable LEDs
     output io_led [3][8],   // LEDs on IO Shield
-    input io_button [5],    // 5 buttons on IO Shield
     // io_button[0] is up, io_button[1] is center, io_button[2] is down, io_button[3] is left, and io_button[4] is right.
     input usb_rx,           // USB->Serial input
     output usb_tx,          // USB->Serial output

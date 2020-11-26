@@ -74,7 +74,6 @@ set rc [catch {
   set_property ip_cache_permissions {read write} [current_project]
   add_files -quiet C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1/au_top_0.dcp
   read_xdc C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc
-  read_xdc C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/constraint/io.xdc
   read_xdc {{C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc}}
   read_xdc C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/constraint/custom.xdc
   link_design -top au_top_0 -part xc7a35tftg256-1

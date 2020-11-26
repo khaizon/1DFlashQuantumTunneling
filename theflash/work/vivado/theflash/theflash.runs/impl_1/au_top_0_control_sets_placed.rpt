@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (win64) Build 2405991 Thu Dec  6 23:38:27 MST 2018
-| Date         : Thu Nov 26 15:55:00 2020
+| Date         : Thu Nov 26 18:11:39 2020
 | Host         : DESKTOP-LEHPGBB running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file au_top_0_control_sets_placed.rpt
 | Design       : au_top_0
@@ -49,12 +49,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              11 |            9 |
+| No           | No                    | No                     |              11 |            8 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              76 |           20 |
-| Yes          | No                    | No                     |               7 |            6 |
+| No           | Yes                   | No                     |              76 |           22 |
+| Yes          | No                    | No                     |               7 |            7 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             500 |          202 |
+| Yes          | Yes                   | No                     |             500 |          221 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -65,40 +65,40 @@ Table of Contents
 |  Clock Signal  |                            Enable Signal                            |           Set/Reset Signal           | Slice Load Count | Bel Load Count |
 +----------------+---------------------------------------------------------------------+--------------------------------------+------------------+----------------+
 |  clk_IBUF_BUFG |                                                                     | reset_cond/M_reset_cond_in           |                2 |              4 |
-|  clk_IBUF_BUFG | led_strip/M_bit_ctr_q[4]_i_1_n_0                                    | reset_cond/Q[0]                      |                1 |              5 |
-|  clk_IBUF_BUFG | led_strip/M_pixel_ctr_q[4]_i_1_n_0                                  | reset_cond/Q[0]                      |                3 |              5 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/FSM_sequential_M_game_fsm_q[6]_i_1_n_0 |                                      |                6 |              7 |
+|  clk_IBUF_BUFG | led_strip/M_bit_ctr_q[4]_i_1_n_0                                    | reset_cond/Q[0]                      |                2 |              5 |
+|  clk_IBUF_BUFG | led_strip/M_pixel_ctr_q[4]_i_1_n_0                                  | reset_cond/Q[0]                      |                2 |              5 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/FSM_sequential_M_game_fsm_q[6]_i_1_n_0 |                                      |                7 |              7 |
 |  clk_IBUF_BUFG | led_strip/M_state_d                                                 | reset_cond/Q[0]                      |                2 |              7 |
-|  clk_IBUF_BUFG |                                                                     |                                      |                9 |             11 |
+|  clk_IBUF_BUFG |                                                                     |                                      |                8 |             11 |
 |  clk_IBUF_BUFG | led_strip/M_rst_ctr_q[0]_i_2_n_0                                    | led_strip/M_rst_ctr_q[0]_i_1_n_0     |                4 |             13 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_9[0]                  | reset_cond/Q[0]                      |                7 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/E[0]                                   | reset_cond/Q[0]                      |                7 |             16 |
 |  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_14[0]                 | reset_cond/Q[0]                      |                8 |             16 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_23[0]                 | reset_cond/Q[0]                      |                6 |             16 |
 |  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_10[0]                 | reset_cond/Q[0]                      |                7 |             16 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/E[0]                                   | reset_cond/Q[0]                      |                6 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_23[0]                 | reset_cond/Q[0]                      |                5 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_9[0]                  | reset_cond/Q[0]                      |                6 |             16 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_26[0]                 | reset_cond/Q[0]                      |                9 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_30[0]                 | reset_cond/Q[0]                      |               10 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_15[0]                 | reset_cond/Q[0]                      |                9 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_20[0]                 | reset_cond/Q[0]                      |                8 |             17 |
 |  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_12[0]                 | reset_cond/Q[0]                      |                6 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_13[0]                 | reset_cond/Q[0]                      |                9 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_17[0]                 | reset_cond/Q[0]                      |               11 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_25[0]                 | reset_cond/Q[0]                      |               12 |             17 |
 |  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_19[0]                 | reset_cond/Q[0]                      |                5 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_24[0]                 | reset_cond/Q[0]                      |                9 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_18[0]                 | reset_cond/Q[0]                      |                7 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_11[0]                 | reset_cond/Q[0]                      |               11 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_27[0]                 | reset_cond/Q[0]                      |                7 |             17 |
 |  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_21[0]                 | reset_cond/Q[0]                      |                7 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_31[0]                 | reset_cond/Q[0]                      |               10 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_27[0]                 | reset_cond/Q[0]                      |                6 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_25[0]                 | reset_cond/Q[0]                      |               11 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_11[0]                 | reset_cond/Q[0]                      |                7 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_18[0]                 | reset_cond/Q[0]                      |                9 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_26[0]                 | reset_cond/Q[0]                      |                6 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_30[0]                 | reset_cond/Q[0]                      |                5 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_28[0]                 | reset_cond/Q[0]                      |                7 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_22[0]                 | reset_cond/Q[0]                      |               10 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_16[0]                 | reset_cond/Q[0]                      |                6 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_15[0]                 | reset_cond/Q[0]                      |                6 |             17 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_20[0]                 | reset_cond/Q[0]                      |                5 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_16[0]                 | reset_cond/Q[0]                      |               11 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_24[0]                 | reset_cond/Q[0]                      |                6 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_28[0]                 | reset_cond/Q[0]                      |                8 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_17[0]                 | reset_cond/Q[0]                      |                8 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_13[0]                 | reset_cond/Q[0]                      |                7 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_31[0]                 | reset_cond/Q[0]                      |               14 |             17 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_22[0]                 | reset_cond/Q[0]                      |                7 |             17 |
 |  clk_IBUF_BUFG | btn_cond_down/M_ctr_q[0]_i_2__2_n_0                                 | btn_cond_down/sync/M_pipe_q_reg[1]_0 |                5 |             20 |
 |  clk_IBUF_BUFG | btn_cond_mid/M_ctr_q[0]_i_2__3_n_0                                  | btn_cond_mid/sync/M_pipe_q_reg[1]_0  |                5 |             20 |
 |  clk_IBUF_BUFG | btn_cond_up/sel                                                     | btn_cond_up/sync/clear               |                5 |             20 |
-|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_29[0]                 | reset_cond/Q[0]                      |                8 |             24 |
-|  clk_IBUF_BUFG |                                                                     | reset_cond/Q[0]                      |               18 |             72 |
+|  clk_IBUF_BUFG | gameMachine/game_controlunit/M_stage_q_reg[3]_29[0]                 | reset_cond/Q[0]                      |               11 |             24 |
+|  clk_IBUF_BUFG |                                                                     | reset_cond/Q[0]                      |               20 |             72 |
 +----------------+---------------------------------------------------------------------+--------------------------------------+------------------+----------------+
 
 

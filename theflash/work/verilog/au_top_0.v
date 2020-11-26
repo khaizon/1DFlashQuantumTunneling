@@ -9,7 +9,6 @@ module au_top_0 (
     input rst_n,
     output reg [7:0] led,
     output reg [23:0] io_led,
-    input [4:0] io_button,
     input usb_rx,
     output reg usb_tx,
     output reg [7:0] io_seg,
