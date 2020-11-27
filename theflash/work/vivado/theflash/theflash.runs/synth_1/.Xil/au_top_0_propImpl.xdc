@@ -1,5 +1,5 @@
-set_property SRC_FILE_INFO {cfile:C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc rfile:../../../../../constraint/alchitry.xdc id:1} [current_design]
-set_property SRC_FILE_INFO {cfile:C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/constraint/custom.xdc rfile:../../../../../constraint/custom.xdc id:2} [current_design]
+set_property SRC_FILE_INFO {cfile:C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc rfile:../../../../../constraint/alchitry.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/custom.xdc rfile:../../../../../constraint/custom.xdc id:2} [current_design]
 set_property src_info {type:XDC file:1 line:3 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN N14 [get_ports {clk}]
 set_property src_info {type:XDC file:1 line:5 export:INPUT save:INPUT read:READ} [current_design]

@@ -39,7 +39,11 @@ module entities_handler (
   
     //displays all green if player wins and all red if player loses.
     if (playerwon[0] == b1){
-      if (lives_left[0] == b0){out = 32x{{24hFF0000}};}
-      else {out = 32x{{24h00FF00}};}
+      if (lives_left[1:0] != b00) {
+        out = 32x{{24h0000FF}};}
+      else {
+        out = 32x{{24h00FF00}};
+        out[playerposition[4:0]] = hFF0000;
+      }
     }
 }

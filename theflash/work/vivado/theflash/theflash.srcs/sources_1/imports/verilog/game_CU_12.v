@@ -884,7 +884,7 @@ module game_CU_12 (
           control_sig_ra = 5'h00;
           control_sig_rb = 5'h00;
           control_sig_rc = 5'h16;
-          control_sig_wdsel = 2'h3;
+          control_sig_wdsel = 2'h0;
           if (reset_pressed) begin
             M_game_fsm_d = RESET_PP_game_fsm;
           end
@@ -1218,7 +1218,7 @@ module game_CU_12 (
           state_number = 7'h4f;
           control_sig_alufn = 6'h00;
           control_sig_asel = 2'h2;
-          control_sig_bsel = 2'h0;
+          control_sig_bsel = 2'h1;
           control_sig_write_enable = 1'h1;
           control_sig_ra = 5'h00;
           control_sig_rb = 5'h00;

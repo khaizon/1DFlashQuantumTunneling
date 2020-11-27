@@ -42,10 +42,11 @@ module entities_handler_8 (
     end
     out[(playerposition[0+4-:5])*24+23-:24] = 24'hff0000;
     if (playerwon[0+0-:1] == 1'h1) begin
-      if (lives_left[0+0-:1] == 1'h0) begin
-        out = 768'hff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000;
+      if (lives_left[0+1-:2] != 2'h0) begin
+        out = 768'h0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff;
       end else begin
         out = 768'h00ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff0000ff00;
+        out[(playerposition[0+4-:5])*24+23-:24] = 24'hff0000;
       end
     end
   end

@@ -3,55 +3,58 @@
     with args -log au_top_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source au_top_0.tcl
 
 
-****** Vivado v2018.3 (64-bit)
-  **** SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
-  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+****** Vivado v2020.1 (64-bit)
+  **** SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+  **** IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 
 source au_top_0.tcl -notrace
 Command: synth_design -top au_top_0 -part xc7a35tftg256-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
-INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 33968 
+INFO: [Device 21-403] Loading part xc7a35tftg256-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 31392
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 340.074 ; gain = 92.516
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1016.168 ; gain = 0.000
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'au_top_0' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/au_top_0.v:7]
-INFO: [Synth 8-6157] synthesizing module 'ws2812b_writer_1' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/ws2812b_writer_1.v:11]
+INFO: [Synth 8-6157] synthesizing module 'au_top_0' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/au_top_0.v:7]
+INFO: [Synth 8-6157] synthesizing module 'ws2812b_writer_1' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/ws2812b_writer_1.v:11]
 	Parameter PIXEL_COUNT bound to: 6'b100000 
 	Parameter SEND_PIXEL_state bound to: 1'b0 
 	Parameter RESET_state bound to: 1'b1 
-INFO: [Synth 8-6155] done synthesizing module 'ws2812b_writer_1' (1#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/ws2812b_writer_1.v:11]
-INFO: [Synth 8-6157] synthesizing module 'reset_conditioner_2' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/reset_conditioner_2.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'ws2812b_writer_1' (1#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/ws2812b_writer_1.v:11]
+INFO: [Synth 8-6157] synthesizing module 'reset_conditioner_2' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/reset_conditioner_2.v:11]
 	Parameter STAGES bound to: 3'b100 
-INFO: [Synth 8-6155] done synthesizing module 'reset_conditioner_2' (2#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/reset_conditioner_2.v:11]
-INFO: [Synth 8-6157] synthesizing module 'edge_detector_3' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/edge_detector_3.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'reset_conditioner_2' (2#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/reset_conditioner_2.v:11]
+INFO: [Synth 8-6157] synthesizing module 'edge_detector_3' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/edge_detector_3.v:12]
 	Parameter RISE bound to: 1'b1 
 	Parameter FALL bound to: 1'b0 
-INFO: [Synth 8-6155] done synthesizing module 'edge_detector_3' (3#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/edge_detector_3.v:12]
-INFO: [Synth 8-6157] synthesizing module 'button_conditioner_4' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/button_conditioner_4.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'edge_detector_3' (3#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/edge_detector_3.v:12]
+INFO: [Synth 8-6157] synthesizing module 'button_conditioner_4' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/button_conditioner_4.v:13]
 	Parameter CLK_FREQ bound to: 26'b10111110101111000010000000 
 	Parameter MIN_DELAY bound to: 5'b10100 
 	Parameter NUM_SYNC bound to: 2'b10 
-INFO: [Synth 8-6157] synthesizing module 'pipeline_10' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/pipeline_10.v:11]
+INFO: [Synth 8-6157] synthesizing module 'pipeline_10' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/pipeline_10.v:11]
 	Parameter DEPTH bound to: 2'b10 
-INFO: [Synth 8-6155] done synthesizing module 'pipeline_10' (4#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/pipeline_10.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'button_conditioner_4' (5#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/button_conditioner_4.v:13]
-INFO: [Synth 8-6157] synthesizing module 'game_customBeta_5' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_5.v:7]
-INFO: [Synth 8-6157] synthesizing module 'alu_16_bit_11' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_11.v:7]
-INFO: [Synth 8-6157] synthesizing module 'alu_arithmetic_19' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_arithmetic_19.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'alu_arithmetic_19' (6#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_arithmetic_19.v:7]
-INFO: [Synth 8-6157] synthesizing module 'alu_boolean_20' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_boolean_20.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'alu_boolean_20' (7#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_boolean_20.v:7]
-INFO: [Synth 8-6157] synthesizing module 'alu_compare_21' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_compare_21.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'alu_compare_21' (8#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_compare_21.v:7]
-INFO: [Synth 8-6157] synthesizing module 'alu_shifter_22' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_shifter_22.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'alu_shifter_22' (9#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_shifter_22.v:7]
-INFO: [Synth 8-226] default block is never used [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_11.v:92]
-INFO: [Synth 8-6155] done synthesizing module 'alu_16_bit_11' (10#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_11.v:7]
-INFO: [Synth 8-6157] synthesizing module 'game_CU_12' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_12.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'pipeline_10' (4#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/pipeline_10.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'button_conditioner_4' (5#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/button_conditioner_4.v:13]
+INFO: [Synth 8-6157] synthesizing module 'game_customBeta_5' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_5.v:7]
+INFO: [Synth 8-6157] synthesizing module 'alu_16_bit_11' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_11.v:7]
+INFO: [Synth 8-6157] synthesizing module 'alu_arithmetic_19' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_arithmetic_19.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'alu_arithmetic_19' (6#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_arithmetic_19.v:7]
+INFO: [Synth 8-6157] synthesizing module 'alu_boolean_20' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_boolean_20.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'alu_boolean_20' (7#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_boolean_20.v:7]
+INFO: [Synth 8-6157] synthesizing module 'alu_compare_21' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_compare_21.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'alu_compare_21' (8#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_compare_21.v:7]
+INFO: [Synth 8-6157] synthesizing module 'alu_shifter_22' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_shifter_22.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'alu_shifter_22' (9#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_shifter_22.v:7]
+INFO: [Synth 8-226] default block is never used [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_11.v:92]
+INFO: [Synth 8-6155] done synthesizing module 'alu_16_bit_11' (10#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_16_bit_11.v:7]
+INFO: [Synth 8-6157] synthesizing module 'game_CU_12' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_12.v:7]
 	Parameter IDLE_game_fsm bound to: 7'b0000000 
 	Parameter CHECK_PP_game_fsm bound to: 7'b0000001 
 	Parameter PP_PLUS_game_fsm bound to: 7'b0000010 
@@ -148,257 +151,104 @@ INFO: [Synth 8-6157] synthesizing module 'game_CU_12' [C:/Users/kaife/OneDrive/D
 	Parameter RESET_E9_game_fsm bound to: 7'b1011101 
 	Parameter RESET_E10_game_fsm bound to: 7'b1011110 
 	Parameter RESET_E11_game_fsm bound to: 7'b1011111 
-INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_12.v:149]
-INFO: [Synth 8-6155] done synthesizing module 'game_CU_12' (11#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_12.v:7]
-INFO: [Synth 8-6157] synthesizing module 'game_miniRegfiles_13' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_13.v:7]
-INFO: [Synth 8-226] default block is never used [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_13.v:218]
-INFO: [Synth 8-226] default block is never used [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_13.v:320]
-INFO: [Synth 8-6155] done synthesizing module 'game_miniRegfiles_13' (12#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_13.v:7]
-INFO: [Synth 8-6157] synthesizing module 'counter_14' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_14.v:14]
+INFO: [Synth 8-155] case statement is not full and has no default [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_12.v:149]
+INFO: [Synth 8-6155] done synthesizing module 'game_CU_12' (11#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_CU_12.v:7]
+INFO: [Synth 8-6157] synthesizing module 'game_miniRegfiles_13' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_13.v:7]
+INFO: [Synth 8-226] default block is never used [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_13.v:218]
+INFO: [Synth 8-226] default block is never used [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_13.v:320]
+INFO: [Synth 8-6155] done synthesizing module 'game_miniRegfiles_13' (12#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_miniRegfiles_13.v:7]
+INFO: [Synth 8-6157] synthesizing module 'counter_14' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_14.v:14]
 	Parameter SIZE bound to: 1'b1 
 	Parameter DIV bound to: 5'b11010 
 	Parameter TOP bound to: 1'b0 
 	Parameter UP bound to: 1'b1 
 	Parameter MAX_VALUE bound to: 27'b011111111111111111111111111 
-INFO: [Synth 8-6155] done synthesizing module 'counter_14' (13#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_14.v:14]
-INFO: [Synth 8-6157] synthesizing module 'counter_15' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_15.v:14]
+INFO: [Synth 8-6155] done synthesizing module 'counter_14' (13#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_14.v:14]
+INFO: [Synth 8-6157] synthesizing module 'counter_15' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_15.v:14]
 	Parameter SIZE bound to: 1'b1 
 	Parameter DIV bound to: 5'b11001 
 	Parameter TOP bound to: 1'b0 
 	Parameter UP bound to: 1'b1 
 	Parameter MAX_VALUE bound to: 26'b01111111111111111111111111 
-INFO: [Synth 8-6155] done synthesizing module 'counter_15' (14#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_15.v:14]
-INFO: [Synth 8-226] default block is never used [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_5.v:217]
-INFO: [Synth 8-226] default block is never used [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_5.v:235]
-INFO: [Synth 8-6155] done synthesizing module 'game_customBeta_5' (15#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_5.v:7]
-INFO: [Synth 8-6157] synthesizing module 'multi_seven_seg_6' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/multi_seven_seg_6.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'counter_15' (14#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_15.v:14]
+INFO: [Synth 8-226] default block is never used [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_5.v:217]
+INFO: [Synth 8-226] default block is never used [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_5.v:235]
+INFO: [Synth 8-6155] done synthesizing module 'game_customBeta_5' (15#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/game_customBeta_5.v:7]
+INFO: [Synth 8-6157] synthesizing module 'multi_seven_seg_6' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/multi_seven_seg_6.v:12]
 	Parameter DIGITS bound to: 3'b100 
 	Parameter DIV bound to: 5'b10000 
 	Parameter DIGIT_BITS bound to: 2'b10 
-INFO: [Synth 8-6157] synthesizing module 'counter_16' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_16.v:14]
+INFO: [Synth 8-6157] synthesizing module 'counter_16' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_16.v:14]
 	Parameter SIZE bound to: 2'b10 
 	Parameter DIV bound to: 5'b10000 
 	Parameter TOP bound to: 4'b0011 
 	Parameter UP bound to: 1'b1 
 	Parameter MAX_VALUE bound to: 20'b00111111111111111111 
-INFO: [Synth 8-6155] done synthesizing module 'counter_16' (16#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_16.v:14]
-INFO: [Synth 8-6157] synthesizing module 'seven_seg_17' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/seven_seg_17.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'seven_seg_17' (17#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/seven_seg_17.v:7]
-INFO: [Synth 8-6157] synthesizing module 'decoder_18' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/decoder_18.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'counter_16' (16#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/counter_16.v:14]
+INFO: [Synth 8-6157] synthesizing module 'seven_seg_17' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/seven_seg_17.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'seven_seg_17' (17#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/seven_seg_17.v:7]
+INFO: [Synth 8-6157] synthesizing module 'decoder_18' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/decoder_18.v:11]
 	Parameter WIDTH bound to: 2'b10 
-INFO: [Synth 8-6155] done synthesizing module 'decoder_18' (18#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/decoder_18.v:11]
-INFO: [Synth 8-6155] done synthesizing module 'multi_seven_seg_6' (19#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/multi_seven_seg_6.v:12]
-INFO: [Synth 8-6157] synthesizing module 'converter_7' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/converter_7.v:7]
-WARNING: [Synth 8-3936] Found unconnected internal register 'diff2_reg' and it is trimmed from '5' to '4' bits. [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/converter_7.v:23]
-WARNING: [Synth 8-3936] Found unconnected internal register 'diff_reg' and it is trimmed from '5' to '4' bits. [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/converter_7.v:21]
-INFO: [Synth 8-6155] done synthesizing module 'converter_7' (20#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/converter_7.v:7]
-INFO: [Synth 8-6157] synthesizing module 'entities_handler_8' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/entities_handler_8.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'entities_handler_8' (21#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/entities_handler_8.v:7]
-INFO: [Synth 8-6157] synthesizing module 'lives_and_levels_9' [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/lives_and_levels_9.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'lives_and_levels_9' (22#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/lives_and_levels_9.v:7]
-INFO: [Synth 8-6155] done synthesizing module 'au_top_0' (23#1) [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/au_top_0.v:7]
-WARNING: [Synth 8-3917] design au_top_0 has port led[7] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[6] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[5] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[4] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[3] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[2] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[1] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[0] driven by constant 0
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerposition[15]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerposition[14]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerposition[13]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerposition[12]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerposition[11]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerposition[10]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerposition[9]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerposition[8]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerposition[7]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerposition[6]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerposition[5]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[14]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[13]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[12]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[11]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[10]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[9]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[8]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[7]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[6]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[5]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[4]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[3]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[2]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[1]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e6position[0]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[14]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[13]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[12]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[11]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[10]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[9]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[8]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[7]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[6]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[5]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[4]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[3]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[2]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[1]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e11position[0]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[14]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[13]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[12]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[11]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[10]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[9]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[8]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[7]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[6]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[5]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[4]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[3]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[2]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[1]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port e16position[0]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[15]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[14]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[13]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[12]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[11]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[10]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[9]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[8]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[7]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[6]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[5]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[4]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[3]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[2]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port playerwon[1]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[15]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[14]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[13]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[12]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[11]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[10]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[9]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[8]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[7]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[6]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[5]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[4]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[3]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[2]
-WARNING: [Synth 8-3331] design entities_handler_8 has unconnected port lives_left[1]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port pp[15]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port pp[14]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port pp[13]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port pp[12]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port pp[11]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port pp[10]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port pp[9]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port pp[8]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port pp[7]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port pp[6]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port pp[5]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port lives[15]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port lives[14]
-WARNING: [Synth 8-3331] design converter_7 has unconnected port lives[13]
-INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-6155] done synthesizing module 'decoder_18' (18#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/decoder_18.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'multi_seven_seg_6' (19#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/multi_seven_seg_6.v:12]
+INFO: [Synth 8-6157] synthesizing module 'converter_7' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/converter_7.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'converter_7' (20#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/converter_7.v:7]
+INFO: [Synth 8-6157] synthesizing module 'entities_handler_8' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/entities_handler_8.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'entities_handler_8' (21#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/entities_handler_8.v:7]
+INFO: [Synth 8-6157] synthesizing module 'lives_and_levels_9' [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/lives_and_levels_9.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'lives_and_levels_9' (22#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/lives_and_levels_9.v:7]
+INFO: [Synth 8-6155] done synthesizing module 'au_top_0' (23#1) [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/au_top_0.v:7]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 398.285 ; gain = 150.727
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1016.168 ; gain = 0.000
 ---------------------------------------------------------------------------------
-
-Report Check Netlist: 
-+------+------------------+-------+---------+-------+------------------+
-|      |Item              |Errors |Warnings |Status |Description       |
-+------+------------------+-------+---------+-------+------------------+
-|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
-+------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 398.285 ; gain = 150.727
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1016.168 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 398.285 ; gain = 150.727
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1016.168 ; gain = 0.000
 ---------------------------------------------------------------------------------
-INFO: [Device 21-403] Loading part xc7a35tftg256-1
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.054 . Memory (MB): peak = 1016.168 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]
-Finished Parsing XDC File [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/au_top_0_propImpl.xdc].
+Parsing XDC File [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]
+Finished Parsing XDC File [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/alchitry.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/au_top_0_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/au_top_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc]
 Finished Parsing XDC File [C:/Program Files/Alchitry/Alchitry Labs/library/components/au.xdc]
-Parsing XDC File [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/constraint/custom.xdc]
-Finished Parsing XDC File [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/constraint/custom.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/constraint/custom.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/au_top_0_propImpl.xdc].
+Parsing XDC File [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/custom.xdc]
+Finished Parsing XDC File [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/custom.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/constraint/custom.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/au_top_0_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/au_top_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 747.340 ; gain = 0.000
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 747.340 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1016.168 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 747.340 ; gain = 0.000
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.015 . Memory (MB): peak = 747.340 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1016.168 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 747.340 ; gain = 499.781
+Finished Constraint Validation : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1016.168 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tftg256-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 747.340 ; gain = 499.781
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1016.168 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 747.340 ; gain = 499.781
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1016.168 ; gain = 0.000
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-5546] ROM "M_pixel_ctr_d" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "M_bit_ctr_d" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "M_state_d" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.srcs/sources_1/imports/verilog/alu_arithmetic_19.v:23]
 INFO: [Synth 8-802] inferred FSM for state register 'M_game_fsm_q_reg' in module 'game_CU_12'
-INFO: [Synth 8-5546] ROM "control_sig_wdsel" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "control_sig_ra" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "control_sig_bsel" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "control_sig_asel" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "M_game_fsm_d" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -500,24 +350,17 @@ RESET_SLOW_COUNTER_game_fsm |                          1010001 |                
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'M_game_fsm_q_reg' using encoding 'sequential' in module 'game_CU_12'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 747.340 ; gain = 499.781
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1016.168 ; gain = 0.000
 ---------------------------------------------------------------------------------
-
-Report RTL Partitions: 
-+-+--------------+------------+----------+
-| |RTL Partition |Replication |Instances |
-+-+--------------+------------+----------+
-+-+--------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     18 Bit       Adders := 1     
-	   3 Input     16 Bit       Adders := 2     
-	   2 Input     11 Bit       Adders := 1     
-	   2 Input      7 Bit       Adders := 1     
-	   2 Input      5 Bit       Adders := 2     
+	   2 Input   18 Bit       Adders := 1     
+	   3 Input   16 Bit       Adders := 2     
+	   2 Input    7 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 2     
 +---XORs : 
 	   2 Input     16 Bit         XORs := 1     
 	   2 Input      1 Bit         XORs := 1     
@@ -530,140 +373,30 @@ Detailed RTL Component Info :
 	                2 Bit    Registers := 3     
 	                1 Bit    Registers := 6     
 +---Muxes : 
-	   2 Input    768 Bit        Muxes := 2     
-	   3 Input    768 Bit        Muxes := 1     
-	   2 Input    592 Bit        Muxes := 1     
-	   2 Input     18 Bit        Muxes := 1     
-	   2 Input     16 Bit        Muxes := 5     
-	   5 Input     16 Bit        Muxes := 2     
-	   4 Input     16 Bit        Muxes := 6     
-	  95 Input     16 Bit        Muxes := 1     
-	  32 Input     16 Bit        Muxes := 2     
-	   2 Input      7 Bit        Muxes := 2     
-	  95 Input      7 Bit        Muxes := 1     
-	 126 Input      7 Bit        Muxes := 1     
-	  95 Input      6 Bit        Muxes := 1     
-	   2 Input      6 Bit        Muxes := 1     
-	   2 Input      5 Bit        Muxes := 5     
-	  95 Input      5 Bit        Muxes := 3     
-	   4 Input      4 Bit        Muxes := 1     
-	   4 Input      3 Bit        Muxes := 2     
-	  95 Input      2 Bit        Muxes := 3     
-	   2 Input      2 Bit        Muxes := 3     
-	   2 Input      1 Bit        Muxes := 16    
-	  95 Input      1 Bit        Muxes := 2     
-	  32 Input      1 Bit        Muxes := 30    
+	   2 Input  768 Bit        Muxes := 4     
+	   2 Input  592 Bit        Muxes := 1     
+	   2 Input   18 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 5     
+	   5 Input   16 Bit        Muxes := 2     
+	   4 Input   16 Bit        Muxes := 6     
+	  95 Input   16 Bit        Muxes := 1     
+	  32 Input   16 Bit        Muxes := 2     
+	   2 Input    7 Bit        Muxes := 2     
+	  95 Input    7 Bit        Muxes := 1     
+	 126 Input    7 Bit        Muxes := 1     
+	  95 Input    6 Bit        Muxes := 1     
+	   2 Input    6 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 5     
+	  95 Input    5 Bit        Muxes := 3     
+	   4 Input    4 Bit        Muxes := 1     
+	   4 Input    3 Bit        Muxes := 2     
+	  95 Input    2 Bit        Muxes := 2     
+	   2 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 16    
+	  95 Input    1 Bit        Muxes := 2     
+	  32 Input    1 Bit        Muxes := 30    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start RTL Hierarchical Component Statistics 
----------------------------------------------------------------------------------
-Hierarchical RTL Component report 
-Module ws2812b_writer_1 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input      7 Bit       Adders := 1     
-	   2 Input      5 Bit       Adders := 2     
-+---Registers : 
-	                7 Bit    Registers := 1     
-	                5 Bit    Registers := 2     
-	                1 Bit    Registers := 1     
-+---Muxes : 
-	   2 Input      7 Bit        Muxes := 1     
-	   2 Input      5 Bit        Muxes := 2     
-	   2 Input      1 Bit        Muxes := 15    
-Module reset_conditioner_2 
-Detailed RTL Component Info : 
-+---Registers : 
-	                4 Bit    Registers := 1     
-Module edge_detector_3 
-Detailed RTL Component Info : 
-+---Registers : 
-	                1 Bit    Registers := 1     
-Module pipeline_10 
-Detailed RTL Component Info : 
-+---Registers : 
-	                2 Bit    Registers := 1     
-Module alu_arithmetic_19 
-Detailed RTL Component Info : 
-+---Adders : 
-	   3 Input     16 Bit       Adders := 2     
-+---XORs : 
-	   2 Input      1 Bit         XORs := 1     
-+---Muxes : 
-	   2 Input     16 Bit        Muxes := 3     
-	   5 Input     16 Bit        Muxes := 2     
-Module alu_boolean_20 
-Detailed RTL Component Info : 
-+---XORs : 
-	   2 Input     16 Bit         XORs := 1     
-Module alu_compare_21 
-Detailed RTL Component Info : 
-+---Muxes : 
-	   4 Input     16 Bit        Muxes := 1     
-	   2 Input     16 Bit        Muxes := 1     
-Module alu_shifter_22 
-Detailed RTL Component Info : 
-+---Muxes : 
-	   4 Input     16 Bit        Muxes := 1     
-Module alu_16_bit_11 
-Detailed RTL Component Info : 
-+---Muxes : 
-	   4 Input     16 Bit        Muxes := 1     
-Module game_CU_12 
-Detailed RTL Component Info : 
-+---Muxes : 
-	  95 Input     16 Bit        Muxes := 1     
-	   2 Input     16 Bit        Muxes := 1     
-	  95 Input      7 Bit        Muxes := 1     
-	 126 Input      7 Bit        Muxes := 1     
-	   2 Input      7 Bit        Muxes := 1     
-	  95 Input      6 Bit        Muxes := 1     
-	   2 Input      6 Bit        Muxes := 1     
-	  95 Input      5 Bit        Muxes := 3     
-	   2 Input      5 Bit        Muxes := 3     
-	  95 Input      2 Bit        Muxes := 3     
-	   2 Input      2 Bit        Muxes := 3     
-	  95 Input      1 Bit        Muxes := 2     
-Module game_miniRegfiles_13 
-Detailed RTL Component Info : 
-+---Registers : 
-	               16 Bit    Registers := 32    
-+---Muxes : 
-	  32 Input     16 Bit        Muxes := 2     
-	  32 Input      1 Bit        Muxes := 30    
-	   2 Input      1 Bit        Muxes := 1     
-Module game_customBeta_5 
-Detailed RTL Component Info : 
-+---Muxes : 
-	   4 Input     16 Bit        Muxes := 3     
-Module counter_16 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input     18 Bit       Adders := 1     
-+---Registers : 
-	               18 Bit    Registers := 1     
-+---Muxes : 
-	   2 Input     18 Bit        Muxes := 1     
-Module multi_seven_seg_6 
-Detailed RTL Component Info : 
-+---Muxes : 
-	   4 Input      4 Bit        Muxes := 1     
-Module entities_handler_8 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input     11 Bit       Adders := 1     
-+---Muxes : 
-	   2 Input    768 Bit        Muxes := 2     
-	   3 Input    768 Bit        Muxes := 1     
-	   2 Input    592 Bit        Muxes := 1     
-Module lives_and_levels_9 
-Detailed RTL Component Info : 
-+---Muxes : 
-	   4 Input      3 Bit        Muxes := 2     
----------------------------------------------------------------------------------
-Finished RTL Hierarchical Component Statistics
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Part Resource Summary
@@ -677,148 +410,18 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-Warning: Parallel synthesis criteria is not met 
 DSP Report: Generating DSP arithmeticUnit/s1, operation Mode is: A*B.
 DSP Report: operator arithmeticUnit/s1 is absorbed into DSP arithmeticUnit/s1.
 DSP Report: Generating DSP arithmeticUnit/s0, operation Mode is: A*B.
 DSP Report: operator arithmeticUnit/s0 is absorbed into DSP arithmeticUnit/s0.
-WARNING: [Synth 8-3917] design au_top_0 has port led[7] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[6] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[5] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[4] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[3] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[2] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[1] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port led[0] driven by constant 0
-WARNING: [Synth 8-3917] design au_top_0 has port io_seg[7] driven by constant 1
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[11]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[11]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[11]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[11]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[11]' (FDRE) to 'gameMachine/memory/M_temp_reg7_q_reg[11]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[11]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_temp_reg7_q_reg[11] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (gameMachine/\memory/M_player_score_q_reg[11] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[10]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[10]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[10]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[10]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[10]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[10]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[10]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[10]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[10]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[10]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[10]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[10]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_player_score_q_reg[10] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[9]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[9]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[9]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[9]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[9]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[9]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[9]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[9]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[9]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[9]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[9]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[9]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_player_score_q_reg[9] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[8]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[8]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[8]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[8]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[8]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[8]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[8]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_player_score_q_reg[8] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[12]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[12]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[12]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[12]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[12]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[12]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[12]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[12]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[12]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[12]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[12]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[12]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_player_score_q_reg[12] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[13]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[13]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[13]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[13]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[13]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[13]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[13]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_player_score_q_reg[13] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[14]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[14]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[14]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[14]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[14]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[14]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[14]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[14]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[14]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[14]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[14]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[14]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_player_score_q_reg[14] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_player_score_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[3]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg4_q_reg[3]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[3]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg4_q_reg[3]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg2_q_reg[3]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[3]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[3]' (FDRE) to 'gameMachine/memory/M_temp_reg3_q_reg[3]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_temp_reg3_q_reg[3] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_player_score_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[2]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg4_q_reg[2]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[2]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg4_q_reg[2]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg2_q_reg[2]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[2]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[2]' (FDRE) to 'gameMachine/memory/M_temp_reg3_q_reg[2]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_temp_reg3_q_reg[2] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[0]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[0]' (FDS) to 'gameMachine/memory/M_start_position_q_reg[15]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[0]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[0]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[0]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[0]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[0]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[1]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[0]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[0]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_player_score_q_reg[0] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_player_score_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[1]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg4_q_reg[1]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[1]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[4]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg4_q_reg[1]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg2_q_reg[1]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[1]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[4]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[1]' (FDRE) to 'gameMachine/memory/M_temp_reg3_q_reg[1]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_temp_reg3_q_reg[1] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[7]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[7]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[7]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[4]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[7]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[7]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[7]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[7]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[7]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[7]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[7]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[4]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[7]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[7]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_player_score_q_reg[7] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[6]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[6]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[6]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[4]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[6]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[6]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[6]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[6]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[6]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[6]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[6]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[4]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[6]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[6]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_player_score_q_reg[6] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg8_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg4_q_reg[4]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_start_position_q_reg[4]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[5]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg7_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg4_q_reg[4]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[4]' (FDRE) to 'gameMachine/memory/M_temp_reg2_q_reg[4]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[4]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[5]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[4]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[4]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg3_q_reg[4]' (FDRE) to 'gameMachine/memory/M_player_score_q_reg[4]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_player_score_q_reg[4] )
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg4_q_reg[5]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[5]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_always_one_q_reg[5]' (FDR) to 'gameMachine/memory/M_start_position_q_reg[5]'
-INFO: [Synth 8-3886] merging instance 'gameMachine/memory/M_temp_reg2_q_reg[5]' (FDRE) to 'gameMachine/memory/M_temp_reg8_q_reg[5]'
-INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_player_score_q_reg[5] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_always_one_q_reg[15] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (gameMachine/\memory/M_start_position_q_reg[15] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (gameMachine/\memory/M_player_score_q_reg[15] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:03 ; elapsed = 00:01:05 . Memory (MB): peak = 747.340 ; gain = 499.781
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 1016.168 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
 
-DSP: Preliminary Mapping  Report (see note below)
+DSP: Preliminary Mapping	Report (see note below)
 +------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 |Module Name       | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
 +------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
@@ -830,42 +433,24 @@ Note: The table above is a preliminary report that shows the DSPs inferred at th
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
-
-Report RTL Partitions: 
-+-+--------------+------------+----------+
-| |RTL Partition |Replication |Instances |
-+-+--------------+------------+----------+
-+-+--------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:19 ; elapsed = 00:01:22 . Memory (MB): peak = 786.555 ; gain = 538.996
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:44 ; elapsed = 00:00:44 . Memory (MB): peak = 1016.168 ; gain = 0.000
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:35 ; elapsed = 00:01:37 . Memory (MB): peak = 997.141 ; gain = 749.582
+Finished Timing Optimization : Time (s): cpu = 00:00:53 ; elapsed = 00:00:54 . Memory (MB): peak = 1228.328 ; gain = 212.160
 ---------------------------------------------------------------------------------
-
-Report RTL Partitions: 
-+-+--------------+------------+----------+
-| |RTL Partition |Replication |Instances |
-+-+--------------+------------+----------+
-+-+--------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:37 ; elapsed = 00:01:39 . Memory (MB): peak = 998.152 ; gain = 750.594
+Finished Technology Mapping : Time (s): cpu = 00:00:54 ; elapsed = 00:00:55 . Memory (MB): peak = 1238.324 ; gain = 222.156
 ---------------------------------------------------------------------------------
-
-Report RTL Partitions: 
-+-+--------------+------------+----------+
-| |RTL Partition |Replication |Instances |
-+-+--------------+------------+----------+
-+-+--------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start IO Insertion
 ---------------------------------------------------------------------------------
@@ -882,50 +467,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:38 ; elapsed = 00:01:41 . Memory (MB): peak = 998.152 ; gain = 750.594
+Finished IO Insertion : Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 1238.324 ; gain = 222.156
 ---------------------------------------------------------------------------------
-
-Report Check Netlist: 
-+------+------------------+-------+---------+-------+------------------+
-|      |Item              |Errors |Warnings |Status |Description       |
-+------+------------------+-------+---------+-------+------------------+
-|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
-+------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:38 ; elapsed = 00:01:41 . Memory (MB): peak = 998.152 ; gain = 750.594
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 1238.324 ; gain = 222.156
 ---------------------------------------------------------------------------------
-
-Report RTL Partitions: 
-+-+--------------+------------+----------+
-| |RTL Partition |Replication |Instances |
-+-+--------------+------------+----------+
-+-+--------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:39 ; elapsed = 00:01:41 . Memory (MB): peak = 998.152 ; gain = 750.594
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 1238.324 ; gain = 222.156
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:39 ; elapsed = 00:01:41 . Memory (MB): peak = 998.152 ; gain = 750.594
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 1238.324 ; gain = 222.156
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:39 ; elapsed = 00:01:41 . Memory (MB): peak = 998.152 ; gain = 750.594
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 1238.324 ; gain = 222.156
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:39 ; elapsed = 00:01:41 . Memory (MB): peak = 998.152 ; gain = 750.594
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 1238.324 ; gain = 222.156
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -942,73 +514,41 @@ Report Cell Usage:
 |      |Cell    |Count |
 +------+--------+------+
 |1     |BUFG    |     1|
-|2     |CARRY4  |   132|
-|3     |DSP48E1 |     1|
-|4     |LUT1    |    18|
-|5     |LUT2    |    86|
-|6     |LUT3    |   276|
-|7     |LUT4    |   111|
-|8     |LUT5    |   155|
-|9     |LUT6    |   428|
-|10    |MUXF7   |    56|
-|11    |MUXF8   |     9|
-|12    |FDRE    |   518|
-|13    |FDSE    |    50|
+|2     |CARRY4  |   130|
+|3     |DSP48E1 |     2|
+|4     |LUT1    |    23|
+|5     |LUT2    |    83|
+|6     |LUT3    |   298|
+|7     |LUT4    |    69|
+|8     |LUT5    |   174|
+|9     |LUT6    |   424|
+|10    |MUXF7   |    37|
+|11    |MUXF8   |     7|
+|12    |FDRE    |   517|
+|13    |FDSE    |    51|
 |14    |IBUF    |     6|
 |15    |OBUF    |    52|
 +------+--------+------+
-
-Report Instance Areas: 
-+------+------------------------+-----------------------+------+
-|      |Instance                |Module                 |Cells |
-+------+------------------------+-----------------------+------+
-|1     |top                     |                       |  1899|
-|2     |  btn_cond_down         |button_conditioner_4   |    36|
-|3     |    sync                |pipeline_10_7          |     3|
-|4     |  btn_cond_mid          |button_conditioner_4_0 |    36|
-|5     |    sync                |pipeline_10_6          |     3|
-|6     |  btn_cond_up           |button_conditioner_4_1 |    36|
-|7     |    sync                |pipeline_10            |     3|
-|8     |  edge_dt_btn_down      |edge_detector_3        |     1|
-|9     |  edge_dt_btn_mid       |edge_detector_3_2      |     1|
-|10    |  edge_dt_btn_up        |edge_detector_3_3      |     1|
-|11    |  gameMachine           |game_customBeta_5      |  1605|
-|12    |    fast_timer          |counter_15             |    35|
-|13    |    fast_timer_detector |edge_detector_3_4      |     1|
-|14    |    game_alu            |alu_16_bit_11          |    34|
-|15    |      arithmeticUnit    |alu_arithmetic_19      |    32|
-|16    |      compareUnit       |alu_compare_21         |     2|
-|17    |    game_controlunit    |game_CU_12             |   748|
-|18    |    memory              |game_miniRegfiles_13   |   747|
-|19    |    slow_timer          |counter_14             |    36|
-|20    |    slow_timer_detector |edge_detector_3_5      |     4|
-|21    |  led_strip             |ws2812b_writer_1       |    68|
-|22    |  reset_cond            |reset_conditioner_2    |     7|
-|23    |  test_display          |multi_seven_seg_6      |    49|
-|24    |    ctr                 |counter_16             |    49|
-+------+------------------------+-----------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:39 ; elapsed = 00:01:41 . Memory (MB): peak = 998.152 ; gain = 750.594
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:57 ; elapsed = 00:00:58 . Memory (MB): peak = 1238.324 ; gain = 222.156
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 119 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:24 ; elapsed = 00:01:32 . Memory (MB): peak = 998.152 ; gain = 401.539
-Synthesis Optimization Complete : Time (s): cpu = 00:01:39 ; elapsed = 00:01:42 . Memory (MB): peak = 998.152 ; gain = 750.594
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:50 ; elapsed = 00:00:56 . Memory (MB): peak = 1238.324 ; gain = 222.156
+Synthesis Optimization Complete : Time (s): cpu = 00:00:58 ; elapsed = 00:00:58 . Memory (MB): peak = 1238.324 ; gain = 222.156
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 198 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.025 . Memory (MB): peak = 1238.324 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 176 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 998.152 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1238.324 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-221 Infos, 119 Warnings, 0 Critical Warnings and 0 Errors encountered.
+70 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:43 ; elapsed = 00:01:45 . Memory (MB): peak = 998.152 ; gain = 750.594
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 998.152 ; gain = 0.000
-WARNING: [Constraints 18-5210] No constraints selected for write.
-Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
-INFO: [Common 17-1381] The checkpoint 'C:/Users/kaife/OneDrive/Desktop/alchitry/1D_Flash_Quantum_Tunneling/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1/au_top_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:01:03 ; elapsed = 00:01:04 . Memory (MB): peak = 1238.324 ; gain = 222.156
+INFO: [Common 17-1381] The checkpoint 'C:/Users/sqiya/OneDrive/Documents/GitHub/1DFlashQuantumTunneling/theflash/work/vivado/theflash/theflash.runs/synth_1/au_top_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file au_top_0_utilization_synth.rpt -pb au_top_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu Nov 26 18:10:05 2020...
+INFO: [Common 17-206] Exiting Vivado at Fri Nov 27 17:10:27 2020...
