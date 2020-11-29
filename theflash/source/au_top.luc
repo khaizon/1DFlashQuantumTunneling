@@ -41,7 +41,6 @@ module au_top (
     
   }
   converter converter;
-  entities_handler entities_hand;
   lives_and_levels lives_and_levels_handler;
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
@@ -54,11 +53,13 @@ module au_top (
     usb_tx = usb_rx;        // echo the serial data
     
     // Used the FPGA's LED to check whether the enemies are blinking correctly
+    // using FPGA's io_led s
     io_led = 3x{{8h00}};
     io_led[0] = c{gameMachine.slow_counter_time[7:0]};
     io_led[1] = c{gameMachine.e14position[15], gameMachine.e15position[15], gameMachine.e8position[15], gameMachine.e7position[15], gameMachine.e16position[15], gameMachine.e3position[15], gameMachine.e2position[15], gameMachine.e1position[15]};
     io_led[2] = c{gameMachine.e12position[15], gameMachine.e13position[15], gameMachine.e11position[15], gameMachine.e10position[15], gameMachine.e6position[15], gameMachine.e5position[15], gameMachine.e4position[15], gameMachine.e9position[15]};   
     
+    // smooth out button signals
     btn_cond_up.in      = customforward[0];          // to reduce the bouncing effects of the forward button 
     btn_cond_down.in    = custominbackward[0];       // to reduce the bouncing effects of the backward button 
     btn_cond_mid.in     = custominreset[0];          // to reduce the bouncing effects of the reset button 
@@ -82,27 +83,18 @@ module au_top (
     // for the monitoring of the player's position (pp), lives, and level
     // 'converter' modules help to process the binary values of PP, lives and level 
     // into a 4x8 array for the multi_seven module to process
-    converter.pp       = gameMachine.playerposition;      // Player's position into converter
-    converter.lives    = gameMachine.lives;               // Player's lives left into converter
-    converter.level    = gameMachine.level;               // Player's current level into converter
-    multi_seven.values = converter.out;                   // Parses the converter's output into the multi seven segment module
+    converter.pp       = gameMachine.playerposition;          // Player's position into converter
+    converter.lives    = gameMachine.lives;                   // Player's lives left into converter
+    converter.level    = gameMachine.level;                   // Player's current level into converter
+    multi_seven.values = converter.out;                       // Parses the converter's output into the multi seven segment module
     
-    io_seg             = ~multi_seven.seg;                // Delivers multi seven segment module's output 
-    io_sel             = ~multi_seven.sel;                // to io sel and io seg for multiseven segment display
+    io_seg             = ~multi_seven.seg;                    // Delivers multi seven segment module's output 
+    io_sel             = ~multi_seven.sel;                    // to io sel and io seg for multiseven segment display
     
-    // The "entities_handler" module takes in the required information required to be shown on the LED led_strip
-    // and outputs a 32bit x 24bit array for the LED driver (which converts that array into serial output)
-    entities_hand.e6position     = gameMachine.e6position;
-    entities_hand.e16position    = gameMachine.e16position;
-    entities_hand.e11position    = gameMachine.e11position;
-    entities_hand.playerposition = gameMachine.playerposition;
-    entities_hand.lives_left     = gameMachine.lives;
-    entities_hand.playerwon      = gameMachine.player_won;
-    
-    led_strip.color  = entities_hand.out[led_strip.pixel];
-    led_strip.update = 1;
-    outled           = led_strip.led;
-    
-    
+    // This portion retrieves 'ledOUT' from the modified "Beta" CPU
+    // for the LED strip driver to process   
+    led_strip.color  = gameMachine.ledOUT[led_strip.pixel];   // led_strip driver choose which pixel in the array to process for the serial output
+    led_strip.update = 1;                                     // Set LED to update LED strip continuously 
+    outled           = led_strip.led;                         // connect led strip diver's output to the serial output port 
   }
 }

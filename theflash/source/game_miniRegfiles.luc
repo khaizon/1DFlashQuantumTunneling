@@ -1,17 +1,17 @@
+//the regfile for storage and retrival of all game information
 
-//the regfile for all game information
 module game_miniRegfiles (
-    input clk,  // clock
-    input rst,  // reset
+    input clk,              // clock
+    input rst,              // reset
     input write_address[5], // write address
-    input we, // write enable
-    input data[16], // data in
+    input we,               // write enable
+    input data[16],         // data in
     
     
     input read_address_a[5], //address port a 
     input read_address_b[5], //address port b
-    output out_a[16], //read port a
-    output out_b[16], //read port b
+    output out_a[16],        //read port a
+    output out_b[16],        //read port b
     
     output playerposition[16],
     output e1position[16],
@@ -41,7 +41,7 @@ module game_miniRegfiles (
 {
   .clk(clk){
     .rst(rst){
-      dff player_position[16] (#INIT (h8000)); // put 5 for testing, supposed to be 0
+      dff player_position[16] (#INIT (h8000)); 
       dff e1_position[16](#INIT (h001E));
       dff e2_position[16](#INIT (h001D));
       dff e3_position[16](#INIT (h001A));
@@ -80,10 +80,7 @@ module game_miniRegfiles (
   }
 
   always {
-    
-    // lives_left.d = d3;
-    // player_position.d = d5;
-    // difficulty_level.d = d1;
+  
     always_one.d = h0001;
     start_position.d = h8000;
     lives_left_output = lives_left.q;
@@ -205,26 +202,24 @@ module game_miniRegfiles (
         default : out_b = 0;
     }
       
-    
-    
-
+    // output values of these registers for LED strip and debugging purposes
     playerposition = player_position.q;
-    e1position = e1_position.q;
-    e2position = e2_position.q;
-    e3position = e3_position.q;
-    e4position = e4_position.q;
-    e5position = e5_position.q;
-    e6position = e6_position.q;
-    e7position = e7_position.q;
-    e8position = e8_position.q;
-    e9position = e9_position.q;
-    e10position = e10_position.q;
-    e11position = e11_position.q;
-    e12position = e12_position.q;
-    e13position = e13_position.q;
-    e14position = e14_position.q;
-    e15position = e15_position.q;
-    e16position = e16_position.q;
-    playerscore = player_score.q;
+    e1position     = e1_position.q;
+    e2position     = e2_position.q;
+    e3position     = e3_position.q;
+    e4position     = e4_position.q;
+    e5position     = e5_position.q;
+    e6position     = e6_position.q;
+    e7position     = e7_position.q;
+    e8position     = e8_position.q;
+    e9position     = e9_position.q;
+    e10position    = e10_position.q;
+    e11position    = e11_position.q;
+    e12position    = e12_position.q;
+    e13position    = e13_position.q;
+    e14position    = e14_position.q;
+    e15position    = e15_position.q;
+    e16position    = e16_position.q;
+    playerscore    = player_score.q;
   }
 
