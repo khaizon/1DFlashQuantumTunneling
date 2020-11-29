@@ -579,7 +579,7 @@ module game_CU (
         control_sig_bsel         = b00;        // Select Register A's data from regfile 
         control_sig_write_enable = b1;         // Enable writing to regfile 
         control_sig_ra           = b00000;     // Register to store Player's position 
-        control_sig_rb           = b0110; 
+        control_sig_rb           = b00110;     // Register to store Enemy 6's state and position 
         control_sig_rc           = b10111;     // Temporary register to store output from ALU 
         control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E6;
@@ -600,7 +600,7 @@ module game_CU (
         control_sig_bsel         = b00;        // Select Register A's data from regfile 
         control_sig_write_enable = b1;         // Enable writing to regfile 
         control_sig_ra           = b00000;     // Register to store Player's position 
-        control_sig_rb           = b0111; 
+        control_sig_rb           = b00111;     // Register to store Enemy 7's state and position 
         control_sig_rc           = b10111;     // Temporary register to store output from ALU 
         control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E7;
@@ -1182,17 +1182,9 @@ module game_CU (
         control_sig_rc           = b10010;     // Register to store Player's current level 
         control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.NEXT_LVL_PP;
-          
-          
-     game_fsm.TEMP_STATE:
-        state_number             = b1011001;   // State number 89
-        control_sig_rb           = b01011;     // Register to store Enemy 11's state and position 
-        control_sig_write_enable = b0;         // Disable writing to regfile 
-        result = rb_data;
-     
 
      game_fsm.NEXT_LVL_PP:
-        state_number             = b1011010;   // State number 90
+        state_number             = b1011001;   // State number 89
         control_sig_alufn        = b000000;    // ALU operation ADD 
         control_sig_asel         = b01;        // Select constant 0 
         control_sig_bsel         = b00;        // Select Register A's data from regfile 
@@ -1204,7 +1196,7 @@ module game_CU (
         game_fsm.d = game_fsm.IDLE;
 
      game_fsm.WIN:
-        state_number             = b1011011;   // State number 91
+        state_number             = b1011010;   // State number 90
         control_sig_alufn        = b000000;    // ALU operation ADD 
         control_sig_asel         = b10;        // Select constant 1 
         control_sig_bsel         = b01;        // Select constant 0 
@@ -1217,7 +1209,7 @@ module game_CU (
           game_fsm.d = game_fsm.RESET_PP;}
 
      game_fsm.CHECK_STOP_GAME:
-        state_number             = b1011100;   // State number 92
+        state_number             = b1011011;   // State number 91
         control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
         control_sig_asel         = b10;        // Select constant 1 
         control_sig_bsel         = b00;        // Select Register A's data from regfile 
@@ -1229,7 +1221,7 @@ module game_CU (
         game_fsm.d = game_fsm.BRANCH_STOP_GAME;
 
      game_fsm.BRANCH_STOP_GAME:
-        state_number             = b1011101;   // State number 93
+        state_number             = b1011100;   // State number 92
         control_sig_rb           = b10111;     // Temporary register to store output from ALU 
         control_sig_write_enable = b0;         // Disable writing to regfile 
 
@@ -1239,7 +1231,7 @@ module game_CU (
         else game_fsm.d = game_fsm.SLOW_COUNTER_PLUS;
 
      game_fsm.SLOW_COUNTER_PLUS:
-        state_number             = b1011110;   // State number 94
+        state_number             = b1011101;   // State number 93
         control_sig_alufn        = b000000;    // ALU operation ADD 
         control_sig_asel         = b10;        // Select constant 1 
         control_sig_bsel         = b00;        // Select Register A's data from regfile 
