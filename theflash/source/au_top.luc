@@ -1,18 +1,16 @@
 module au_top (
     input clk,              // 100MHz clock
     input rst_n,            // reset button (active low)
-    output led [8],         // 8 user controllable LEDs
-    output io_led [3][8],   // LEDs on IO Shield
-    // io_button[0] is up, io_button[1] is center, io_button[2] is down, io_button[3] is left, and io_button[4] is right.
     input usb_rx,           // USB->Serial input
+    input customforward[1],      
+    input custominbackward[1],
+    input custominreset[1],
     output usb_tx,          // USB->Serial output
     output io_seg [8],      // 7-segment LEDs on IO Shield
     output io_sel [4],      // Digit select on IO Shield
-    input io_dip [3][8],     // DIP switches on IO Shield
-    output outled,
-    input customin[1],
-    input custominbackward[1],
-    input custominreset[1],
+    output outled,          // Serial output to the LED strip
+    output led [8],         // 8 user controllable LEDs
+    output io_led [3][8],   // LEDs on IO Shield
     output livesled[3],
     output levelled[3]
   ) {
@@ -38,7 +36,7 @@ module au_top (
     .rst(rst){
       // counter timer(#SIZE(1), #DIV(25));
       game_customBeta gameMachine;
-      multi_seven_seg test_display;
+      multi_seven_seg multi_seven;
      }
     
   }
@@ -55,57 +53,55 @@ module au_top (
 
     usb_tx = usb_rx;        // echo the serial data
     
-    // io_led = 3x{{8h00}};    // turn LEDs off
+    // Used the FPGA's LED to check whether the enemies are blinking correctly
     io_led = 3x{{8h00}};
     io_led[0] = c{gameMachine.slow_counter_time[7:0]};
     io_led[1] = c{gameMachine.e14position[15], gameMachine.e15position[15], gameMachine.e8position[15], gameMachine.e7position[15], gameMachine.e16position[15], gameMachine.e3position[15], gameMachine.e2position[15], gameMachine.e1position[15]};
-    io_led[2] = c{gameMachine.e12position[15], gameMachine.e13position[15], gameMachine.e11position[15], gameMachine.e10position[15], gameMachine.e6position[15], gameMachine.e5position[15], gameMachine.e4position[15], gameMachine.e9position[15]};
-    // interchange w pp for debugging 
-   // io_led[0] = c{0,gameMachine.state_number};
-    //io_led[1] = gameMachine.result[7:0];
-    //io_led[2] = gameMachine.result[15:8];
+    io_led[2] = c{gameMachine.e12position[15], gameMachine.e13position[15], gameMachine.e11position[15], gameMachine.e10position[15], gameMachine.e6position[15], gameMachine.e5position[15], gameMachine.e4position[15], gameMachine.e9position[15]};   
     
+    btn_cond_up.in      = customforward[0];          // to reduce the bouncing effects of the forward button 
+    btn_cond_down.in    = custominbackward[0];       // to reduce the bouncing effects of the backward button 
+    btn_cond_mid.in     = custominreset[0];          // to reduce the bouncing effects of the reset button 
+    edge_dt_btn_up.in   = btn_cond_up.out;           // get the edge of forward button press
+    edge_dt_btn_down.in = btn_cond_down.out;         // get the edge of backward button press
+    edge_dt_btn_mid.in  = btn_cond_mid.out;          // get the edge of reset button press
     
-    btn_cond_up.in=customin[0]; //to reduce the bouncing effects of your button 
-    btn_cond_down.in=custominbackward[0]; // must change to external button io
-    btn_cond_mid.in=custominreset[0];
-    edge_dt_btn_up.in=btn_cond_up.out; //get the edge of button press
-    edge_dt_btn_down.in=btn_cond_down.out;
-    edge_dt_btn_mid.in=btn_cond_mid.out;
+    // This part feeds the button signals into our modified "Beta" CPU
+    gameMachine.up_button     = edge_dt_btn_up.out;       // forward button  
+    gameMachine.down_button   = edge_dt_btn_down.out;     // backward button
+    gameMachine.middle_button = edge_dt_btn_mid.out;      // reset button
     
+    // the modified "Beta" CPU then outputs the lives remaining & player's level
+    // which is being fed into "lives_and_levels" module to light up the relevant LEDs 
+    lives_and_levels_handler.lives = gameMachine.lives[1:0];  // 'lives left'    in binary
+    lives_and_levels_handler.level = gameMachine.level[1:0];  // 'current level' in binary
+    livesled = lives_and_levels_handler.livesled_out;         // 'lives left'    in 3 bits --> ie. 3 lives == {1,1,1}
+    levelled = lives_and_levels_handler.levelled_out;         // 'current level' in 3 bits --> ie. level 1 == {1,0,0}
     
-    // detect up and down button presses
-    // serves as input into our game's beta CPU 
-    gameMachine.up_button = edge_dt_btn_up.out;
+    // The following is meant to only be visible on the FPGA's seven segment display
+    // for the monitoring of the player's position (pp), lives, and level
+    // 'converter' modules help to process the binary values of PP, lives and level 
+    // into a 4x8 array for the multi_seven module to process
+    converter.pp       = gameMachine.playerposition;      // Player's position into converter
+    converter.lives    = gameMachine.lives;               // Player's lives left into converter
+    converter.level    = gameMachine.level;               // Player's current level into converter
+    multi_seven.values = converter.out;                   // Parses the converter's output into the multi seven segment module
     
-    gameMachine.down_button = edge_dt_btn_down.out;
-    gameMachine.middle_button = edge_dt_btn_mid.out;
+    io_seg             = ~multi_seven.seg;                // Delivers multi seven segment module's output 
+    io_sel             = ~multi_seven.sel;                // to io sel and io seg for multiseven segment display
     
-    lives_and_levels_handler.lives = gameMachine.lives[1:0];
-    lives_and_levels_handler.level = gameMachine.level[1:0];
-    livesled = lives_and_levels_handler.livesled_out;
-    levelled = lives_and_levels_handler.levelled_out;
-    // set LED strip to display output of gameMachine
-    // io_led[0] = gameMachine.p1_out;    
-    // io_led[1] = gameMachine.p2_out;
-    io_seg = ~test_display.seg;
-    converter.pp = gameMachine.playerposition;
-    converter.lives = gameMachine.lives;
-    converter.level = gameMachine.level;
-    test_display.values = converter.out;
-    io_sel = ~test_display.sel;
-  
-    
-    entities_hand.e6position = gameMachine.e6position;
-    entities_hand.e16position = gameMachine.e16position;
-    entities_hand.e11position = gameMachine.e11position;
+    // The "entities_handler" module takes in the required information required to be shown on the LED led_strip
+    // and outputs a 32bit x 24bit array for the LED driver (which converts that array into serial output)
+    entities_hand.e6position     = gameMachine.e6position;
+    entities_hand.e16position    = gameMachine.e16position;
+    entities_hand.e11position    = gameMachine.e11position;
     entities_hand.playerposition = gameMachine.playerposition;
-    entities_hand.lives_left = gameMachine.lives;
-    entities_hand.playerwon = gameMachine.player_won;
+    entities_hand.lives_left     = gameMachine.lives;
+    entities_hand.playerwon      = gameMachine.player_won;
     
-    led_strip.color = entities_hand.out[led_strip.pixel];
+    led_strip.color  = entities_hand.out[led_strip.pixel];
     led_strip.update = 1;
-    outled = led_strip.led;
+    outled           = led_strip.led;
     
     
   }
