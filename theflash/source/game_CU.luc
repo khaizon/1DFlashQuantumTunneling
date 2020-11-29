@@ -1,23 +1,26 @@
 module game_CU (
     input clk,  // clock
     input rst,  // reset
-    input fast_counter,
-    input slow_counter,
-    input forward_pressed,
-    input backward_pressed,
-    input reset_pressed,
-    input rb_data[16],
+    input fast_counter,                    // counter to trigger the enemies to blink on and off
+    input slow_counter,                    // timer for future implementations of a player's score
+    input forward_pressed,                 // button signal by player to move forward
+    input backward_pressed,                // button signal by player to move backward
+    input reset_pressed,                   // button signal by player to reset
+    input rb_data[16],                     // data retrieved from the regfile for branching
     
-    output control_sig_alufn[6],
-    output control_sig_asel[2],
+    // control signals for the Custom Beta
+    output control_sig_alufn[6],           
+    output control_sig_asel[2],            
     output control_sig_bsel[2],
     output control_sig_write_enable,
     output control_sig_ra[5],
     output control_sig_rb[5],
     output control_sig_rc[5],
     output control_sig_wdsel[2],
+    
+    // 'state number' and 'result' values are for debugging purposes
     output state_number[7],
-    output result[16]
+    output result[16]     
   ) {
   .clk(clk){
   
@@ -118,8 +121,6 @@ module game_CU (
       RESET_E9,
       RESET_E10,
       RESET_E11};
-
-      
   }
   
   
@@ -149,13 +150,15 @@ module game_CU (
       
     case(game_fsm.q){
     
-     game_fsm.IDLE: 
+     game_fsm.IDLE: // idle state waiting for different events to trigger a path of operations to be carried out
+        
         state_number             = b0000001;
        
         control_sig_write_enable = b0;
-        //if counter is set
-          if (fast_counter){                      //direct read in
-          game_fsm.d = game_fsm.FAST_COUNTER_PLUS;}
+
+          if (fast_counter){    // fast counter to toggle enemies state / blinking                     
+            game_fsm.d = game_fsm.FAST_COUNTER_PLUS;
+          }
           else if(slow_counter){
             game_fsm.d =  game_fsm.CHECK_STOP_GAME;
           }
@@ -170,34 +173,34 @@ module game_CU (
           }
           else {game_fsm.d =  game_fsm.IDLE;}
 
-game_fsm.FAST_COUNTER_PLUS:
-        state_number             = b0000010;
-        control_sig_alufn        = b000000;
-        control_sig_asel         = b10;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b10011;
-        control_sig_rc           = b10011;
-        control_sig_wdsel        = b00;
+     game_fsm.FAST_COUNTER_PLUS:
+        state_number             = b0000000;   // State number 0
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b10;        // Select constant 1 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b10011;     // Register to store fast counter's value 
+        control_sig_rc           = b10011;     // Register to store fast counter's value 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.CHECK_LVL_EQ_3;
 
      game_fsm.CHECK_LVL_EQ_3:
-        state_number             = b0000011;
-        control_sig_alufn        = b110011;
-        control_sig_asel         = b11;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b10010;
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0000001;   // State number 1
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b11;        // Select constant 3 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b10010;     // Register to store Player's current level 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_LVL_EQ_3;
 
      game_fsm.BRANCH_LVL_EQ_3:
-        state_number             = b0000100;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0000010;   // State number 2
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.BLINK_E1;
@@ -205,21 +208,21 @@ game_fsm.FAST_COUNTER_PLUS:
         else{ game_fsm.d = game_fsm.CHECK_LVL_EQ_2;}
 
      game_fsm.CHECK_LVL_EQ_2:
-        state_number             = b0000101;
-        control_sig_alufn        = b110011;
-        control_sig_asel         = b00;
-        control_sig_bsel         = b11;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b10010;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0000011;   // State number 3
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b11;        // Select constant 2 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b10010;     // Register to store Player's current level 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_LVL_EQ_2;
 
      game_fsm.BRANCH_LVL_EQ_2:
-        state_number             = b0000110;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0000100;   // State number 4
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_FAST_COUNTER_MOD_2;
@@ -227,21 +230,21 @@ game_fsm.FAST_COUNTER_PLUS:
         else{ game_fsm.d = game_fsm.CHECK_FAST_COUNTER_MOD_3;}
 
      game_fsm.CHECK_FAST_COUNTER_MOD_2:
-        state_number             = b0000111;
-        control_sig_alufn        = b000111;
-        control_sig_asel         = b00;
-        control_sig_bsel         = b11;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b10011;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0000101;   // State number 5
+        control_sig_alufn        = b000111;    // ALU operation MODULO 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b11;        // Select constant 2 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b10011;     // Register to store fast counter's value 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_FAST_COUNTER_MOD_2;
 
      game_fsm.BRANCH_FAST_COUNTER_MOD_2:
-        state_number             = b0001000;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0000110;   // State number 6
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.BLINK_E7;
@@ -249,21 +252,21 @@ game_fsm.FAST_COUNTER_PLUS:
         else{ game_fsm.d = game_fsm.IDLE;}
 
      game_fsm.CHECK_FAST_COUNTER_MOD_3:
-        state_number             = b0001001;
-        control_sig_alufn        = b000111;
-        control_sig_asel         = b11;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b10011;
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0000111;   // State number 7
+        control_sig_alufn        = b000111;    // ALU operation MODULO 
+        control_sig_asel         = b11;        // Select constant 3 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b10011;     // Register to store fast counter's value 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_FAST_COUNTER_MOD_3;
 
      game_fsm.BRANCH_FAST_COUNTER_MOD_3:
-        state_number             = b0001010;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0001000;   // State number 8
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.BLINK_E12;
@@ -271,213 +274,213 @@ game_fsm.FAST_COUNTER_PLUS:
         else{ game_fsm.d = game_fsm.IDLE;}
 
      game_fsm.BLINK_E1:
-        state_number             = b0001011;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00001;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b00001; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0001001;   // State number 9
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00001;     // Register to store Enemy 1's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00001;     // Register to store Enemy 1's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E2;
 
      game_fsm.BLINK_E2:
-        state_number             = b0001100;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00010;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b00010; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0001010;   // State number 10
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00010;     // Register to store Enemy 2's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00010;     // Register to store Enemy 2's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E3;
 
      game_fsm.BLINK_E3:
-        state_number             = b0001101;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00011;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b00011; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0001011;   // State number 11
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00011;     // Register to store Enemy 3's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00011;     // Register to store Enemy 3's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E4;
 
      game_fsm.BLINK_E4:
-        state_number             = b0001110;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00100;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b00100; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0001100;   // State number 12
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00100;     // Register to store Enemy 4's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00100;     // Register to store Enemy 4's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E5;
 
      game_fsm.BLINK_E5:
-        state_number             = b0001111;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00101;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b00101; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0001101;   // State number 13
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00101;     // Register to store Enemy 5's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00101;     // Register to store Enemy 5's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E6;
 
      game_fsm.BLINK_E6:
-        state_number             = b0010000;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00110;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b00110; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0001110;   // State number 14
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00110;     // Register to store Enemy 6's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00110;     // Register to store Enemy 6's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E7;
 
      game_fsm.BLINK_E7:
-        state_number             = b0010001;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00111;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b00111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0001111;   // State number 15
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00111;     // Register to store Enemy 7's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00111;     // Register to store Enemy 7's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E8;
 
      game_fsm.BLINK_E8:
-        state_number             = b0010010;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b01000;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b01000; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0010000;   // State number 16
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b01000;     // Register to store Enemy 8's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b01000;     // Register to store Enemy 8's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E9;
 
      game_fsm.BLINK_E9:
-        state_number             = b0010011;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b01001;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b01001; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0010001;   // State number 17
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b01001;     // Register to store Enemy 9's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b01001;     // Register to store Enemy 9's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E10;
 
      game_fsm.BLINK_E10:
-        state_number             = b0010100;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b01010;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b01010; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0010010;   // State number 18
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b01010;     // Register to store Enemy 10's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b01010;     // Register to store Enemy 10's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E11;
 
      game_fsm.BLINK_E11:
-        state_number             = b0010101;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b01011;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b01011; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0010011;   // State number 19
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b01011;     // Register to store Enemy 11's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b01011;     // Register to store Enemy 11's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E12;
 
      game_fsm.BLINK_E12:
-        state_number             = b0010110;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b01100;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b01100; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0010100;   // State number 20
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b01100;     // Register to store Enemy 12's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b01100;     // Register to store Enemy 12's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E13;
 
      game_fsm.BLINK_E13:
-        state_number             = b0010111;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b01101;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b01101; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0010101;   // State number 21
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b01101;     // Register to store Enemy 13's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b01101;     // Register to store Enemy 13's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E14;
 
      game_fsm.BLINK_E14:
-        state_number             = b0011000;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b01110;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b01110; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0010110;   // State number 22
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b01110;     // Register to store Enemy 14's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b01110;     // Register to store Enemy 14's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E15;
 
      game_fsm.BLINK_E15:
-        state_number             = b0011001;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b01111;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b01111;
-        control_sig_wdsel        = b00;
+        state_number             = b0010111;   // State number 23
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b01111;     // Register to store Enemy 15's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b01111;     // Register to store Enemy 15's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BLINK_E16;
 
      game_fsm.BLINK_E16:
-        state_number             = b0011010;
-        control_sig_alufn        = b010100; //custom alufn
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b10000;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b10000;
-        control_sig_wdsel        = b00;
+        state_number             = b0011000;   // State number 24
+        control_sig_alufn        = b010100;    // Custom ALU operation to toggle MSB for enemies 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b10000;     // Register to store Enemy 16's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b10000;     // Register to store Enemy 16's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.CHECKPP_EQ_E1;
 
      game_fsm.CHECKPP_EQ_E1:
-        state_number             = b0011011;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00; 
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b00001; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0011001;   // State number 25
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00001;     // Register to store Enemy 1's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E1;
 
      game_fsm.BRANCH_PP_EQ_E1:
-        state_number             = b0011100;
-        control_sig_rb           = b10111; // to get enemy1 pos
-        control_sig_write_enable = b0;
+        state_number             = b0011010;   // State number 26
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
         result = rb_data;
 
         if (rb_data[0] == 1){
@@ -486,315 +489,315 @@ game_fsm.FAST_COUNTER_PLUS:
         else game_fsm.d = game_fsm.CHECKPP_EQ_E2;
           
      game_fsm.CHECKPP_EQ_E2:
-        state_number             = b0011101;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b00010; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0011011;   // State number 27
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00010;     // Register to store Enemy 2's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E2;
 
      game_fsm.BRANCH_PP_EQ_E2:
-        state_number             = b0011110;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0011100;   // State number 28
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E3;
      game_fsm.CHECKPP_EQ_E3:
-        state_number             = b0011111;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b00011; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0011101;   // State number 29
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00011;     // Register to store Enemy 3's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E3;
 
      game_fsm.BRANCH_PP_EQ_E3:
-        state_number             = b0100000;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0011110;   // State number 30
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E4;
      game_fsm.CHECKPP_EQ_E4:
-        state_number             = b0100001;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b00100; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0011111;   // State number 31
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00100;     // Register to store Enemy 4's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E4;
 
      game_fsm.BRANCH_PP_EQ_E4:
-        state_number             = b0100010;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0100000;   // State number 32
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E5;
      game_fsm.CHECKPP_EQ_E5:
-        state_number             = b0100011;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b00101; 
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0100001;   // State number 33
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00101;     // Register to store Enemy 5's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E5;
 
      game_fsm.BRANCH_PP_EQ_E5:
-        state_number             = b0100100;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0100010;   // State number 34
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E6;
      game_fsm.CHECKPP_EQ_E6:
-        state_number             = b0100101;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b0110; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0100011;   // State number 35
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b0110; 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E6;
 
      game_fsm.BRANCH_PP_EQ_E6:
-        state_number             = b0100110;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0100100;   // State number 36
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E7;
      game_fsm.CHECKPP_EQ_E7:
-        state_number             = b0100111;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b0111; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0100101;   // State number 37
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b0111; 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E7;
 
      game_fsm.BRANCH_PP_EQ_E7:
-        state_number             = b0101000;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0100110;   // State number 38
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E8;
      game_fsm.CHECKPP_EQ_E8:
-        state_number             = b0101001;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b01000; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0100111;   // State number 39
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b01000;     // Register to store Enemy 8's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E8;
 
      game_fsm.BRANCH_PP_EQ_E8:
-        state_number             = b0101010;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0101000;   // State number 40
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E9;
      game_fsm.CHECKPP_EQ_E9:
-        state_number             = b0101011;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b01001; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0101001;   // State number 41
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b01001;     // Register to store Enemy 9's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E9;
 
      game_fsm.BRANCH_PP_EQ_E9:
-        state_number             = b0101100;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0101010;   // State number 42
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E10;
      game_fsm.CHECKPP_EQ_E10:
-        state_number             = b0101101;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b01010; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0101011;   // State number 43
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b01010;     // Register to store Enemy 10's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E10;
 
      game_fsm.BRANCH_PP_EQ_E10:
-        state_number             = b0101110;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0101100;   // State number 44
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E11;
      game_fsm.CHECKPP_EQ_E11:
-        state_number             = b0101111;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b01011; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0101101;   // State number 45
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b01011;     // Register to store Enemy 11's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E11;
 
      game_fsm.BRANCH_PP_EQ_E11:
-        state_number             = b0110000;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0101110;   // State number 46
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E12;
      game_fsm.CHECKPP_EQ_E12:
-        state_number             = b0110001;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b01100; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0101111;   // State number 47
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b01100;     // Register to store Enemy 12's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E12;
 
      game_fsm.BRANCH_PP_EQ_E12:
-        state_number             = b0110010;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0110000;   // State number 48
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E13;
      game_fsm.CHECKPP_EQ_E13:
-        state_number             = b0110011;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b01101; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0110001;   // State number 49
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b01101;     // Register to store Enemy 13's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E13;
 
      game_fsm.BRANCH_PP_EQ_E13:
-        state_number             = b0110100;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0110010;   // State number 50
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E14;
      game_fsm.CHECKPP_EQ_E14:
-        state_number             = b0110101;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b01110; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0110011;   // State number 51
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b01110;     // Register to store Enemy 14's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E14;
 
      game_fsm.BRANCH_PP_EQ_E14:
-        state_number             = b0110110;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0110100;   // State number 52
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E15;
      game_fsm.CHECKPP_EQ_E15:
-        state_number             = b0110111;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b01111; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0110101;   // State number 53
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b01111;     // Register to store Enemy 15's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E15;
 
      game_fsm.BRANCH_PP_EQ_E15:
-        state_number             = b0111000;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0110110;   // State number 54
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
         }
         else game_fsm.d = game_fsm.CHECKPP_EQ_E16;
      game_fsm.CHECKPP_EQ_E16:
-        state_number             = b0111001;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b10000; //E1
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0110111;   // State number 55
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b10000;     // Register to store Enemy 16's state and position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP_EQ_E16;
 
      game_fsm.BRANCH_PP_EQ_E16:
-        state_number             = b0111010;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0111000;   // State number 56
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
@@ -802,309 +805,309 @@ game_fsm.FAST_COUNTER_PLUS:
         else game_fsm.d = game_fsm.CHECK_END_REACHED;
 
      game_fsm.CHECK_LIVES_MORE_THAN_1:
-        state_number             = b0111011;
-        control_sig_alufn        = b110101; //CMPLT
-        control_sig_asel         = b10;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b10101; //LIVES LEFT
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b0111001;   // State number 57
+        control_sig_alufn        = b110101;    // ALU operation for CMPLT 
+        control_sig_asel         = b10;        // Select constant 1 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b10101;     // Register to store Player's lives left 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_LIVES_MORE_THAN_1;
 
      game_fsm.BRANCH_LIVES_MORE_THAN_1:
-        state_number             = b0111100;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b0111010;   // State number 58
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.LIVES_MINUS;
         }
-        else game_fsm.d = game_fsm.LOSE_LIVES; //TO IMPLEMENT
+        else game_fsm.d = game_fsm.LOSE_LIVES; 
 
      game_fsm.LIVES_MINUS:
-        state_number             = b0111101;
-        control_sig_alufn        = b000001; //SUB
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b10101;
-        control_sig_rb           = b11011; //ALWAYS ONE
-        control_sig_rc           = b10101; //LIVES
-        control_sig_wdsel        = b00;
+        state_number             = b0111011;   // State number 59
+        control_sig_alufn        = b000001;    // ALU operation SUBTRACT 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b10101;     // Register to store Player's lives left 
+        control_sig_rb           = b11011;     // Register to store value of 1 
+        control_sig_rc           = b10101;     // Register to store Player's lives left 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESPAWN_PP;
 
      game_fsm.RESPAWN_PP:
-        state_number             = b0111110;
-        control_sig_alufn        = b000000; //CMPLT
-        control_sig_asel         = b01;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b11100; //start position
-        control_sig_rc           = b00000; //pp
-        control_sig_wdsel        = b00;
+        state_number             = b0111100;   // State number 60
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b01;        // Select constant 0 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b11100;     // Register storing value of player's start position 
+        control_sig_rc           = b00000;     // Register to store Player's position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.IDLE;
           
      game_fsm.LOSE_LIVES:
-        state_number             = b0111101;
-        control_sig_alufn        = b000001; //SUB
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b10101;
-        control_sig_rb           = b11011; //ALWAYS ONE
-        control_sig_rc           = b10101; //LIVES
-        control_sig_wdsel        = b00;
+        state_number             = b0111101;   // State number 61
+        control_sig_alufn        = b000001;    // ALU operation SUBTRACT 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b10101;     // Register to store Player's lives left 
+        control_sig_rb           = b11011;     // Register to store value of 1 
+        control_sig_rc           = b10101;     // Register to store Player's lives left 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.LOSE;
 
      game_fsm.LOSE:
-        state_number             = b0111111;
-        control_sig_alufn        = b000000;
-        control_sig_asel         = b10;
-        control_sig_bsel         = b01;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b10110; //player_won
-        control_sig_wdsel        = b00;
+        state_number             = b0111110;   // State number 62
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b10;        // Select constant 1 
+        control_sig_bsel         = b01;        // Select constant 0 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b10110;     // Register to show '1' if game has stopped 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         if (reset_pressed){
           game_fsm.d = game_fsm.RESET_PP;}
 
      game_fsm.RESET_PP:
-        state_number             = b1000000;
-        control_sig_alufn        = b000000;
-        control_sig_asel         = b01;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b11100; //LIVES LEFT
-        control_sig_rc           = b00000; //TEMP
-        control_sig_wdsel        = b00;   //reset to start position 
+        state_number             = b0111111;   // State number 63
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b01;        // Select constant 0 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b11100;     // Register storing value of player's start position 
+        control_sig_rc           = b00000;     // Register to store Player's position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_STOP_GAME;
 
       game_fsm.RESET_STOP_GAME:
-        state_number             = b1000001;
-        control_sig_alufn        = b000000;
-        control_sig_asel         = b01;
-        control_sig_bsel         = b01;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b10110; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b1000000;   // State number 64
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b01;        // Select constant 0 
+        control_sig_bsel         = b01;        // Select constant 0 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b10110;     // Register to show '1' if game has stopped 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_FAST_COUNTER;
 
       game_fsm.RESET_FAST_COUNTER:
-        state_number             = b1000010;
-        control_sig_alufn        = b000000;
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b10011; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b1000001;   // State number 65
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b10011;     // Register to store fast counter's value 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_SLOW_COUNTER;
 
       game_fsm.RESET_SLOW_COUNTER:
-        state_number             = b1000011;
-        control_sig_alufn        = b000000; //CMPLT
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b10100;
-        control_sig_wdsel        = b00;
+        state_number             = b1000010;   // State number 66
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b10100;     // Register to store Player's score / timer 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_LIVES;
 
      game_fsm.RESET_LIVES:
-        state_number             = b1000100;
-        control_sig_alufn        = b000000; //ADD
-        control_sig_asel         = b11;
-        control_sig_bsel         = b01;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b10101;
-        control_sig_wdsel        = b00;
+        state_number             = b1000011;   // State number 67
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b11;        // Select constant 3 
+        control_sig_bsel         = b01;        // Select constant 0 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b10101;     // Register to store Player's lives left 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_LVL;
 
      game_fsm.RESET_LVL:
-        state_number             = b1000101;
-        control_sig_alufn        = b000000; //ADD
-        control_sig_asel         = b10;
-        control_sig_bsel         = b01;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b10010;
-        control_sig_wdsel        = b00;
+        state_number             = b1000100;   // State number 68
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b10;        // Select constant 1 
+        control_sig_bsel         = b01;        // Select constant 0 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b10010;     // Register to store Player's current level 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_E1;
           
      game_fsm.RESET_E1:
-        state_number             = b1000101;
-        control_sig_alufn        = b011011; //ADD
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00001;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b00001;
-        control_sig_wdsel        = b00;
+        state_number             = b1000101;   // State number 69
+        control_sig_alufn        = b011011;    // Custom ALU operation to set MSB for enemies to 0
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00001;     // Register to store Enemy 1's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00001;     // Register to store Enemy 1's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_E2;
           
      game_fsm.RESET_E2:
-        state_number             = b1000101;
-        control_sig_alufn        = b011011; //ADD
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00010;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b00010;
-        control_sig_wdsel        = b00;
+        state_number             = b1000110;   // State number 70
+        control_sig_alufn        = b011011;    // Custom ALU operation to set MSB for enemies to 0
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00010;     // Register to store Enemy 2's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00010;     // Register to store Enemy 2's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_E3;
      
      game_fsm.RESET_E3:
-        state_number             = b1000101;
-        control_sig_alufn        = b011011; //ADD
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00011;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b00011;
-        control_sig_wdsel        = b00;
+        state_number             = b1000111;   // State number 71
+        control_sig_alufn        = b011011;    // Custom ALU operation to set MSB for enemies to 0
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00011;     // Register to store Enemy 3's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00011;     // Register to store Enemy 3's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_E4;
           
      game_fsm.RESET_E4:
-        state_number             = b1000101;
-        control_sig_alufn        = b011011; //ADD
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00100;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b00100;
-        control_sig_wdsel        = b00;
+        state_number             = b1001000;   // State number 72
+        control_sig_alufn        = b011011;    // Custom ALU operation to set MSB for enemies to 0
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00100;     // Register to store Enemy 4's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00100;     // Register to store Enemy 4's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_E5;
           
       game_fsm.RESET_E5:
-        state_number             = b1000101;
-        control_sig_alufn        = b011011; //ADD
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00101;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b00101;
-        control_sig_wdsel        = b00;
+        state_number             = b1001001;   // State number 73
+        control_sig_alufn        = b011011;    // Custom ALU operation to set MSB for enemies to 0
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00101;     // Register to store Enemy 5's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00101;     // Register to store Enemy 5's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_E6;
           
       game_fsm.RESET_E6:
-        state_number             = b1000101;
-        control_sig_alufn        = b011011; //ADD
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00110;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b00110;
-        control_sig_wdsel        = b00;
+        state_number             = b1001010;   // State number 74
+        control_sig_alufn        = b011011;    // Custom ALU operation to set MSB for enemies to 0
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00110;     // Register to store Enemy 6's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00110;     // Register to store Enemy 6's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_E7;
           
        game_fsm.RESET_E7:
-        state_number             = b1000101;
-        control_sig_alufn        = b011011; //ADD
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00111;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b00111;
-        control_sig_wdsel        = b00;
+        state_number             = b1001011;   // State number 75
+        control_sig_alufn        = b011011;    // Custom ALU operation to set MSB for enemies to 0
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00111;     // Register to store Enemy 7's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00111;     // Register to store Enemy 7's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_E8;
           
        game_fsm.RESET_E8:
-        state_number             = b1000101;
-        control_sig_alufn        = b011011; //ADD
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b01000;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b01000;
-        control_sig_wdsel        = b00;
+        state_number             = b1001100;   // State number 76
+        control_sig_alufn        = b011011;    // Custom ALU operation to set MSB for enemies to 0
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b01000;     // Register to store Enemy 8's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b01000;     // Register to store Enemy 8's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_E9;
           
        game_fsm.RESET_E9:
-        state_number             = b1000101;
-        control_sig_alufn        = b011011; //ADD
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b01001;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b01001;
-        control_sig_wdsel        = b00;
+        state_number             = b1001101;   // State number 77
+        control_sig_alufn        = b011011;    // Custom ALU operation to set MSB for enemies to 0
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b01001;     // Register to store Enemy 9's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b01001;     // Register to store Enemy 9's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_E10;
           
        game_fsm.RESET_E10:
-        state_number             = b1000101;
-        control_sig_alufn        = b011011; //ADD
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b01010;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b01010;
-        control_sig_wdsel        = b00;
+        state_number             = b1001110;   // State number 78
+        control_sig_alufn        = b011011;    // Custom ALU operation to set MSB for enemies to 0
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b01010;     // Register to store Enemy 10's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b01010;     // Register to store Enemy 10's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.RESET_E11;
           
        game_fsm.RESET_E11:
-        state_number             = b1000101;
-        control_sig_alufn        = b011011; //ADD
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b01011;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b01011;
-        control_sig_wdsel        = b00;
+        state_number             = b1001111;   // State number 79
+        control_sig_alufn        = b011011;    // Custom ALU operation to set MSB for enemies to 0
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b01011;     // Register to store Enemy 11's state and position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b01011;     // Register to store Enemy 11's state and position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.IDLE;
 
      game_fsm.PP_PLUS:
-        state_number             = b1000110;
-        control_sig_alufn        = b000000; //add
-        control_sig_asel         = b10;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b00000; //LIVES LEFT
-        control_sig_rc           = b00000;
-        control_sig_wdsel        = b00;
+        state_number             = b1010000;   // State number 80
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b10;        // Select constant 1 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b00000;     // Register to store Player's position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.CHECKPP_EQ_E1;
 
      game_fsm.CHECK_PP:
-        state_number             = b1000111;
-        control_sig_alufn        = b110101; //cmplt
-        control_sig_asel         = b00;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b11100; //REG always_one: h8000
-        control_sig_rb           = b00000; //PP
-        control_sig_rc           = b11111;
-        control_sig_wdsel        = b00;
+        state_number             = b1010001;   // State number 81
+        control_sig_alufn        = b110101;    // ALU operation for CMPLT 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b11100;     // Register storing value of player's start position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b11111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_PP;
 
 
      game_fsm.BRANCH_PP:
-        state_number             = b1001000;
-        control_sig_rb           = b11111;
-        control_sig_write_enable = b0;
+        state_number             = b1010010;   // State number 82
+        control_sig_rb           = b11111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.PP_MINUS;
@@ -1112,56 +1115,56 @@ game_fsm.FAST_COUNTER_PLUS:
         else game_fsm.d = game_fsm.IDLE;
 
      game_fsm.PP_MINUS:
-        state_number             = b1001001;
-        control_sig_alufn        = b000001; //SUB
-        control_sig_asel         = b00; 
-        control_sig_bsel         = b00; 
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b11011; //REG storing value 1
-        control_sig_rc           = b00000;
-        control_sig_wdsel        = b00;
+        state_number             = b1010011;   // State number 83
+        control_sig_alufn        = b000001;    // ALU operation SUBTRACT 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b11011;     // Register to store value of 1 
+        control_sig_rc           = b00000;     // Register to store Player's position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.CHECKPP_EQ_E1;
 
      game_fsm.CHECK_END_REACHED:
-        state_number             = b1001010;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b00;
-        control_sig_bsel         = b10;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PP
-        control_sig_rb           = b00000; //not used
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b1010100;   // State number 84
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b00;        // Select Register A's data from regfile 
+        control_sig_bsel         = b10;        // Select constant hx801F - end of LED strip 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_END_REACHED;
 
      game_fsm.BRANCH_END_REACHED:
-        state_number             = b1001011;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b1010101;   // State number 85
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
         result = rb_data;
 
         if (rb_data[0] == 1){
-        game_fsm.d = game_fsm.CHECK_NEXTLVL_EXISTS; // TO FIX
+        game_fsm.d = game_fsm.CHECK_NEXTLVL_EXISTS; 
         }
-        else game_fsm.d = game_fsm.IDLE; // goes to IDLE, does not check next level exists
-
+        else game_fsm.d = game_fsm.IDLE; 
+          
      game_fsm.CHECK_NEXTLVL_EXISTS:
-        state_number             = b1001100;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b11;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PPP
-        control_sig_rb           = b10010; //CURRENT LVEL
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b1010110;   // State number 86
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b11;        // Select constant 3 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b10010;     // Register to store Player's current level 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_NEXT_LVL_EXISTS;
 
      game_fsm.BRANCH_NEXT_LVL_EXISTS:
-        state_number             = b1001101;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b1010111;   // State number 87
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
         
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.WIN;
@@ -1169,66 +1172,66 @@ game_fsm.FAST_COUNTER_PLUS:
         else game_fsm.d = game_fsm.CURRENT_LVL_PLUS;
           
      game_fsm.CURRENT_LVL_PLUS:
-        state_number             = b1010011;
-        control_sig_alufn        = b000000;
-        control_sig_asel         = b10;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b10010; //current level register
-        control_sig_rc           = b10010;
-        control_sig_wdsel        = b00;
+        state_number             = b1011000;   // State number 88
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b10;        // Select constant 1 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b10010;     // Register to store Player's current level 
+        control_sig_rc           = b10010;     // Register to store Player's current level 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.NEXT_LVL_PP;
           
           
      game_fsm.TEMP_STATE:
-        state_number             = b1111111;
-        control_sig_rb           = b01011;
-        control_sig_write_enable = b0;
+        state_number             = b1011001;   // State number 89
+        control_sig_rb           = b01011;     // Register to store Enemy 11's state and position 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
         result = rb_data;
      
 
      game_fsm.NEXT_LVL_PP:
-        state_number             = b1001110;
-        control_sig_alufn        = b000000; 
-        control_sig_asel         = b01;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000; //PPP
-        control_sig_rb           = b11100; //CURRENT LVEL
-        control_sig_rc           = b00000; //PPP
-        control_sig_wdsel        = b00;
+        state_number             = b1011010;   // State number 90
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b01;        // Select constant 0 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b11100;     // Register storing value of player's start position 
+        control_sig_rc           = b00000;     // Register to store Player's position 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.IDLE;
 
      game_fsm.WIN:
-        state_number             = b1001111;
-        control_sig_alufn        = b000000; //ADD 1 TO 0
-        control_sig_asel         = b10;
-        control_sig_bsel         = b01;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b00000;
-        control_sig_rc           = b10110; //STOP GAME -> player_won
-        control_sig_wdsel        = b00;
+        state_number             = b1011011;   // State number 91
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b10;        // Select constant 1 
+        control_sig_bsel         = b01;        // Select constant 0 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b00000;     // Register to store Player's position 
+        control_sig_rc           = b10110;     // Register to show '1' if game has stopped 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         if (reset_pressed){
           game_fsm.d = game_fsm.RESET_PP;}
 
      game_fsm.CHECK_STOP_GAME:
-        state_number             = b1010000;
-        control_sig_alufn        = b110011; //CMPEQ
-        control_sig_asel         = b10;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b10110; //stop game
-        control_sig_rc           = b10111; //TEMP
-        control_sig_wdsel        = b00;
+        state_number             = b1011100;   // State number 92
+        control_sig_alufn        = b110011;    // ALU operation for CMPEQ 
+        control_sig_asel         = b10;        // Select constant 1 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b10110;     // Register to show '1' if game has stopped 
+        control_sig_rc           = b10111;     // Temporary register to store output from ALU 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.BRANCH_STOP_GAME;
 
      game_fsm.BRANCH_STOP_GAME:
-        state_number             = b1010001;
-        control_sig_rb           = b10111;
-        control_sig_write_enable = b0;
+        state_number             = b1011101;   // State number 93
+        control_sig_rb           = b10111;     // Temporary register to store output from ALU 
+        control_sig_write_enable = b0;         // Disable writing to regfile 
 
         if (rb_data[0] == 1){
           game_fsm.d = game_fsm.IDLE;
@@ -1236,15 +1239,15 @@ game_fsm.FAST_COUNTER_PLUS:
         else game_fsm.d = game_fsm.SLOW_COUNTER_PLUS;
 
      game_fsm.SLOW_COUNTER_PLUS:
-        state_number             = b1010010;
-        control_sig_alufn        = b000000;
-        control_sig_asel         = b10;
-        control_sig_bsel         = b00;
-        control_sig_write_enable = b1;
-        control_sig_ra           = b00000;
-        control_sig_rb           = b10100; //slow counter register
-        control_sig_rc           = b10100;
-        control_sig_wdsel        = b00;
+        state_number             = b1011110;   // State number 94
+        control_sig_alufn        = b000000;    // ALU operation ADD 
+        control_sig_asel         = b10;        // Select constant 1 
+        control_sig_bsel         = b00;        // Select Register A's data from regfile 
+        control_sig_write_enable = b1;         // Enable writing to regfile 
+        control_sig_ra           = b00000;     // Register to store Player's position 
+        control_sig_rb           = b10100;     // Register to store Player's score / timer 
+        control_sig_rc           = b10100;     // Register to store Player's score / timer 
+        control_sig_wdsel        = b00;        // Select ALU's output 
         game_fsm.d = game_fsm.IDLE;
   }
 }

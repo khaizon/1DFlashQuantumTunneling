@@ -1,18 +1,20 @@
 module converter (
-    input pp[16],
-    input lives[16],
-    input level[16],
-    output out[4][4]
+    input pp[16],       // Player's Position in binary
+    input lives[16],    // Lives in binary
+    input level[16],    // Level  in binary
+    output out[4][4]    // a 4*4 array for the seven seven segment to display player's lives (1 digit), level (1 digit), and output (2 digits)
   ) {
-  sig diff[5];
-  sig diff2[5];
+  
+  sig diff[5];  // helper signals for mathematical operations
+  sig diff2[5]; // helper signals for mathematical operations
   
   always {
-    diff = (pp[4:0]-((pp[4:0]/b01010)*b01010));
-    out[0] = diff[3:0];
-    diff2 = (pp[4:0]/b01010);
-    out[1] = diff2[3:0];
-    out[2] = lives[3:0];
-    out[3] = level[3:0]; 
+    diff = (pp[4:0]-((pp[4:0]/b01010)*b01010)); // (player's position) - (player's position)/ 10 = remainder = right most digit
+    out[0] = diff[3:0];                         // (ie. player at position 25 -> digit 1 = 25 - (25/10)*10 = 25 - 20 = 5)
+    diff2 = (pp[4:0]/b01010);                   // (player's position)/ 10 = second most right digit                    
+    out[1] = diff2[3:0];                        // (ie. player at position 25 -> digit 1 = 25/10 = 2)                  
+          
+    out[2] = lives[3:0];  // player's lives left
+    out[3] = level[3:0];  // player's current level
   }
 }
