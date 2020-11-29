@@ -1,18 +1,18 @@
 module au_top (
-    input clk,              // 100MHz clock
-    input rst_n,            // reset button (active low)
-    input usb_rx,           // USB->Serial input
-    input customforward[1],      
-    input custominbackward[1],
-    input custominreset[1],
-    output usb_tx,          // USB->Serial output
-    output io_seg [8],      // 7-segment LEDs on IO Shield
-    output io_sel [4],      // Digit select on IO Shield
-    output outled,          // Serial output to the LED strip
-    output led [8],         // 8 user controllable LEDs
-    output io_led [3][8],   // LEDs on IO Shield
-    output livesled[3],
-    output levelled[3]
+    input clk,                  // 100MHz clock
+    input rst_n,                // reset button (active low)
+    input usb_rx,               // USB->Serial input
+    input customforward[1],     // custom io input for forward button 
+    input custominbackward[1],  // custom io input for backward button
+    input custominreset[1],     // custom io input for reset button
+    output usb_tx,              // USB->Serial output
+    output io_seg [8],          // 7-segment LEDs on IO Shield
+    output io_sel [4],          // Digit select on IO Shield
+    output outled,              // Serial output to the LED strip
+    output led [8],             // 8 user controllable LEDs
+    output io_led [3][8],       // LEDs on IO Shield
+    output livesled[3],         // custom io output for lives LED
+    output levelled[3]          // custom io output for level LED
   ) {
   
   sig rst;                  // reset signal
