@@ -1,0 +1,1250 @@
+module game_CU (
+    input clk,  // clock
+    input rst,  // reset
+    input fast_counter,
+    input slow_counter,
+    input forward_pressed,
+    input backward_pressed,
+    input reset_pressed,
+    input rb_data[16],
+    
+    output control_sig_alufn[6],
+    output control_sig_asel[2],
+    output control_sig_bsel[2],
+    output control_sig_write_enable,
+    output control_sig_ra[5],
+    output control_sig_rb[5],
+    output control_sig_rc[5],
+    output control_sig_wdsel[2],
+    output state_number[7],
+    output result[16]
+  ) {
+  .clk(clk){
+  
+    fsm game_fsm={
+      IDLE, 
+      CHECK_PP, 
+      PP_PLUS,
+      PP_MINUS, 
+      BRANCH_PP,
+      CHECKPP_EQ_E1, 
+      CHECKPP_EQ_E2, 
+      CHECKPP_EQ_E3, 
+      CHECKPP_EQ_E4, 
+      CHECKPP_EQ_E5, 
+      CHECKPP_EQ_E6, 
+      CHECKPP_EQ_E7,
+      CHECKPP_EQ_E8,
+      CHECKPP_EQ_E9,
+      CHECKPP_EQ_E10,
+      CHECKPP_EQ_E11, 
+      CHECKPP_EQ_E12,
+      CHECKPP_EQ_E13,
+      CHECKPP_EQ_E14,
+      CHECKPP_EQ_E15,
+      CHECKPP_EQ_E16,
+      BRANCH_PP_EQ_E1,
+      BRANCH_PP_EQ_E2,
+      BRANCH_PP_EQ_E3,
+      BRANCH_PP_EQ_E4,
+      BRANCH_PP_EQ_E5,
+      BRANCH_PP_EQ_E6,
+      BRANCH_PP_EQ_E7,
+      BRANCH_PP_EQ_E8,
+      BRANCH_PP_EQ_E9,
+      BRANCH_PP_EQ_E10,
+      BRANCH_PP_EQ_E11,
+      BRANCH_PP_EQ_E12,
+      BRANCH_PP_EQ_E13,
+      BRANCH_PP_EQ_E14,
+      BRANCH_PP_EQ_E15,
+      BRANCH_PP_EQ_E16,
+      CHECK_END_REACHED,
+      BRANCH_END_REACHED,
+      CHECK_NEXTLVL_EXISTS,
+      BRANCH_NEXT_LVL_EXISTS,
+      WIN,
+      CURRENT_LVL_PLUS,
+      NEXT_LVL_PP,
+      RESET_PP,
+      RESET_STOP_GAME,
+      RESET_FAST_COUNTER,
+      RESET_SLOW_COUNTER,
+      RESET_LIVES,
+      RESET_LVL,
+      CHECK_STOP_GAME,
+      BRANCH_STOP_GAME,
+      SLOW_COUNTER_PLUS,
+      FAST_COUNTER_PLUS,
+      CHECK_LVL_EQ_3,
+      BRANCH_LVL_EQ_3,
+      CHECK_LVL_EQ_2,
+      BRANCH_LVL_EQ_2,
+      CHECK_FAST_COUNTER_MOD_3,
+      BRANCH_FAST_COUNTER_MOD_3,
+      CHECK_FAST_COUNTER_MOD_2,
+      BRANCH_FAST_COUNTER_MOD_2,
+      BLINK_E1,
+      BLINK_E2,
+      BLINK_E3,
+      BLINK_E4,
+      BLINK_E5,
+      BLINK_E6,
+      BLINK_E7,
+      BLINK_E8,
+      BLINK_E9,
+      BLINK_E10,
+      BLINK_E11,
+      BLINK_E12,
+      BLINK_E13,
+      BLINK_E14,
+      BLINK_E15,
+      BLINK_E16,
+      CHECK_LIVES_MORE_THAN_1,
+      BRANCH_LIVES_MORE_THAN_1,
+      LIVES_MINUS,
+      LOSE,
+      LOSE_LIVES,
+      RESPAWN_PP,
+      TEMP_STATE,
+      RESET_E1,
+      RESET_E2,
+      RESET_E3,
+      RESET_E4,
+      RESET_E5,
+      RESET_E6,
+      RESET_E7,
+      RESET_E8,
+      RESET_E9,
+      RESET_E10,
+      RESET_E11};
+
+      
+  }
+  
+  
+  sig done;
+  
+  always {
+    
+    // standard setting unless otherwise overwritten by each case 
+    control_sig_alufn        = 000000;
+    control_sig_asel         = 00;
+    control_sig_bsel         = 00;
+    control_sig_write_enable = 0;
+    control_sig_ra           = 00000;
+    control_sig_rb           = 00000;
+    control_sig_rc           = 00000;
+    control_sig_wdsel        = 00;
+    state_number = b0000000;
+    done = 0;
+    result = 0;
+    
+
+    
+    if (rst){
+        // game_fsm.d = game_fsm.RESET_PP;
+    }
+    else{
+      
+    case(game_fsm.q){
+    
+     game_fsm.IDLE: 
+        state_number             = b0000001;
+       
+        control_sig_write_enable = b0;
+        //if counter is set
+          if (fast_counter){                      //direct read in
+          game_fsm.d = game_fsm.FAST_COUNTER_PLUS;}
+          else if(slow_counter){
+            game_fsm.d =  game_fsm.CHECK_STOP_GAME;
+          }
+          else if(forward_pressed){
+            game_fsm.d =  game_fsm.PP_PLUS;
+          }
+          else if(backward_pressed){
+            game_fsm.d =  game_fsm.CHECK_PP;
+          }
+          else if(reset_pressed){
+            game_fsm.d =  game_fsm.RESET_PP;
+          }
+          else {game_fsm.d =  game_fsm.IDLE;}
+
+game_fsm.FAST_COUNTER_PLUS:
+        state_number             = b0000010;
+        control_sig_alufn        = b000000;
+        control_sig_asel         = b10;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b10011;
+        control_sig_rc           = b10011;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.CHECK_LVL_EQ_3;
+
+     game_fsm.CHECK_LVL_EQ_3:
+        state_number             = b0000011;
+        control_sig_alufn        = b110011;
+        control_sig_asel         = b11;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b10010;
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_LVL_EQ_3;
+
+     game_fsm.BRANCH_LVL_EQ_3:
+        state_number             = b0000100;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.BLINK_E1;
+        }
+        else{ game_fsm.d = game_fsm.CHECK_LVL_EQ_2;}
+
+     game_fsm.CHECK_LVL_EQ_2:
+        state_number             = b0000101;
+        control_sig_alufn        = b110011;
+        control_sig_asel         = b00;
+        control_sig_bsel         = b11;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b10010;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_LVL_EQ_2;
+
+     game_fsm.BRANCH_LVL_EQ_2:
+        state_number             = b0000110;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_FAST_COUNTER_MOD_2;
+        }
+        else{ game_fsm.d = game_fsm.CHECK_FAST_COUNTER_MOD_3;}
+
+     game_fsm.CHECK_FAST_COUNTER_MOD_2:
+        state_number             = b0000111;
+        control_sig_alufn        = b000111;
+        control_sig_asel         = b00;
+        control_sig_bsel         = b11;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b10011;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_FAST_COUNTER_MOD_2;
+
+     game_fsm.BRANCH_FAST_COUNTER_MOD_2:
+        state_number             = b0001000;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.BLINK_E7;
+        }
+        else{ game_fsm.d = game_fsm.IDLE;}
+
+     game_fsm.CHECK_FAST_COUNTER_MOD_3:
+        state_number             = b0001001;
+        control_sig_alufn        = b000111;
+        control_sig_asel         = b11;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b10011;
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_FAST_COUNTER_MOD_3;
+
+     game_fsm.BRANCH_FAST_COUNTER_MOD_3:
+        state_number             = b0001010;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.BLINK_E12;
+        }
+        else{ game_fsm.d = game_fsm.IDLE;}
+
+     game_fsm.BLINK_E1:
+        state_number             = b0001011;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00001;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b00001; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E2;
+
+     game_fsm.BLINK_E2:
+        state_number             = b0001100;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00010;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b00010; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E3;
+
+     game_fsm.BLINK_E3:
+        state_number             = b0001101;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00011;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b00011; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E4;
+
+     game_fsm.BLINK_E4:
+        state_number             = b0001110;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00100;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b00100; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E5;
+
+     game_fsm.BLINK_E5:
+        state_number             = b0001111;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00101;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b00101; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E6;
+
+     game_fsm.BLINK_E6:
+        state_number             = b0010000;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00110;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b00110; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E7;
+
+     game_fsm.BLINK_E7:
+        state_number             = b0010001;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00111;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b00111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E8;
+
+     game_fsm.BLINK_E8:
+        state_number             = b0010010;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01000;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b01000; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E9;
+
+     game_fsm.BLINK_E9:
+        state_number             = b0010011;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01001;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b01001; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E10;
+
+     game_fsm.BLINK_E10:
+        state_number             = b0010100;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01010;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b01010; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E11;
+
+     game_fsm.BLINK_E11:
+        state_number             = b0010101;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01011;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b01011; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E12;
+
+     game_fsm.BLINK_E12:
+        state_number             = b0010110;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01100;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b01100; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E13;
+
+     game_fsm.BLINK_E13:
+        state_number             = b0010111;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01101;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b01101; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E14;
+
+     game_fsm.BLINK_E14:
+        state_number             = b0011000;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01110;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b01110; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E15;
+
+     game_fsm.BLINK_E15:
+        state_number             = b0011001;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01111;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b01111;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BLINK_E16;
+
+     game_fsm.BLINK_E16:
+        state_number             = b0011010;
+        control_sig_alufn        = b010100; //custom alufn
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b10000;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b10000;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.CHECKPP_EQ_E1;
+
+     game_fsm.CHECKPP_EQ_E1:
+        state_number             = b0011011;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00; 
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b00001; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E1;
+
+     game_fsm.BRANCH_PP_EQ_E1:
+        state_number             = b0011100;
+        control_sig_rb           = b10111; // to get enemy1 pos
+        control_sig_write_enable = b0;
+        result = rb_data;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E2;
+          
+     game_fsm.CHECKPP_EQ_E2:
+        state_number             = b0011101;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b00010; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E2;
+
+     game_fsm.BRANCH_PP_EQ_E2:
+        state_number             = b0011110;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E3;
+     game_fsm.CHECKPP_EQ_E3:
+        state_number             = b0011111;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b00011; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E3;
+
+     game_fsm.BRANCH_PP_EQ_E3:
+        state_number             = b0100000;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E4;
+     game_fsm.CHECKPP_EQ_E4:
+        state_number             = b0100001;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b00100; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E4;
+
+     game_fsm.BRANCH_PP_EQ_E4:
+        state_number             = b0100010;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E5;
+     game_fsm.CHECKPP_EQ_E5:
+        state_number             = b0100011;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b00101; 
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E5;
+
+     game_fsm.BRANCH_PP_EQ_E5:
+        state_number             = b0100100;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E6;
+     game_fsm.CHECKPP_EQ_E6:
+        state_number             = b0100101;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b0110; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E6;
+
+     game_fsm.BRANCH_PP_EQ_E6:
+        state_number             = b0100110;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E7;
+     game_fsm.CHECKPP_EQ_E7:
+        state_number             = b0100111;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b0111; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E7;
+
+     game_fsm.BRANCH_PP_EQ_E7:
+        state_number             = b0101000;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E8;
+     game_fsm.CHECKPP_EQ_E8:
+        state_number             = b0101001;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b01000; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E8;
+
+     game_fsm.BRANCH_PP_EQ_E8:
+        state_number             = b0101010;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E9;
+     game_fsm.CHECKPP_EQ_E9:
+        state_number             = b0101011;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b01001; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E9;
+
+     game_fsm.BRANCH_PP_EQ_E9:
+        state_number             = b0101100;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E10;
+     game_fsm.CHECKPP_EQ_E10:
+        state_number             = b0101101;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b01010; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E10;
+
+     game_fsm.BRANCH_PP_EQ_E10:
+        state_number             = b0101110;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E11;
+     game_fsm.CHECKPP_EQ_E11:
+        state_number             = b0101111;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b01011; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E11;
+
+     game_fsm.BRANCH_PP_EQ_E11:
+        state_number             = b0110000;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E12;
+     game_fsm.CHECKPP_EQ_E12:
+        state_number             = b0110001;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b01100; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E12;
+
+     game_fsm.BRANCH_PP_EQ_E12:
+        state_number             = b0110010;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E13;
+     game_fsm.CHECKPP_EQ_E13:
+        state_number             = b0110011;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b01101; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E13;
+
+     game_fsm.BRANCH_PP_EQ_E13:
+        state_number             = b0110100;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E14;
+     game_fsm.CHECKPP_EQ_E14:
+        state_number             = b0110101;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b01110; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E14;
+
+     game_fsm.BRANCH_PP_EQ_E14:
+        state_number             = b0110110;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E15;
+     game_fsm.CHECKPP_EQ_E15:
+        state_number             = b0110111;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b01111; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E15;
+
+     game_fsm.BRANCH_PP_EQ_E15:
+        state_number             = b0111000;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECKPP_EQ_E16;
+     game_fsm.CHECKPP_EQ_E16:
+        state_number             = b0111001;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b10000; //E1
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP_EQ_E16;
+
+     game_fsm.BRANCH_PP_EQ_E16:
+        state_number             = b0111010;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.CHECK_LIVES_MORE_THAN_1;
+        }
+        else game_fsm.d = game_fsm.CHECK_END_REACHED;
+
+     game_fsm.CHECK_LIVES_MORE_THAN_1:
+        state_number             = b0111011;
+        control_sig_alufn        = b110101; //CMPLT
+        control_sig_asel         = b10;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b10101; //LIVES LEFT
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_LIVES_MORE_THAN_1;
+
+     game_fsm.BRANCH_LIVES_MORE_THAN_1:
+        state_number             = b0111100;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.LIVES_MINUS;
+        }
+        else game_fsm.d = game_fsm.LOSE_LIVES; //TO IMPLEMENT
+
+     game_fsm.LIVES_MINUS:
+        state_number             = b0111101;
+        control_sig_alufn        = b000001; //SUB
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b10101;
+        control_sig_rb           = b11011; //ALWAYS ONE
+        control_sig_rc           = b10101; //LIVES
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESPAWN_PP;
+
+     game_fsm.RESPAWN_PP:
+        state_number             = b0111110;
+        control_sig_alufn        = b000000; //CMPLT
+        control_sig_asel         = b01;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b11100; //start position
+        control_sig_rc           = b00000; //pp
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.IDLE;
+          
+     game_fsm.LOSE_LIVES:
+        state_number             = b0111101;
+        control_sig_alufn        = b000001; //SUB
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b10101;
+        control_sig_rb           = b11011; //ALWAYS ONE
+        control_sig_rc           = b10101; //LIVES
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.LOSE;
+
+     game_fsm.LOSE:
+        state_number             = b0111111;
+        control_sig_alufn        = b000000;
+        control_sig_asel         = b10;
+        control_sig_bsel         = b01;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b10110; //player_won
+        control_sig_wdsel        = b00;
+        if (reset_pressed){
+          game_fsm.d = game_fsm.RESET_PP;}
+
+     game_fsm.RESET_PP:
+        state_number             = b1000000;
+        control_sig_alufn        = b000000;
+        control_sig_asel         = b01;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b11100; //LIVES LEFT
+        control_sig_rc           = b00000; //TEMP
+        control_sig_wdsel        = b00;   //reset to start position 
+        game_fsm.d = game_fsm.RESET_STOP_GAME;
+
+      game_fsm.RESET_STOP_GAME:
+        state_number             = b1000001;
+        control_sig_alufn        = b000000;
+        control_sig_asel         = b01;
+        control_sig_bsel         = b01;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b10110; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_FAST_COUNTER;
+
+      game_fsm.RESET_FAST_COUNTER:
+        state_number             = b1000010;
+        control_sig_alufn        = b000000;
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b10011; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_SLOW_COUNTER;
+
+      game_fsm.RESET_SLOW_COUNTER:
+        state_number             = b1000011;
+        control_sig_alufn        = b000000; //CMPLT
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b10100;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_LIVES;
+
+     game_fsm.RESET_LIVES:
+        state_number             = b1000100;
+        control_sig_alufn        = b000000; //ADD
+        control_sig_asel         = b11;
+        control_sig_bsel         = b01;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b10101;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_LVL;
+
+     game_fsm.RESET_LVL:
+        state_number             = b1000101;
+        control_sig_alufn        = b000000; //ADD
+        control_sig_asel         = b10;
+        control_sig_bsel         = b01;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b10010;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E1;
+          
+     game_fsm.RESET_E1:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00001;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00001;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E2;
+          
+     game_fsm.RESET_E2:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00010;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00010;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E3;
+     
+     game_fsm.RESET_E3:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00011;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00011;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E4;
+          
+     game_fsm.RESET_E4:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00100;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00100;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E5;
+          
+      game_fsm.RESET_E5:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00101;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00101;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E6;
+          
+      game_fsm.RESET_E6:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00110;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00110;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E7;
+          
+       game_fsm.RESET_E7:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00111;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00111;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E8;
+          
+       game_fsm.RESET_E8:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01000;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b01000;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E9;
+          
+       game_fsm.RESET_E9:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01001;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b01001;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E10;
+          
+       game_fsm.RESET_E10:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01010;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b01010;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.RESET_E11;
+          
+       game_fsm.RESET_E11:
+        state_number             = b1000101;
+        control_sig_alufn        = b011011; //ADD
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b01011;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b01011;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.IDLE;
+
+     game_fsm.PP_PLUS:
+        state_number             = b1000110;
+        control_sig_alufn        = b000000; //add
+        control_sig_asel         = b10;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b00000; //LIVES LEFT
+        control_sig_rc           = b00000;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.CHECKPP_EQ_E1;
+
+     game_fsm.CHECK_PP:
+        state_number             = b1000111;
+        control_sig_alufn        = b110101; //cmplt
+        control_sig_asel         = b00;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b11100; //REG always_one: h8000
+        control_sig_rb           = b00000; //PP
+        control_sig_rc           = b11111;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_PP;
+
+
+     game_fsm.BRANCH_PP:
+        state_number             = b1001000;
+        control_sig_rb           = b11111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.PP_MINUS;
+        }
+        else game_fsm.d = game_fsm.IDLE;
+
+     game_fsm.PP_MINUS:
+        state_number             = b1001001;
+        control_sig_alufn        = b000001; //SUB
+        control_sig_asel         = b00; 
+        control_sig_bsel         = b00; 
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b11011; //REG storing value 1
+        control_sig_rc           = b00000;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.CHECKPP_EQ_E1;
+
+     game_fsm.CHECK_END_REACHED:
+        state_number             = b1001010;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b00;
+        control_sig_bsel         = b10;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PP
+        control_sig_rb           = b00000; //not used
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_END_REACHED;
+
+     game_fsm.BRANCH_END_REACHED:
+        state_number             = b1001011;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+        result = rb_data;
+
+        if (rb_data[0] == 1){
+        game_fsm.d = game_fsm.CHECK_NEXTLVL_EXISTS; // TO FIX
+        }
+        else game_fsm.d = game_fsm.IDLE; // goes to IDLE, does not check next level exists
+
+     game_fsm.CHECK_NEXTLVL_EXISTS:
+        state_number             = b1001100;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b11;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PPP
+        control_sig_rb           = b10010; //CURRENT LVEL
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_NEXT_LVL_EXISTS;
+
+     game_fsm.BRANCH_NEXT_LVL_EXISTS:
+        state_number             = b1001101;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+        
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.WIN;
+        }
+        else game_fsm.d = game_fsm.CURRENT_LVL_PLUS;
+          
+     game_fsm.CURRENT_LVL_PLUS:
+        state_number             = b1010011;
+        control_sig_alufn        = b000000;
+        control_sig_asel         = b10;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b10010; //current level register
+        control_sig_rc           = b10010;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.NEXT_LVL_PP;
+          
+          
+     game_fsm.TEMP_STATE:
+        state_number             = b1111111;
+        control_sig_rb           = b01011;
+        control_sig_write_enable = b0;
+        result = rb_data;
+     
+
+     game_fsm.NEXT_LVL_PP:
+        state_number             = b1001110;
+        control_sig_alufn        = b000000; 
+        control_sig_asel         = b01;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000; //PPP
+        control_sig_rb           = b11100; //CURRENT LVEL
+        control_sig_rc           = b00000; //PPP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.IDLE;
+
+     game_fsm.WIN:
+        state_number             = b1001111;
+        control_sig_alufn        = b000000; //ADD 1 TO 0
+        control_sig_asel         = b10;
+        control_sig_bsel         = b01;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b00000;
+        control_sig_rc           = b10110; //STOP GAME -> player_won
+        control_sig_wdsel        = b00;
+        if (reset_pressed){
+          game_fsm.d = game_fsm.RESET_PP;}
+
+     game_fsm.CHECK_STOP_GAME:
+        state_number             = b1010000;
+        control_sig_alufn        = b110011; //CMPEQ
+        control_sig_asel         = b10;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b10110; //stop game
+        control_sig_rc           = b10111; //TEMP
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.BRANCH_STOP_GAME;
+
+     game_fsm.BRANCH_STOP_GAME:
+        state_number             = b1010001;
+        control_sig_rb           = b10111;
+        control_sig_write_enable = b0;
+
+        if (rb_data[0] == 1){
+          game_fsm.d = game_fsm.IDLE;
+        }
+        else game_fsm.d = game_fsm.SLOW_COUNTER_PLUS;
+
+     game_fsm.SLOW_COUNTER_PLUS:
+        state_number             = b1010010;
+        control_sig_alufn        = b000000;
+        control_sig_asel         = b10;
+        control_sig_bsel         = b00;
+        control_sig_write_enable = b1;
+        control_sig_ra           = b00000;
+        control_sig_rb           = b10100; //slow counter register
+        control_sig_rc           = b10100;
+        control_sig_wdsel        = b00;
+        game_fsm.d = game_fsm.IDLE;
+  }
+}

@@ -1,0 +1,45 @@
+module lives_and_levels (
+    input lives[2],  // clock
+    input level[2],  // reset
+    output livesled_out[3],
+    output levelled_out[3]
+  ) {
+
+  always {
+    if (lives == d3) {
+    livesled_out[0] = 1;
+    livesled_out[1] = 1;
+    livesled_out[2] = 1;    }
+    else if (lives == d2) {
+    livesled_out[0] = 1;
+    livesled_out[1] = 1;
+    livesled_out[2] = 0; }
+    else if (lives == d1) {
+    livesled_out[0] = 1;
+    livesled_out[1] = 0;
+    livesled_out[2] = 0;
+    }
+    else {
+    livesled_out[0] = 0;
+    livesled_out[1] = 0;
+    livesled_out[2] = 0; }
+      
+    if (level == d3) {
+      levelled_out[0] = 1;
+      levelled_out[1] = 1;
+      levelled_out[2] = 1;    }
+    else if (level == d2) {
+      levelled_out[0] = 1;
+      levelled_out[1] = 1;
+      levelled_out[2] = 0; }
+    else if (level == d1) {
+      levelled_out[0] = 1;
+      levelled_out[1] = 0;
+      levelled_out[2] = 0;
+    }
+    else {
+    levelled_out[0] = 0;
+    levelled_out[1] = 0;
+    levelled_out[2] = 0; }
+  }
+}

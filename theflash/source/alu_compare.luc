@@ -1,0 +1,25 @@
+module alu_compare (
+    input a[16],
+    input b[16],
+    input alufn[6],
+    output out[16] 
+  ) {
+  
+  always {
+  
+    // Since only LSB is important
+    out = 16b0;
+    case (alufn) {
+    
+      // Compare Operations:
+      // CMPEQ: A = B
+      b110011: out[0] = (a == b);
+      // CMLT: A < B
+      b110101: out[0] = (a < b);
+      // CMLE: A <= B
+      b110111: out[0] = (a <= b); 
+      default: out[0] = 0; 
+      
+    }
+  }
+}
