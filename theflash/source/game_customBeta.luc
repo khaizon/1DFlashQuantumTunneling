@@ -2,15 +2,17 @@ module game_customBeta (
     input clk,  // clock
     input rst,  // reset
     
-    input up_button,
-    input down_button,
-    input middle_button,
+    input up_button,                  // forward button signal
+    input down_button,                // backward button signal
+    input middle_button,              // reset button signal
     
-    // output debug_out[16],
-    output lives[16],
-    output playerposition[16], // temp for testing
-    output level[16],
-    output slow_counter_time[16],
+    output lives[16],                 // Player's lives left
+    output playerposition[16],        // Player's current position
+    output level[16],                 // player's current level
+    output slow_counter_time[16],     // shows the time elapsed
+    output ledOUT[32][24],            // 32 x 24 bit array to be parsed into the led strip driver 
+    
+    // the following outputs are for FPGA's display and internal debugging
     output state_number[7],
     output result[16],
     output e1position[16],
@@ -30,7 +32,6 @@ module game_customBeta (
     output e15position[16],
     output e16position[16],
     output player_won[16]
-
   ) {
   
   //temp variables for ALU inputs A and B
@@ -50,11 +51,11 @@ module game_customBeta (
       // slow_timer used to count-up time taken by player
       counter slow_timer(#SIZE(1),#DIV(26)); // ~1 second 
       // fast_timer used to flash/blink the enemy LEDs
-      counter fast_timer(#SIZE(1),#DIV(25)); // ~1 millisecond
+      counter fast_timer(#SIZE(1),#DIV(25)); // ~1/2 second
       
     }
   }
-
+  entities_handler entities_handler;
   always {
     
     //edge detectors
@@ -66,9 +67,9 @@ module game_customBeta (
     game_controlunit.slow_counter = slow_timer_detector.out;
     
     //pass button press signal to Control Unit
-    game_controlunit.forward_pressed = up_button;
+    game_controlunit.forward_pressed  = up_button;
     game_controlunit.backward_pressed = down_button;
-    game_controlunit.reset_pressed = middle_button;
+    game_controlunit.reset_pressed    = middle_button;
     
     //Setup REGFILE unit 
     memory.we = game_controlunit.control_sig_write_enable;
@@ -80,22 +81,15 @@ module game_customBeta (
     //bootstrap reg_b output to CU for convenient branching conditions
     game_controlunit.rb_data = memory.out_b;
     
-    // show lives left
-    lives = memory.lives_left_output;
-    // information on whether player has won
-    player_won = memory.player_won_output;    
     // show count up timer 
     slow_counter_time = memory.slow_counter_output;
     
-    playerposition = memory.playerposition;
-    
-    state_number = game_controlunit.state_number;
-    
-    level = memory.difficulty_level_output;
-    
-    result = game_controlunit.result; //for debugging
-    
-    e1position = memory.e1position;
+    // set outputs for the IOs in au top
+    playerposition = memory.playerposition;   // player_position
+    level = memory.difficulty_level_output;   // level
+    lives = memory.lives_left_output;         // show lives left
+    player_won = memory.player_won_output;    // information on whether player has won
+    e1position = memory.e1position;           // all enemies' positions
     e2position = memory.e2position;
     e3position = memory.e3position;
     e4position = memory.e4position;
@@ -112,8 +106,22 @@ module game_customBeta (
     e15position = memory.e15position;
     e16position = memory.e16position;
     
-
-    //asel mux
+    // The "entities_handler" module takes in the required information required to be shown on the LED led_strip
+    // and outputs a 32bit x 24bit array for the LED driver (which converts that array into serial output)
+    entities_handler.e6position     = memory.e6position;
+    entities_handler.e16position    = memory.e16position;
+    entities_handler.e11position    = memory.e11position;
+    entities_handler.playerposition = memory.playerposition;
+    entities_handler.lives_left     = memory.lives_left_output;
+    entities_handler.playerwon      = memory.player_won_output;
+    
+    ledOUT = entities_handler.out;
+    
+    // state number and result of a specific register for debugging
+    state_number = game_controlunit.state_number;
+    result = game_controlunit.result;    
+    
+    //asel mux - chooses "A" input for ALU operation
     case(game_controlunit.control_sig_asel){
       b00  : alu_a = memory.out_a;
       b01  : alu_a = 0; 
@@ -123,7 +131,7 @@ module game_customBeta (
           alu_a = 0;
     }
     
-    //bsel mux
+    //bsel mux - chooses "B" input for ALU operation
     case(game_controlunit.control_sig_bsel){
       b00 : alu_b = memory.out_b;
       b01 : alu_b = 0;
@@ -134,14 +142,14 @@ module game_customBeta (
       
     }
     
-    //ALU
-    game_alu.a = alu_a;
-    game_alu.b = alu_b;
+    // assigning muxes' outputs to ALU 
+    game_alu.a     = alu_a;
+    game_alu.b     = alu_b;
     game_alu.alufn = game_controlunit.control_sig_alufn;
    
     
-    //wdsel mux
-    case (game_controlunit.control_sig_wdsel){ //broken
+    // wdsel mux - chooses "Wdata" input to the regfile
+    case (game_controlunit.control_sig_wdsel){ 
       b01 : memory.data = h1A;
       b10 : memory.data = h11B;
       b11 : memory.data = h8000;
