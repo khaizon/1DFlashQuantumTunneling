@@ -1,6 +1,6 @@
-# 1DFlashQuantumTunneling
-1DFlashQuantumTunneling Alchitry Code
-SUTD 50.002 Computational Structures 1D Project 
+# 1DFlashQuantumTunneling <br />
+1DFlashQuantumTunneling Alchitry Code <br />
+SUTD 50.002 Computational Structures 1D Project <br />
 Group Members consist of: Toh Kai Feng, Amrish Dev Sandhu, Seah Qi Yan, Ong Kah Yuan Joel, Bryan Phengan Hengardi
 
 The premise of the game is simple. You’re a dot. Always have been. You’re blue in colour and exist in a 1-dimensional world, a single axis to traverse. And so, backward and forward you go on your merry way. 
